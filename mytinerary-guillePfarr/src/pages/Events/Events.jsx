@@ -1,24 +1,25 @@
-import React from "react";
-import './events.css'
+
+
+import LayoutMain from "../Layout/LayoutMain";
 const Events = () => {
     return (
-        <div className="app-layout">
-            <header className="container app-header">
-                <nav>
-                    <a href="#">Home</a>
-                    <a href="#">Events</a>
-                    <a href="#">Contact</a>
-                </nav>
-            </header>
-            <main className="app-main">
-                <h2>Events</h2>
-            </main>
-            <footer className="app-footer">
-                <p className="text-center">MindHub AP MERN 08 - GuillePfarr</p>
-            </footer>
-        </div>
-
+        <LayoutMain>
+            <h2>Events</h2>
+        </LayoutMain>
     );
 };
 
 export default Events;
+
+//  <div className="app-layout">
+//             <header className="container app-header">
+//                 <nav>
+//                     <NavbarMain />
+//                 </nav>
+//             </header>
+//             <main className="app-main">
+//                 <h2>Events</h2>
+//             </main>
+//             <footer />
+
+//         </div>

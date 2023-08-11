@@ -1,22 +1,22 @@
-import NavbarMain from "../../components/Navbar/NavbarMain"
-
+import EventCard from "../../components/EventCard/EventCard"
+import LayoutMain from "../Layout/LayoutMain";
 
 const Home = () => {
-  const events = [];
+  const events = [
+    {
+      name: "Collectivities Party",
+      image: "https://i.postimg.cc/Fs03hQDt/Collectivities-Partry.jpg"
+    }
+  ];
   return (
-    <div className="app-layout">
-      <header className="container app-header">
-        <NavbarMain />
-      </header>
-      <main className="app-main">
+      <LayoutMain >
         <section className="container d-flex flex-wrap gap-5 justify-content-between">
-        </section>
-      </main>
-      <footer className="app-footer">
-        <p className="text-center">MindHub AP MERN 088 - GuillePfarr</p>
-      </footer>
-    </div>
+          <h2 className="text-center w-100 text-primary">Events</h2>
+          {events.map((event) => (
+            <EventCard evento={event} />))}
+        </section>  
+    </LayoutMain>
   );
 };
 
-export default Home
+export default Home;
