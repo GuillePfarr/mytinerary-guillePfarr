@@ -1,0 +1,10 @@
+.carousel{
+display: flex;
+max-width: 1440px;
+}
+
+.carousel-img{
+width: 100%;
+height: 400px;
+object-fit: cover;
+}
