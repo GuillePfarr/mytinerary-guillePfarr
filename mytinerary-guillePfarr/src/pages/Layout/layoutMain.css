@@ -1,0 +1,12 @@
+.layout-main{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .layout-main-header{
+    padding-top: 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }

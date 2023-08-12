@@ -1,39 +1,66 @@
-import "./";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
+import "./carousel.css";
 
 const Carousel = () => {
-    const events = [
-        {
-            name: "Collectivities Party",
-            image: "https://unsplash.com/es/fotos/CRMjqDZwxS4"
-        }
-    ];
+  const slides = [ [
+      { image: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Castle_Neuschwanstein.jpg", name: "Ciudad 1" },
+      { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Salzburg_panorama.jpg/1280px-Salzburg_panorama.jpg", name: "Ciudad 2" },
+      { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Port_Vell%2C_Barcelona%2C_Spain_-_Jan_2007.jpg/1920px-Port_Vell%2C_Barcelona%2C_Spain_-_Jan_2007.jpg", name: "Ciudad 3" },
+      { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Paris_Night.jpg/1920px-Paris_Night.jpg", name: "Ciudad 4" },
+    ],
+    [
+      { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg/1024px-Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg", name: "Ciudad 5" },
+      { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Hagia_Sophia_Mars_2013.jpg/800px-Hagia_Sophia_Mars_2013.jpg", name: "Istambul" },
+      { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Luzern_Kapellbruecke.jpg/800px-Luzern_Kapellbruecke.jpg", name: "Lucerne Swizerland" },
+      { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Kremlevskaya_Naberezhnaja_Moscow.hires.jpg/800px-Kremlevskaya_Naberezhnaja_Moscow.hires.jpg", name: "Moscow Russia" },
+    ],
+    [
+      { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/London_Eye_Twilight_April_2006.jpg/800px-London_Eye_Twilight_April_2006.jpg", name: "London England" },
+      { image:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/HerdenkingVuurgrensRotterdam1940_2007_edit1.jpg/800px-HerdenkingVuurgrensRotterdam1940_2007_edit1.jpg", name: "Rotterdam Netherlands" },
+      { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colosseum_in_Rome-April_2007-1-_copie_2B.jpg/1024px-Colosseum_in_Rome-April_2007-1-_copie_2B.jpg", name: "Rome Italy" },
+      { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Attica_06-13_Athens_25_Olympian_Zeus_Temple.jpg/800px-Attica_06-13_Athens_25_Olympian_Zeus_Temple.jpg", name: "Athens Greek" },
+    ],]; 
 
-    let [contador, setContador] = useState(0);
-console.log(contador)
-    const prev = () => {
-        if (contador == 0) {
-            setContador(events.lenght - 1);
-        } else {
-            setContador(contador - 1);
-        }
-    };
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [pause, setPause] = useState(false);
 
-    const next = () => {
-        if (contador == events.length - 1) {
-            setContador(0);
-        } else {
-            setContador(contador + 1);
-        }
-    };
-    return (
-        <div className="carosuel">
-            <button onClick={prev} > {'<'} </button>
-            <img className="carousel-image " src={events[contador].image} alt="" />
-            <button onClick={next} > {'>'} </button>
-        </div>
+  const nextSlide = () => {
+    if (!pause) {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
+    }
+  };
 
-    );
+  useEffect(() => {
+    const interval = setInterval(nextSlide, 3000);
+    return () => clearInterval(interval);
+  }, [pause]);
+
+  const pauseCarousel = () => {
+    setPause(true);
+    setTimeout(() => {
+      setPause(false);
+    }, 1000);
+  };
+
+  return (
+    <div className="carousel">
+      <button className="carousel-button" onClick={() => setCurrentSlide((prevSlide) => (prevSlide + slides.length - 1) % slides.length)}>
+        {"<"}
+      </button>
+      <div className="carousel-slide">
+        {slides[currentSlide].map((imageInfo, index) => (
+          <div key={index} className="carousel-image">
+            <img src={imageInfo.image} alt={imageInfo.name} />
+            <p>{imageInfo.name}</p>
+          </div>
+        ))}
+      </div>
+      <button className="carousel-button" onClick={() => { nextSlide(); pauseCarousel(); }}>
+        {">"}
+      </button>
+    </div>
+  );
+
 };
 
-export default Carousel;
+export default Carousel

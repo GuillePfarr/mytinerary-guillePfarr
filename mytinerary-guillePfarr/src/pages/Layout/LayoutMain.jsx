@@ -1,16 +1,16 @@
-import Footer from "../../components/Footer/Footer"
-import NavbarMain from "../../components/Navbar/NavbarMain"
+import Footer from "../../components/Footer/Footer";
+import NavbarMain from "../../components/Navbar/NavbarMain";
+import "./layoutMain.css";
 const LayoutMain = ({ children }) => {
   return (
-    <div className="app-layout">
-      <header className="container app-header">
+    <div className="layout-main">
+      <header className="container layout-main-header">
         <NavbarMain />
       </header>
-      <main className="app-main">{children}
-      </main>
+      {children}
       <Footer />
     </div>
   );
 };
 
-export default LayoutMain
+export default LayoutMain;
