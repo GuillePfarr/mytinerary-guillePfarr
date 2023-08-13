@@ -1,3 +1,22 @@
+.home-hero{
+    height: 40vh;
+    display: grid;
+    place-content: center;
+    background-color: rgb(242, 242, 245);
+    width: 100vw;
+    max-width: 1440px;
+
+    background-image: url('https://w0.peakpx.com/wallpaper/966/513/HD-wallpaper-compass-to-navigate-directions-navigation-compass-map-firefox-persona-theme-vintage.jpg') ;
+    background-position: 20%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.home-hero-title{
+    font-size: 2rem;
+    background-color: white;
+    border-radius: 10px;
+}
+
 .home-carousel{
     max-width: 1440px;
     display: flex;
