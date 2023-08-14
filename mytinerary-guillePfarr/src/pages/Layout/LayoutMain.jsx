@@ -1,23 +1,36 @@
-import Footer from "../../components/Footer/Footer";
-import NavbarMain from "../../components/Navbar/NavbarMain";
-import "./layoutMain.css";
-const LayoutMain = ({ children }) => {
-  return (
-    <div className="layout-main">
-      <header className="container layout-main-header">
-        <NavbarMain />
-      </header>
-{/* <div class="hero-image">
-  <div class="hero-text">
-    <h1>I am John Doe</h1>
-    <p>And I'm a Photographer</p>
-    <button>Hire me</button>
-  </div>
-</div> */}
-      {children}
-      <Footer />
-    </div>
-  );
-};
+import React, { useEffect } from 'react'
+import HeaderMain from '../../components/HeaderMain/HeaderMain';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
-export default LayoutMain;
+// import './mainLayout.css'
+
+// mainLayout.css .mi-ul
+
+const links = [
+    { value: '#', content: 'Link 1', id: '1' },
+    { value: '#', content: 'Link 2', id: '2' },
+    { value: '#', content: 'Link 3', id: '3' },
+    { value: '#', content: 'Link 4', id: '4' },
+]
+
+const LayoutMain= () => {
+    // const navigate = useNavigate()
+    const location = useLocation()
+    console.log(location);
+    // useEffect(() => {
+    //     if (location.pathname === '/') navigate('/home')
+    // }, [])
+
+    return (
+        <div className='w-full min-h-screen flex flex-col items-center bg-[#212529]'>
+            <HeaderMain />
+
+            <Outlet />
+            {/* <footer>
+                <Nav links={links} />
+            </footer> */}
+        </div>
+    )
+}
+
+export default LayoutMain

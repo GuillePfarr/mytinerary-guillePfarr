@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./carousel.css";
 
-const Carousel = () => {
-  const slides = [ [
+const slides = [ [
       { image: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Castle_Neuschwanstein.jpg", name: "Ciudad 1" },
       { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Salzburg_panorama.jpg/1280px-Salzburg_panorama.jpg", name: "Ciudad 2" },
       { image: "https://w0.peakpx.com/wallpaper/966/513/HD-wallpaper-compass-to-navigate-directions-navigation-compass-map-firefox-persona-theme-vintage.jpg", name: "Ciudad 3" },
@@ -21,6 +20,9 @@ const Carousel = () => {
       { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colosseum_in_Rome-April_2007-1-_copie_2B.jpg/1024px-Colosseum_in_Rome-April_2007-1-_copie_2B.jpg", name: "Rome Italy" },
       { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Attica_06-13_Athens_25_Olympian_Zeus_Temple.jpg/800px-Attica_06-13_Athens_25_Olympian_Zeus_Temple.jpg", name: "Athens Greek" },
     ],]; 
+
+const Carousel = () => {
+  
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [pause, setPause] = useState(false);

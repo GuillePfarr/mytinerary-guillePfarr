@@ -1,0 +1,8 @@
+.cities-bg{
+background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg");
+height: 100%;
+ background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
