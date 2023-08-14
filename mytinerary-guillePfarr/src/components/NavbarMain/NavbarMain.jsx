@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import LiAndAnchor from './';
+import LiAndAnchor from './components/LiAndAnchor/LiAndAnchor';
 
 const Nav = ({ links }) => {
 
