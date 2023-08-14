@@ -1,33 +1,37 @@
 import React, { useState } from 'react'
 import NavbarMain from '../NavbarMain/NavbarMain'
-
-
-// import './Header.css'
-// Header.css .mi-ul
+import "./headermain.css"
 
 const links = [
     { value: '/', content: 'Home', id: '1', active: true },
-    { value: '/events', content: 'Events', id: '2', active: false },
-    { value: '/algo', content: 'Link 3', id: '3', active: false },
-    { value: '/algo2', content: 'Link 4', id: '4', active: false },
+    { value: '/cities', content: 'Cities', id: '2', active: false },
+    { value: '/favourites', content: 'Favourites', id: '3', active: false },
+    { value: '/mybookings', content: 'MyBookings', id: '4', active: false },
 ]
 
+// const HeaderMain = () => {
+
+//     const [show, setShow] = useState(false)
+//     return (
+        
+//            <header className='HeaderMain'>
+//             <NavbarMain links={links} />
+//         </header>
+//     )
+// }
+
+// export default HeaderMain;
 const HeaderMain = () => {
+  const [showMenu, setShowMenu] = useState(false);
 
-    const [show, setShow] = useState(false)
-    return (
-        <header className='flex h-[5vh] items-center px-16 justify-between  w-3/4'>
-            {/* <Logo /> */}
-            <NavbarMain links={links} />
-
-            {/* <p onClick={() => setShow(!show)}>Show time</p> */}
-            {
-                // show && <Clock />
-            }
-           
-
-        </header>
-    )
-}
+  return (
+    <header className='HeaderMain'>
+      <button className="toggle-button" onClick={() => setShowMenu(!showMenu)}>
+         Menu
+      </button>
+      {showMenu && <NavbarMain links={links} />}
+    </header>
+  );
+};
 
 export default HeaderMain;

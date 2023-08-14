@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
-import LiAndAnchor from './components/LiAndAnchor/LiAndAnchor';
+import LiAndAnchor from '../../components/LiAndAnchor/LiAndAnchor'
 
-const Nav = ({ links }) => {
+const NavbarMain = ({ links }) => {
 
     return (
         <nav>
@@ -20,4 +20,4 @@ const Nav = ({ links }) => {
     )
 }
 
-export default NavbarMain
+export default NavbarMain;

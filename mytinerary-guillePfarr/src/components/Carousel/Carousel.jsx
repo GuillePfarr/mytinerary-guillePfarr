@@ -4,8 +4,8 @@ import "./carousel.css";
 const slides = [ [
       { image: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Castle_Neuschwanstein.jpg", name: "Ciudad 1" },
       { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Salzburg_panorama.jpg/1280px-Salzburg_panorama.jpg", name: "Ciudad 2" },
-      { image: "https://w0.peakpx.com/wallpaper/966/513/HD-wallpaper-compass-to-navigate-directions-navigation-compass-map-firefox-persona-theme-vintage.jpg", name: "Ciudad 3" },
-      { image: "https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg", name: "Ciudad 4" },
+      { image: "https://www.wendyperrin.com/wp-content/uploads/2019/03/Marsaxlokk_Harbour_6.jpg", name: "Ciudad 3" },
+      { image: "https://www.wendyperrin.com/wp-content/uploads/2017/12/shutterstock_388289746.jpg", name: "Barcelona-Spain" },
       
     ],
     [
@@ -34,7 +34,7 @@ const Carousel = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(nextSlide, 300000);
+    const interval = setInterval(nextSlide, 3000);
     return () => clearInterval(interval);
   }, [pause]);
 

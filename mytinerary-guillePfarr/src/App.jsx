@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom';
 import Events from './pages/Events/Events';
 import Componente404 from './pages/Componente404';
+import Cities from './pages/Cities/Cities';
 
 const router = createBrowserRouter([
   {
@@ -16,8 +17,8 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: '/events',
-        element: <Events />
+        path: '/cities',
+        element: <Cities />
       },
       {
         path: '/events/:PropiedadPepito',
