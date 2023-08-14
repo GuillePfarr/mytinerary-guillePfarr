@@ -1,17 +1,23 @@
-import "./navbarmain.css";
-import Anchor from "../Anchor";
-let data = [
-{href:"#" , title:"Home"},
-{href:"Cities.html" , title:"Cities"},
-{href:"Contact.html" , title:"Contact"},
-{href:"Favourites.html" , title:"Favourites"}
-]
-const NavbarMain = () => {
-  return (
-    <nav className="Navbar-main">
-      {data.map((each, key)=><Anchor key={key} href={each.href} title={each.title} />)}
-    </nav>
-  );
-};
+import React, { Fragment } from 'react'
+import LiAndAnchor from './';
 
-export default NavbarMain;
+const Nav = ({ links }) => {
+
+    return (
+        <nav>
+            <ul className='flex gap-6'>
+                {
+                    links.map((link, indice) => {
+                        return (
+                            <Fragment key={indice}>
+                                <LiAndAnchor value={link.value} active={link.active} content={link.content} />
+                            </Fragment>
+                        )
+                    })
+                }
+            </ul>
+        </nav>
+    )
+}
+
+export default NavbarMain
