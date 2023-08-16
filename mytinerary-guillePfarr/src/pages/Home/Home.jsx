@@ -1,17 +1,54 @@
-import Carousel from "../../components/Carousel/Carousel";
-import "./home.css";
-const Home = () => {
-  return (
-    <main className="flex-grow-1 d-flex flex-column">
-      <section className="home-hero">
+// import Carousel from "../../components/Carousel/Carousel";
+// import "./home.css";
+// import { Link } from 'react-router-dom';
+// const Home = () => {
+//   return (
+//     <main >
+//       <section className="homeHero">
+//         <div className="homeHeroTitle">
+//           "Find your perfect trip. Designed by insiders who know and love their cities"
+//         </div>
+//         <img className="heroBgImage" src="https://ik.imgkit.net/3vlqs5axxjf/TW-Asia/ik-seo/uploadedImages/Industry/Travel_Agents/AdobeStock_322669629/Flight-Centre-nabs-luxury-tour-operator-Scott-Dunn.jpg?tr=w-780%2Ch-440%2Cfo-auto" alt="heroBgImage"></img>
 
-        <img className="hero-bg-image" src="https://w0.peakpx.com/wallpaper/966/513/HD-wallpaper-compass-to-navigate-directions-navigation-compass-map-firefox-persona-theme-vintage.jpg" alt="heroBgImage"></img>
-        <h2 className="home-hero-title">
-          "Find your perfect trip. Designed by insiders who know and love their cities"
-        </h2>
-        <div className="button-wrapper">
-          <a className="button cta-button" href="#0"></a>
-        </div>
+//         <div className="button-wrapper">
+//   <Link className="button cta-button" to="/Cities"></Link>
+//   <p className="cta-text">Explore Cities</p>
+// </div>
+//       </section>
+//       <section className="home-carousel">
+//         <Carousel />
+//       </section>
+//     </main>
+//   );
+// };
+
+// export default Home;
+
+import React from 'react';
+import Carousel from "../../components/Carousel/Carousel";
+import { Link, useLocation } from 'react-router-dom';
+import "./home.css";
+
+const Home = () => {
+  const location = useLocation();
+
+  return (
+    <main>
+      <section className="homeHero">
+          <div className="homeHeroTitle">
+         "Find your perfect trip. Designed by insiders who know and love their cities"
+       </div>
+      <img className="heroBgImage" src="https://ik.imgkit.net/3vlqs5axxjf/TW-Asia/ik-seo/uploadedImages/Industry/Travel_Agents/AdobeStock_322669629/Flight-Centre-nabs-luxury-tour-operator-Scott-Dunn.jpg?tr=w-780%2Ch-440%2Cfo-auto" alt="heroBgImage"></img>
+
+
+        
+          <div className="button-wrapper">
+
+            <Link className="button cta-button" to="/Cities"></Link>
+
+           <p className='cta-text'>Explore Cities</p>
+          </div>
+       
       </section>
       <section className="home-carousel">
         <Carousel />

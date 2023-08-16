@@ -19,6 +19,12 @@ const slides = [ [
       { image: "https://www.wendyperrin.com/wp-content/uploads/2018/01/venice-2647436_1920.jpg", name: "Venice-Italy" },
       { image: "https://www.wendyperrin.com/wp-content/uploads/2014/09/duomo-florence-italy-cr-brian-dore-1cropped.jpg", name: "Florence-Italy" },
     ],
+[
+      { image: "https://www.wendyperrin.com/wp-content/uploads/2019/08/Gran-Via-night-Madrid-Spain-shutterstock_557009335.jpg", name: "Madrid-Spain" },
+      { image: "https://www.wendyperrin.com/wp-content/uploads/2018/06/stock-photo-mountain-village-novara-di-sicilia-sicily-italy-shutterstock_736870174.jpg", name: "Sicily-Italy" },
+      { image: "https://w0.peakpx.com/wallpaper/966/513/HD-wallpaper-compass-to-navigate-directions-navigation-compass-map-firefox-persona-theme-vintage.jpg", name: "Hero-one" },
+      { image: "https://ik.imgkit.net/3vlqs5axxjf/TW-Asia/ik-seo/uploadedImages/Industry/Travel_Agents/AdobeStock_322669629/Flight-Centre-nabs-luxury-tour-operator-Scott-Dunn.jpg?tr=w-780%2Ch-440%2Cfo-auto", name: "Hero-two" },
+    ],
     [
       { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/London_Eye_Twilight_April_2006.jpg/800px-London_Eye_Twilight_April_2006.jpg", name: "London England" },
       { image:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/HerdenkingVuurgrensRotterdam1940_2007_edit1.jpg/800px-HerdenkingVuurgrensRotterdam1940_2007_edit1.jpg", name: "Rotterdam Netherlands" },
@@ -33,9 +39,9 @@ const Cities = () => {
           <h2 className="home-hero-title">
             "Sorry, page under construction"
           </h2>
-          <div className="button-wrapper">
+          {/* <div className="button-wrapper">
             <a className="button cta-button" href="#0"></a>
-          </div>
+          </div> */}
         </section>
 </main>
       

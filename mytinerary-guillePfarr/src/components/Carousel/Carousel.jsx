@@ -58,13 +58,38 @@ const Carousel = () => {
           </div>
         ))}
       </div>
+
       <button className="carousel-button" onClick={() => { nextSlide(); pauseCarousel(); }}>
         {">"}
       </button>
     </div>
   );
-
 };
 
-export default Carousel
+//  return (
+//     <div className="carousel">
+//       <div className="carousel-slide">
+//         {slides[currentSlide].map((imageInfo, index) => (
+//           <div key={index} className="carousel-image">
+//             <img src={imageInfo.image} alt={imageInfo.name} />
+//           </div>
+//         ))}
+//       </div>
+//       <div className="carousel-buttons">
+//         <button className="carousel-button" onClick={() => setCurrentSlide((prevSlide) => (prevSlide + slides.length - 1) % slides.length)}>
+//           {"<"}
+//         </button>
+//         <button className="carousel-button" onClick={() => { nextSlide(); pauseCarousel(); }}>
+//           {">"}
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+
+export default Carousel;
+
+
+
+
 
