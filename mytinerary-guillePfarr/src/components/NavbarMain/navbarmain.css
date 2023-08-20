@@ -1,5 +1,6 @@
 .Navbar-main{
     display: flex;
+flex-direction: row;
     align-items: start;
     gap: 10px;
 }
@@ -8,4 +9,10 @@
     font-size: 18px;
     font-weight: 600;
     color: rgb(98, 98, 218);
+}
+
+
+
+.active{
+background-color: blueviolet;
 }
