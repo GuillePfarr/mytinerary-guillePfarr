@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-
+import "./liandanchor.css"
 const LiAndAnchor = (props) => {
 
     const { value, content, active } = props
