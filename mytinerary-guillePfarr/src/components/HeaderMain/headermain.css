@@ -1,7 +1,12 @@
-.HeaderMain{
-min-height: 10vh;
-background-color: rgb(187, 212, 228);
-position: relative;
+.HeaderMain {
+    min-height: 15vh;
+    background-color: black;
+    position: relative;
+
+
+
+
+
 }
 
 /* .Navbar-main{
@@ -9,11 +14,9 @@ position: relative;
     align-items: start !important;
     gap: 10px;
 } */
-.Navbar-main a{
+.Navbar-main a {
     text-decoration: none;
     font-size: 18px;
     font-weight: 600;
     color: rgb(98, 98, 218);
 }
-
-
