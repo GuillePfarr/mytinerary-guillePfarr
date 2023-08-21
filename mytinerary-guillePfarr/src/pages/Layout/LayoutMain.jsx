@@ -3,9 +3,7 @@ import HeaderMain from '../../components/HeaderMain/HeaderMain';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 
-// import './mainLayout.css'
 
-// mainLayout.css .mi-ul
 
 const links = [
   { value: '#', content: 'Link 1', id: '1' },
@@ -15,15 +13,13 @@ const links = [
 ]
 
 const LayoutMain = () => {
-  // const navigate = useNavigate()
+ 
   const location = useLocation()
   console.log(location);
-  // useEffect(() => {
-  //     if (location.pathname === '/') navigate('/home')
-  // }, [])
+  
 
   return (
-    <div className='w-full min-h-screen flex flex-col items-center bg-[#212529]'>
+    <div className='layout-main'>
       <HeaderMain />
 
 

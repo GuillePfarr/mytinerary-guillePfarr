@@ -45,26 +45,26 @@ const Carousel = () => {
     }, 10000);
   };
 
-  return (
-    <div className="carousel">
-      <button className="carousel-button" onClick={() => setCurrentSlide((prevSlide) => (prevSlide + slides.length - 1) % slides.length)}>
-        {"<"}
-      </button>
-      <div className="carousel-slide">
-        {slides[currentSlide].map((imageInfo, index) => (
-          <div key={index} className="carousel-image">
-            <img  src={imageInfo.image} alt={imageInfo.name} />
-            {/* <p className="cardName">{imageInfo.name}</p> */}
-          </div>
-        ))}
-      </div>
+//   return (
+//     <div className="carousel">
+//       <button className="carousel-button" onClick={() => setCurrentSlide((prevSlide) => (prevSlide + slides.length - 1) % slides.length)}>
+//         {"<"}
+//       </button>
+//       <div className="carousel-slide">
+//         {slides[currentSlide].map((imageInfo, index) => (
+//           <div key={index} className="carousel-image">
+//             <img  src={imageInfo.image} alt={imageInfo.name} />
+            
+//           </div>
+//         ))}
+//       </div>
 
-      <button className="carousel-button" onClick={() => { nextSlide(); pauseCarousel(); }}>
-        {">"}
-      </button>
-    </div>
-  );
-};
+//       <button className="carousel-button" onClick={() => { nextSlide(); pauseCarousel(); }}>
+//         {">"}
+//       </button>
+//     </div>
+//   );
+// };
 
 //  return (
 //     <div className="carousel">
@@ -87,9 +87,35 @@ const Carousel = () => {
 //   );
 // };
 
+// export default Carousel;
+
+
+return (
+    <div className="carousel">
+      <button className="carousel-button prev" onClick={() => setCurrentSlide((prevSlide) => (prevSlide + slides.length - 1) % slides.length)}>
+        {"<<"}
+      </button>
+      <div className="carousel-slide">
+        {slides[currentSlide].map((imageInfo, index) => (
+          <div key={index} className="carousel-image">
+            <img src={imageInfo.image} alt={imageInfo.name} />
+          </div>
+        ))}
+      </div>
+      <button className="carousel-button next" onClick={() =>setCurrentSlide((prevSlide) => (prevSlide + slides.length + 1) % slides.length) }>
+        {">>"}
+      </button>
+    </div>
+  );
+};
+
 export default Carousel;
 
 
 
+
+// ...
+
+  // ...
 
 

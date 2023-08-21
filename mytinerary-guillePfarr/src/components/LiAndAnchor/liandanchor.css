@@ -1,3 +1,10 @@
 .active{
-background-color: rgb(3, 48, 48);
+background-color: rgb(212, 179, 85);
 }
+
+/* .nacbarmainli{
+
+    display: flex !important;
+    align-items: start !important;
+    gap: 10px;
+} */

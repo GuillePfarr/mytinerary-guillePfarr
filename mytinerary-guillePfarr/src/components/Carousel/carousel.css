@@ -62,3 +62,43 @@ object-fit: cover;
 
 
 
+
+
+.carousel {
+  position: relative;
+}
+
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #c9c60a;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.carousel-button.prev {
+  left: 20px; /* Adjust the distance from the left side */
+}
+
+.carousel-button.next {
+  right: 20px; /* Adjust the distance from the right side */
+}
+
+@media (min-width: 920px){
+
+.carousel-button.prev {
+  left: -60px; /* Adjust the distance from the left side */
+}
+
+.carousel-button.next {
+  right:-60px; /* Adjust the distance from the right side */
+}
+
+
+}

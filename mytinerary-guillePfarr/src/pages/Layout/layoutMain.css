@@ -4,14 +4,14 @@
     flex-direction: column;
     align-items: center;
   }
-  .layout-main-header{
+  /* .layout-main-header{
 height: 10vh;
 width: 100%;
     padding-top: 10px;
     display: flex;
     justify-content: end;
     align-items: center;
-  }
+  } */
 
 .hero-image{
 background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg");
@@ -31,3 +31,15 @@ height: 30%;
   transform: translate(-50%, -50%);
   color: white;
 }
+
+/* .Navbar-main{
+    display: flex !important;
+    align-items: start !important;
+    gap: 10px;
+} */
+/* .Navbar-main a{
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(98, 98, 218);
+} */

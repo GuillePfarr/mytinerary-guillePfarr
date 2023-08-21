@@ -3,16 +3,13 @@ import { Link, NavLink } from 'react-router-dom'
 import "./liandanchor.css"
 const LiAndAnchor = (props) => {
 
-    const { value, content, active } = props
+    const { value, content} = props
 
     return (
-        <li>
+        <li className='navbarmainli'>
             
-            <NavLink className={({ isActive }) =>
-                isActive
-                    ? "text-xl text-white transition-all duration-500"
-                    : "text-xl text-gray-500 hover:text-white transition-all duration-500"
-            } to={value}>{content}</NavLink>
+            <NavLink 
+                to={value}>{content}</NavLink>
         </li>
     )
 }
