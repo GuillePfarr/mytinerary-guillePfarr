@@ -26,8 +26,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavbarMain.css';
-import './public/assets/logomyt.css'
-import LogoMyt from '../../../public/assets/LogoMyt';
+import './logomyt.css'
+import LogoMyt from '../LogoMyt';
 
 const NavbarMain = () => {
   const [showMenu, setShowMenu] = useState(false);
