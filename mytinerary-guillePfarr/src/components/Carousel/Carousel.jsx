@@ -1,7 +1,9 @@
+
 import React, { useState, useEffect } from "react";
 import "./carousel.css";
 
-const slides = [ 
+
+const slides =[ [ 
       { image: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Castle_Neuschwanstein.jpg", name: "Ciudad 1" },
       { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Salzburg_panorama.jpg/1280px-Salzburg_panorama.jpg", name: "Ciudad 2" },
       { image: "https://www.wendyperrin.com/wp-content/uploads/2019/03/Marsaxlokk_Harbour_6.jpg", name: "Ciudad 3" },
@@ -17,7 +19,7 @@ const slides = [
       { image:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/HerdenkingVuurgrensRotterdam1940_2007_edit1.jpg/800px-HerdenkingVuurgrensRotterdam1940_2007_edit1.jpg", name: "Rotterdam Netherlands" },
       { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colosseum_in_Rome-April_2007-1-_copie_2B.jpg/1024px-Colosseum_in_Rome-April_2007-1-_copie_2B.jpg", name: "Rome Italy" },
       { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Attica_06-13_Athens_25_Olympian_Zeus_Temple.jpg/800px-Attica_06-13_Athens_25_Olympian_Zeus_Temple.jpg", name: "Athens Greek" }
-   ]
+   ],]
 
 const Carousel = () => {
   
@@ -63,10 +65,6 @@ return (
 };
 
 export default Carousel;
-
-
-
-
 
 
 
