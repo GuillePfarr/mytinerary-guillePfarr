@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavbarMain.css';
+import LogoMain from '../LogoMain/LogoMain';
 
 const NavbarMain = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -9,7 +10,7 @@ const NavbarMain = () => {
     <header className="HeaderMain">
       <div className="NavbarContainer">
         <Link to="/" className="Logo">
-          YourLogo
+          MyTineraries
         </Link>
         <button
           className={`ToggleButton ${showMenu ? 'CloseButton' : ''}`}

@@ -36,6 +36,7 @@
 
 .NavbarLinks {
   display: flex;
+justify-content: flex-end;
   align-items: center;
   list-style: none;
   
@@ -44,20 +45,23 @@
 
 .NavbarLinks ul {
   display: flex;
+position: relative;
+right: 1rem;
   list-style: none;
-  margin: 0;
+  margin-right: 1rem;
   padding: 0;
+
 }
 
 .NavbarLinks li {
-  margin-right: 20px;
+  margin-right: 1rem;
 }
 
 .NavbarLinks a {
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
-  color: rgb(98, 98, 218);
+  color: rgb(248, 248, 253);
   transition: color 0.3s ease-in-out;
 }
 
@@ -65,8 +69,8 @@
   display: none;
   position: absolute;
   top: 50px;
-  right: 20px;
-  background-color: #fff;
+  right: .5rem;
+  
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 100;
 }

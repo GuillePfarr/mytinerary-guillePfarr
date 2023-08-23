@@ -9,20 +9,20 @@ const links = [
   { value: '/mybookings', content: 'MyBookings', id: '4', active: false },
 ];
 
-// const HeaderMain = () => {
-//   const [showMenu, setShowMenu] = useState(false);
+const HeaderMain = () => {
+  const [showMenu, setShowMenu] = useState(false);
 
-//   return (
-//     <header className="HeaderMain">
-//       <button className="toggle-button" onClick={() => setShowMenu(!showMenu)}>
-//        Menu
-//       </button>
-//       {showMenu && <NavbarMain links={links} />}
-//     </header>
-//   );
-// };
+  return (
+    <header className="HeaderMain">
+      <button className="toggle-button" onClick={() => setShowMenu(showMenu)}>
+       Menu
+      </button>
+      {showMenu && <NavbarMain links={links} />}
+    </header>
+  );
+};
 
-// export default HeaderMain;
+export default HeaderMain;
 
 
 
