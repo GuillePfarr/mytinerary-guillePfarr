@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import HeaderMain from '../../components/HeaderMain/HeaderMain';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
+import NavbarMain from '../../components/NavbarMain/NavbarMain';
 
 
 
@@ -20,7 +21,7 @@ const LayoutMain = () => {
 
   return (
     <div className='layout-main'>
-      <HeaderMain />
+      <NavbarMain />
       <Outlet />
       <Footer />
     </div>
