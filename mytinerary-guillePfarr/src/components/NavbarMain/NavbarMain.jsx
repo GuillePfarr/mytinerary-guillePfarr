@@ -26,8 +26,13 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavbarMain.css';
+<<<<<<< HEAD
 import './logomyt.css'
 import LogoMyt from '../LogoMyt';
+=======
+
+import LogoMyt from '../LogoMyt/LogoMyt';
+>>>>>>> 5bc1aa94cd98ebf2c31179d0299d0640bfedde03
 
 const NavbarMain = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -35,7 +40,7 @@ const NavbarMain = () => {
   return (
     <header className="HeaderMain">
       <div className="NavbarContainer">
-        <Link to="./public/assets/logomyt.css" className="LogoMyt">
+        <Link to="./LogoMyt/LogoMyt.jsx" className="LogoMyt">
           <LogoMyt/>
         </Link>
         <button
