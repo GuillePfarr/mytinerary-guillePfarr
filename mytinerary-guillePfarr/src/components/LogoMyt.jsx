@@ -1,5 +1,5 @@
 import React from 'react';
-import './logomyt.css'; // You can create a CSS file for styling
+import './logomyt.css'; 
 
 const Logo = () => {
     return (

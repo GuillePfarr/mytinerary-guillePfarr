@@ -83,21 +83,21 @@ object-fit: cover;
 }
 
 .carousel-button.prev {
-  left: 20px; /* Adjust the distance from the left side */
+  left: 20px; 
 }
 
 .carousel-button.next {
-  right: 20px; /* Adjust the distance from the right side */
+  right: 20px; 
 }
 
 @media (min-width: 920px){
 
 .carousel-button.prev {
-  left: -60px; /* Adjust the distance from the left side */
+  left: -60px; 
 }
 
 .carousel-button.next {
-  right:-60px; /* Adjust the distance from the right side */
+  right:-60px; 
 }
 
 

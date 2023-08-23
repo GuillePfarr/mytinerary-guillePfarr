@@ -1,4 +1,3 @@
-// import { useEffect, useState } from 'react';
 import './App.css';
 import LayoutMain from './pages/Layout/LayoutMain';
 import Home from './pages/Home/Home';

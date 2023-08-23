@@ -39,9 +39,7 @@ const Cities = () => {
           <h2 className="home-hero-title">
             "Sorry, page under construction"
           </h2>
-          {/* <div className="button-wrapper">
-            <a className="button cta-button" href="#0"></a>
-          </div> */}
+          
         </section>
 </main>
       

@@ -21,12 +21,8 @@ const LayoutMain = () => {
   return (
     <div className='layout-main'>
       <HeaderMain />
-
-
       <Outlet />
-      
       <Footer />
-
     </div>
   )
 }
