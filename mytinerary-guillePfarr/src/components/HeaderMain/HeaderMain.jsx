@@ -53,9 +53,9 @@ const HeaderMain = () => {
 
   return (
     <header className="HeaderMain">
-      {/* <button className="toggle-button" onClick={() => setShowMenu(showMenu)}>
+      <button className="toggle-button" onClick={() => setShowMenu(showMenu)}>
        
-      </button> */}
+      </button>
       {showMenu && <NavbarMain links={links} />}
     </header>
   );
