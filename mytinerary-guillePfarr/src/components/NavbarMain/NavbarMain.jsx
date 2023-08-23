@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavbarMain.css';
-import LogoMain from '../LogoMain/LogoMain';
+
 
 const NavbarMain = () => {
   const [showMenu, setShowMenu] = useState(false);
