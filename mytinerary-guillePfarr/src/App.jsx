@@ -1,23 +1,40 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'
+// import { useEffect, useState } from 'react';
+import './App.css';
+import LayoutMain from './pages/Layout/LayoutMain';
+import Home from './pages/Home/Home';
+import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom';
+import Componente404 from './pages/Componente404';
+import Cities from './pages/Cities/Cities';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <LayoutMain />,
+    children: [
+      {
+        path: '/',
+        element: <Home />
+      },
+      {
+        path: '/cities',
+        element: <Cities />
+      },
+     
+      {
+        path: '*',
+        element: <Componente404 />
+      }
+    ]
+  },
+
+])
 
 function App() {
-
-const alumnos =["Choco", "Late", "Con", "Pelos"];
   return (
-    <div className="app-layout">
-      <header className="app-header">Header</header>
-      <main className="app-main">
-<h2>Alumnos</h2>
-<ul>
-
-{alumnos.map( alumno => <li> { alumno }</li>)}
-
-</ul>
-</main>
-      <footer className="app-footer">Footer</footer>
-    </div>
-  );
+ 
+    <RouterProvider router={router} />
+  
+  )
 }
 
 export default App

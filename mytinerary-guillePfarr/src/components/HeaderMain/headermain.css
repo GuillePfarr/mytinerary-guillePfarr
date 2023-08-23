@@ -1,0 +1,22 @@
+.HeaderMain {
+    min-height: 15vh;
+    background-color: black;
+    position: relative;
+
+
+
+
+
+}
+
+/* .Navbar-main{
+    display: flex !important;
+    align-items: start !important;
+    gap: 10px;
+} */
+.Navbar-main a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(98, 98, 218);
+}

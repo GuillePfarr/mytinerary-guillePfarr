@@ -1,0 +1,24 @@
+.logoMyt {
+height: 2rem;
+width: 2rem;
+    font-family: Arial, sans-serif;
+    font-size: 5px;
+    font-weight: bold;
+    color:black; /* Blue color */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    border: .5px solid #0074e4;
+    border-radius: 10px;
+    text-align: center;
+background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKMTfidG8YmlETa8vjd7d-ve5EyubuZyEAng&usqp=CAU);
+background-size: cover;
+
+
+}
+
+.logoImg{
+height:2rem;
+width:2rem;
+
+}
