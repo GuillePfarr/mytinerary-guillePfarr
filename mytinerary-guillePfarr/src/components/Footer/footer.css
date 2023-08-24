@@ -1,4 +1,23 @@
-.h3{
-color: brown;
-margin-left: 5%;
+
+
+
+.FooterMain{
+
+display: flex;
+justify-content: space-between;
+
+}
+
+.footer-ul{
+display:flex;
+justify-content: space-between;
+margin-left: 1rem;
+}
+
+li{
+margin-right: 2rem;
+}
+
+ul {
+    list-style: none;
 }
