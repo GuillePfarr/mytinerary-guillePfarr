@@ -8,7 +8,7 @@ display: flex;
 }
 
 .app-header, .app-footer{
-height: 10vh;
+min-height: 10vh;
 background-color: rgb(201, 112, 112);
 }
 
