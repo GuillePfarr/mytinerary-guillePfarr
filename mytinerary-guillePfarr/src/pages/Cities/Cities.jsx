@@ -7,7 +7,7 @@ class Cities extends Component {
     super(props);
     this.state = {
       cities: [
-          { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg/1024px-Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg", name: "Cape Town-South Africa" },
+        { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg/1024px-Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg", name: "Cape Town-South Africa" },
         { image: "https://www.wendyperrin.com/wp-content/uploads/2018/07/Teotihuacan-pyramid-balloons-near-Mexico-City-shutterstock_718460332.jpg", name: "Mexico-City Mexico" },
         { image: "https://www.wendyperrin.com/wp-content/uploads/2018/10/Galata-Tower-neighberhood-view-Istanbul-Turkey-shutterstock_554343394.jpg", name: "Istambul-Turkey" },
         { image: "https://www.wendyperrin.com/wp-content/uploads/2017/12/shutterstock_388289746.jpg", name: "Barcelona-Spain" },
@@ -21,7 +21,7 @@ class Cities extends Component {
         { image: "https://www.wendyperrin.com/wp-content/uploads/2018/01/venice-2647436_1920.jpg", name: "Venice-Italy" },
         { image: "https://www.wendyperrin.com/wp-content/uploads/2014/09/duomo-florence-italy-cr-brian-dore-1cropped.jpg", name: "Florence-Italy" },
         { image: "https://www.wendyperrin.com/wp-content/uploads/2019/08/Gran-Via-night-Madrid-Spain-shutterstock_557009335.jpg", name: "Madrid-Spai" },
-        { image:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/HerdenkingVuurgrensRotterdam1940_2007_edit1.jpg/800px-HerdenkingVuurgrensRotterdam1940_2007_edit1.jpg", name: "Rotterdam Netherlands" },
+        { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/HerdenkingVuurgrensRotterdam1940_2007_edit1.jpg/800px-HerdenkingVuurgrensRotterdam1940_2007_edit1.jpg", name: "Rotterdam Netherlands" },
         { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colosseum_in_Rome-April_2007-1-_copie_2B.jpg/1024px-Colosseum_in_Rome-April_2007-1-_copie_2B.jpg", name: "Rome Italy" },
         { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Attica_06-13_Athens_25_Olympian_Zeus_Temple.jpg/800px-Attica_06-13_Athens_25_Olympian_Zeus_Temple.jpg", name: "Athens Greek" },
       ],
@@ -60,21 +60,40 @@ class Cities extends Component {
         />
         <div className="row">
           {filteredCities.map(city => (
-            <div className="col-md-4" key={city.name}>
-              <div className="card">
-                <img src={city.image} className="card-img-top" alt={city.name} />
+            <div className="cardsfield" key={city.name}>
+
+              {/* <div className="cardsfield"> 
+                <div className="card">
+                  <img src={city.image} className="card-img-top" alt={city.name} />
+                  <div className="card-body">
+                    <h5 className="card-title">{city.name}</h5>
+                    <p className="card-text">{city.description}</p>
+                    <a href={`/details/${city._id}`} className="btn btn-primary">
+                      Ver Más
+                    </a>
+                  </div>
+                  <div className="card-footer">
+                    
+                    {city.country}
+                  </div>
+                </div>
+              </div> */}
+              <div className="container d-flex flex-wrap gap-5 justify-content-center justify-content-md-between">
                 <div className="card-body">
                   <h5 className="card-title">{city.name}</h5>
-                  <p className="card-text">{city.description}</p>
-                  <a href={`/details/${city._id}`} className="btn btn-primary">
-                    View Details
-                  </a>
+                  <img src={city.image} className="card-img-top" alt={city.name} />
+                  <p class="card-text">Casa: {<city className="country"></city>}</p>
+                  <p>Price:&#36; {city.price}</p>
+                  {/* <!-- <a href="details.html" class="btn btn-primary">Ver mas info</a> --> */}
+                  <button onClick="seeDetail(event._id)" className="btn btn-primary">See more</button>
                 </div>
               </div>
+
+
             </div>
           ))}
         </div>
-      </div>
+      </div >
     );
   }
 }

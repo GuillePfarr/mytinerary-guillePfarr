@@ -1,13 +1,25 @@
 .cities-bg{
 background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg");
-height: 70vh;
+min-height: 80vh;
  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
 }
 
+.container{
 
+min-height: 70vh;
+
+display: flexbox;
+}
+
+.cardsfield{
+display: flex;
+justify-content: center;
+width: 25%;
+
+}
 .card {
   max-width: 100px;
   margin: 10px; 
@@ -28,3 +40,84 @@ height: 70vh;
 .btn-primary {
   font-size: 1rem; 
 }
+\\/* cities.css */
+
+/* Asegúrate de que las tarjetas tengan un alto fijo */
+.card {
+  height: 400px; /* Puedes ajustar esta altura según tus necesidades */
+  margin-bottom: 20px; /* Espaciado entre tarjetas */
+}
+
+/* Ajusta el tamaño de las imágenes para que ocupen el 100% del ancho y el 70% de la altura de la tarjeta */
+.card-img-top {
+  width: 100%;
+  height: 70%;
+  object-fit: cover; /* Para que la imagen se ajuste a la tarjeta */
+}
+
+/* Estilos adicionales para el título y el país en el pie de la tarjeta */
+.card-title {
+  font-size: 1.25rem; /* Tamaño de fuente para el título */
+  margin-bottom: 10px; /* Espaciado inferior */
+}
+
+.card-footer {
+  font-size: 0.875rem; /* Tamaño de fuente para el país en el pie de la tarjeta */
+  color: #888; /* Color de texto gris */
+}
+
+ .card-title {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.card-body {
+    text-align: center;
+border-color: rgb(245, 237, 237);
+border-width: 10px;
+
+padding: 10px;
+margin-right: 3px;
+}
+
+.card img {
+    padding: .5rem;
+    margin: auto;
+    
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+    min-height: 26rem;
+    margin: .25%;
+    bottom: 0;  
+}
+
+.card-img-top {  
+    width: 90%;
+    height: 50%;
+    object-fit: cover; 
+}
+
+/*afecta precio y botón de las card (revisado 26feb23)*/
+.card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 95%;
+    position:absolute;
+    bottom: 0;
+    justify-content: space-between;
+}
+
+.btn {
+    height: 2rem;
+    width: 6rem;
+    padding: .05rem;
+    box-shadow: -.15em -.15em rgb(57, 59, 59);
+}
+.row{
+display: flex;
+}
+
+
