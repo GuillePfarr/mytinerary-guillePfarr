@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import '../Cities/cities.css';
 
@@ -26,13 +25,12 @@ class Cities extends Component {
         { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Attica_06-13_Athens_25_Olympian_Zeus_Temple.jpg/800px-Attica_06-13_Athens_25_Olympian_Zeus_Temple.jpg", name: "Athens Greek" },
       ],
       filter: '',
-      filteredCities: [], // Initialize as an empty array
+      filteredCities: [], 
     };
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
 
   componentDidMount() {
-    // Populate filteredCities with all cities when the component mounts
     this.setState({ filteredCities: this.state.cities });
   }
 
@@ -61,35 +59,15 @@ class Cities extends Component {
         <div className="row">
           {filteredCities.map(city => (
             <div className="cardsfield" key={city.name}>
-
-              {/* <div className="cardsfield"> 
-                <div className="card">
-                  <img src={city.image} className="card-img-top" alt={city.name} />
-                  <div className="card-body">
-                    <h5 className="card-title">{city.name}</h5>
-                    <p className="card-text">{city.description}</p>
-                    <a href={`/details/${city._id}`} className="btn btn-primary">
-                      Ver Más
-                    </a>
-                  </div>
-                  <div className="card-footer">
-                    
-                    {city.country}
-                  </div>
-                </div>
-              </div> */}
               <div className="">
                 <div className="card-body">
                   <h5 className="card-title">{city.name}</h5>
                   <img src={city.image} className="card-img-top" alt={city.name} />
                   <p class="card-text">Casa: {<city className="country"></city>}</p>
                   <p>Price:&#36; {city.price}</p>
-                  {/* <!-- <a href="details.html" class="btn btn-primary">Ver mas info</a> --> */}
                   <button onClick="seeDetail(event._id)" className="btn btn-primary">See more</button>
                 </div>
               </div>
-
-
             </div>
           ))}
         </div>
