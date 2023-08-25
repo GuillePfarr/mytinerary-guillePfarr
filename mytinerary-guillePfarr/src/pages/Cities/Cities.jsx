@@ -78,7 +78,7 @@ class Cities extends Component {
                   </div>
                 </div>
               </div> */}
-              <div className="container d-flex flex-wrap gap-5 justify-content-center justify-content-md-between">
+              <div className="">
                 <div className="card-body">
                   <h5 className="card-title">{city.name}</h5>
                   <img src={city.image} className="card-img-top" alt={city.name} />

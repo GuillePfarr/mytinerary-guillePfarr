@@ -17,7 +17,7 @@ display: flexbox;
 .cardsfield{
 display: flex;
 justify-content: center;
-width: 25%;
+width: 50%;
 
 }
 .card {
@@ -75,6 +75,7 @@ width: 25%;
     text-align: center;
 border-color: rgb(245, 237, 237);
 border-width: 10px;
+background-color: #888;
 
 padding: 10px;
 margin-right: 3px;
