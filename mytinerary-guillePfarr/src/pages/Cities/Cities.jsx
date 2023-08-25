@@ -8,7 +8,7 @@ class Cities extends Component {
       cities: [
         { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg/1024px-Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg", name: "Cape Town-South Africa" },
         { image: "https://www.wendyperrin.com/wp-content/uploads/2018/07/Teotihuacan-pyramid-balloons-near-Mexico-City-shutterstock_718460332.jpg", name: "Mexico-City Mexico" },
-        { image: "https://www.wendyperrin.com/wp-content/uploads/2018/10/Galata-Tower-neighberhood-view-Istanbul-Turkey-shutterstock_554343394.jpg", name: "Istambul-Turkey" },
+        { image: "https://www.wendyperrin.com/wp-content/uploads/2018/10/Galata-Tower-neighberhood-view-Istanbul-Turkey-shutterstock_554343394.jpg", name: "Istambul", country:"Turkey" },
         { image: "https://www.wendyperrin.com/wp-content/uploads/2017/12/shutterstock_388289746.jpg", name: "Barcelona-Spain" },
         { image: "https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg", name: "Ciudad 4" },
         { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg/1024px-Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg", name: "Ciudad 5" },
@@ -62,9 +62,8 @@ class Cities extends Component {
               <div className="">
                 <div className="card-body">
                   <h5 className="card-title">{city.name}</h5>
-                  <img src={city.image} className="card-img-top" alt={city.name} />
-                  <p class="card-text">Casa: {<city className="country"></city>}</p>
-                  <p>Price:&#36; {city.price}</p>
+                <img src={city.image} className="card-img-top" alt={city.name} />
+                  <h5 className="card-country-field" >{city.country}</h5>
                   <button onClick="seeDetail(event._id)" className="btn btn-primary">See more</button>
                 </div>
               </div>
@@ -75,6 +74,9 @@ class Cities extends Component {
     );
   }
 }
+
+
+
 
 export default Cities;
 
