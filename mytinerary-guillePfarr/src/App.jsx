@@ -19,12 +19,17 @@ const router = createBrowserRouter([
         path: '/cities',
         element: <Cities />
       },
-     
+
+      {
+        path: '/citydetails/:id',
+        element: <CityDetails />
+      },
+
       {
         path: '*',
         element: <Componente404 />
       },
-{
+      {
         path: '*',
         element: <CityDetails />
       }
@@ -37,9 +42,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
- 
+
     <RouterProvider router={router} />
-  
+
   )
 }
 

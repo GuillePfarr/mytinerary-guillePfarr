@@ -23,7 +23,7 @@ const slides = [[
 
 const Carousel = () => {
 
-
+const [cities, setCities] = useState([]);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [pause, setPause] = useState(false);
 

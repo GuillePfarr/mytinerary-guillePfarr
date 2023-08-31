@@ -1,7 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; // Para crear el enlace de vuelta a la página de ciudades
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 
-const CityDetails = ({ city }) => {
+const CityDetails = () => {
+  const [city, setCity] = useState({});
+  const { id } = useParams(); 
+
+  useEffect(() => {
+    
+    axios.get(`http://localhost:3000/api/cities/${id}`)
+      .then((res) => {
+        setCity(res.data.response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [id]); 
+
+
   return (
     <div className="container">
       <h2>Detalles de la Ciudad</h2>
