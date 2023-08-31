@@ -22,12 +22,18 @@ function Cities() {
   useEffect(() => {
     axios
       .get('http://localhost:3000/api/cities')
-      .then((res) => setCities(res.data.response))
-      .catch((error) => console.log(error));
-  }, []); 
+      .then((res) => {
+
+        setCities(res.data.response)
+        setFilteredCities(res.data.response)
+      })
+
+
+      .catch((error) => console.log(error))
+  }, []);
 
   const seeDetail = (cityId) => {
-    
+
   };
 
   return (
@@ -49,8 +55,8 @@ function Cities() {
                 <h5 className="card-country-field">{city.country}</h5>
                 <button>
                   <Link to={`/citydetails/${city._id}`} className="btn btn-primary">
-                  See more
-                </Link>
+                    See more
+                  </Link>
                 </button>
               </div>
             </div>
