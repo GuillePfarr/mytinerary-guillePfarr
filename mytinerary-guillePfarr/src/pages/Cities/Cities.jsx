@@ -7,15 +7,16 @@ function Cities() {
   const [cities, setCities] = useState([]);
   const [filter, setFilter] = useState('');
   const [filteredCities, setFilteredCities] = useState([]);
+  const [noResults, setNoResults] = useState(false);
 
-  const handleFilterChange = (event) => {
-    const filterText = event.target.value.toLowerCase();
+  const handleFilterChange = (city) => {
+    const filterText = city.target.value.toLowerCase();
 
     const filteredCities = cities.filter((city) =>
       city.name.toLowerCase().startsWith(filterText)
     );
 
-    setFilter(event.target.value);
+    setFilter(city.target.value);
     setFilteredCities(filteredCities);
   };
 
@@ -29,6 +30,11 @@ function Cities() {
       .catch((error) => console.log(error));
   }, []);
 
+  useEffect(() => {
+    // Verificar si no hay resultados
+    setNoResults(filteredCities.length === 0);
+  }, [filteredCities]);
+
   return (
     <div className="container">
       <h1 className='CitiesTitle'>Cities</h1>
@@ -39,18 +45,25 @@ function Cities() {
         value={filter}
         onChange={handleFilterChange}
       />
+      {noResults && (
+        <h2 className="display-1 fw-bolder">No matches.</h2>
+      )}
       <div className="cardsfield">
         {filteredCities.map((city) => (
           <div className="card" key={city.name}>
             <div className="card-body">
               <h5 className="card-title">{city.name}</h5>
               <img src={city.image} className="card-img-top" alt={city.name} />
-              <h5 className="card-country-field">{city.country}</h5>
-              <button>
-                <Link to={`/citydetails/${city._id}`} className="btn btn-primary">
-                  See more
-                </Link>
-              </button>
+              <div className='cardFooter'>
+                <h5 className="card-country-field">{city.country}</h5>
+                <div className='text-center'>
+                  <button>
+                    <Link to={`/citydetails/${city._id}`} className="btn btn-primary">
+                      Details
+                    </Link>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         ))}

@@ -61,9 +61,22 @@ right: 1rem;
   text-decoration: none;
   font-size: 18px;
   font-weight: 600;
-  color: rgb(1, 1, 20);
-  transition: color 0.3s ease-in-out;
+  animation: colorChange 3s infinite; /* Aplica la animación de cambio de color */
 }
+
+@keyframes colorChange {
+  0% {
+    color: rgb(173, 112, 112); /* Color inicial */
+  }
+  50% {
+    color: rgb(90, 161, 32); /* Color intermedio */
+  }
+  100% {
+    color: rgb(190, 57, 124); /* Color final */
+  }
+}
+
+
 
 .ShowMenu {
   display: none;
