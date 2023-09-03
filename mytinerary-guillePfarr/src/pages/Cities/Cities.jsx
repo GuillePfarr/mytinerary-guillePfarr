@@ -23,42 +23,34 @@ function Cities() {
     axios
       .get('http://localhost:3000/api/cities')
       .then((res) => {
-
-        setCities(res.data.response)
-        setFilteredCities(res.data.response)
+        setCities(res.data.response);
+        setFilteredCities(res.data.response);
       })
-
-
-      .catch((error) => console.log(error))
+      .catch((error) => console.log(error));
   }, []);
-
-  const seeDetail = (cityId) => {
-
-  };
 
   return (
     <div className="container">
-      <h1>Cities</h1>
+      <h1 className='CitiesTitle'>Cities</h1>
       <input
+        className='inputCities'
         type="text"
         placeholder="Filter by name..."
         value={filter}
         onChange={handleFilterChange}
       />
-      <div className="row">
+      <div className="cardsfield">
         {filteredCities.map((city) => (
-          <div className="cardsfield" key={city.name}>
-            <div className="">
-              <div className="card-body">
-                <h5 className="card-title">{city.name}</h5>
-                <img src={city.image} className="card-img-top" alt={city.name} />
-                <h5 className="card-country-field">{city.country}</h5>
-                <button>
-                  <Link to={`/citydetails/${city._id}`} className="btn btn-primary">
-                    See more
-                  </Link>
-                </button>
-              </div>
+          <div className="card" key={city.name}>
+            <div className="card-body">
+              <h5 className="card-title">{city.name}</h5>
+              <img src={city.image} className="card-img-top" alt={city.name} />
+              <h5 className="card-country-field">{city.country}</h5>
+              <button>
+                <Link to={`/citydetails/${city._id}`} className="btn btn-primary">
+                  See more
+                </Link>
+              </button>
             </div>
           </div>
         ))}
@@ -68,5 +60,3 @@ function Cities() {
 }
 
 export default Cities;
-
-

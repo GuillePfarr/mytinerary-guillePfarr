@@ -86,21 +86,21 @@ z-index: 1;
 text-align: center;
 }
 
-/* Agrega estos estilos a tu archivo de hojas de estilo (por ejemplo, carousel.css) */
+
 
 .carousel-title {
-  text-align: center; /* Alinea el texto en el centro */
-  font-size: 24px; /* Tamaño de fuente */
+  text-align: center; 
+  font-size: 24px; 
 }
 
 .h3-carousel-title {
   display: inline-block;
-  background-image: linear-gradient(90deg, #ff6a00, #ffcc00, #ff6a00); /* Colores para el brillo */
+  background-image: linear-gradient(90deg, #ff6a00, #ffcc00, #ff6a00); 
   background-size: 200% 100%;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  animation: shine 10s linear infinite; /* Nombre de la animación, duración, tipo y repetición */
+  animation: shine 10s linear infinite; 
 }
 
 @keyframes shine {

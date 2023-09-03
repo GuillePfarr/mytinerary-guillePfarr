@@ -1,124 +1,83 @@
-.cities-bg{
-background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg");
-min-height: 80vh;
- background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+.container {
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column; /* Alinea los elementos verticalmente */
+  align-items: center; /* Alinea los elementos horizontalmente */
 }
 
-.container{
-
-min-height: 70vh;
-
-display: flexbox;
+.cardsfield {
+  display: flex;
+  flex-wrap: wrap; /* Permite que las tarjetas se envuelvan a la siguiente línea */
+  justify-content: center;
+  gap: 20px;
+  max-width: 100%;
 }
 
-.cardsfield  {
-display: flex;
-justify-content: center;
-width: 50%;
-
-}
 .card {
-  max-width: 100px;
-  margin: 10px; 
-}
-
-.card-img-top {
-  max-height: 200px; 
-}
-
-.card-title .card-country-field{
-  font-size: 1.25rem; 
-}
-
-.card-text {
-  font-size: 1rem; 
-}
-
-.btn-primary {
-  font-size: 1rem; 
-}
-\\/* cities.css */
-
-/* Asegúrate de que las tarjetas tengan un alto fijo */
-.card {
-  height: 400px; /* Puedes ajustar esta altura según tus necesidades */
-  margin-bottom: 20px; /* Espaciado entre tarjetas */
-}
-
-/* Ajusta el tamaño de las imágenes para que ocupen el 100% del ancho y el 70% de la altura de la tarjeta */
-.card-img-top {
-  width: 100%;
-  height: 70%;
-  object-fit: cover; /* Para que la imagen se ajuste a la tarjeta */
-}
-
-/* Estilos adicionales para el título y el país en el pie de la tarjeta */
-.card-title {
-  font-size: 1.25rem; /* Tamaño de fuente para el título */
-  margin-bottom: 10px; /* Espaciado inferior */
-}
-
-.card-footer {
-  font-size: 0.875rem; /* Tamaño de fuente para el país en el pie de la tarjeta */
-  color: #888; /* Color de texto gris */
-}
-
- .card-title {
-    font-weight: bold;
-    font-size: 1.5em;
-}
-
-.card-body {
-    text-align: center;
-border-color: rgb(245, 237, 237);
-border-width: 10px;
-background-color: #888;
-
-padding: 10px;
-margin-right: 3px;
+  width: 300px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
 }
 
 .card img {
-    padding: .5rem;
-    margin: auto;
-    
-}
-.card {
-    display: flex;
-    flex-direction: column;
-    width: 20rem;
-    min-height: 26rem;
-    margin: .25%;
-    bottom: 0;  
+  max-width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
 
-.card-img-top {  
-    width: 90%;
-    height: 50%;
-    object-fit: cover; 
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin: 10px;
 }
 
-/*afecta precio y botón de las card (revisado 26feb23)*/
+.card-country-field {
+  margin: 10px;
+}
+
 .card-footer {
-    display: flex;
-    flex-wrap: wrap;
-    width: 95%;
-    position:absolute;
-    bottom: 0;
-    justify-content: space-between;
+  text-align: center;
+  padding: 10px 0;
 }
 
-.btn {
-    height: 2rem;
-    width: 6rem;
-    padding: .05rem;
-    box-shadow: -.15em -.15em rgb(57, 59, 59);
-}
-.row{
-display: flex;
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
+.btn-primary:hover {
+  background-color: #0056b3;
+}
 
+.CitiesTitle {
+  margin-left: 50%;
+  margin-bottom: 1rem;
+  transform: translateX(-50%); /* Centra el título horizontalmente */
+}
+
+.inputCities {
+  height: 2rem;
+  width: 100%;
+  max-width: 400px; /* Limita el ancho del campo de filtro */
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .cardsfield {
+    flex-basis: calc(33.333% - 1rem);
+  }
+}
+
+@media (min-width: 992px) {
+  .cardsfield {
+    flex-basis: calc(25% - 1rem);
+  }
+}
