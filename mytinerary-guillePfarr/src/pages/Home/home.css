@@ -4,7 +4,7 @@
   height: 70vh;
   position: relative;
   place-content: center;
-  background-color: rgb(242, 242, 245);
+  background-color: rgb(16, 16, 19);
   width: 98vw;
   max-width: 1440px;
 
@@ -78,7 +78,7 @@ text-align: center;
   justify-content: center;
   align-items: center;
  background-image:"https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg" ;
-  /* height: 40vh; */
+  
 z-index: 100;
 }
 

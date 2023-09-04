@@ -17,10 +17,10 @@ const FooterMain = () => {
             <h3>We accept</h3>
             <div className="card-area">
               <i className="fa fa-cc-visa"></i>
-              <img className='credit-card-icon' width="40" src="https://tienda.havanna.com.ar/wp-content/uploads/2020/10/visa@2x.png" alt=""></img>
-              <img className='credit-card-icon' width="40" src="https://tienda.havanna.com.ar/wp-content/uploads/2020/10/mastercard@2x.png" alt=""></img>
-              <img className='credit-card-icon' width="40" src="https://tienda.havanna.com.ar/wp-content/uploads/2020/10/amex@2x.png" alt=""></img>
-              <img className="credit-card-icon" width="40" src="https://tienda.havanna.com.ar/wp-content/uploads/2020/10/diners@2x.png" alt=""></img>
+              <img className='credit-card-icon' width="30" src="https://tienda.havanna.com.ar/wp-content/uploads/2020/10/visa@2x.png" alt=""></img>
+              <img className='credit-card-icon' width="30" src="https://tienda.havanna.com.ar/wp-content/uploads/2020/10/mastercard@2x.png" alt=""></img>
+              <img className='credit-card-icon' width="30" src="https://tienda.havanna.com.ar/wp-content/uploads/2020/10/amex@2x.png" alt=""></img>
+              <img className="credit-card-icon" width="30" src="https://tienda.havanna.com.ar/wp-content/uploads/2020/10/diners@2x.png" alt=""></img>
             </div>
           </div>
         </div>
