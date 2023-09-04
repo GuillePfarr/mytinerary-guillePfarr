@@ -31,7 +31,7 @@ function Cities() {
   }, []);
 
   useEffect(() => {
-    // Verificar si no hay resultados
+    
     setNoResults(filteredCities.length === 0);
   }, [filteredCities]);
 

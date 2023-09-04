@@ -3,7 +3,7 @@ import './logomyt.css';
 
 const Logo = () => {
     return (
-        <div className="logoMyt">MyTineraries</div>
+        <div className="logoMyt">MyTinerarie</div>
     );
 }
 

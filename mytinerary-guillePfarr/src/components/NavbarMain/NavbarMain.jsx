@@ -10,7 +10,7 @@ const NavbarMain = () => {
     <header className="HeaderMain">
       <div className="NavbarContainer">
         <Link to="/" className="Logo">
-          MyTineraries
+          MyTinerarie
         </Link>
         <button
           className={`ToggleButton ${showMenu ? 'CloseButton' : ''}`}

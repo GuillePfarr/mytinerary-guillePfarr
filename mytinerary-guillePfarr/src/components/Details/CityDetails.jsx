@@ -1,7 +1,7 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
+import "../Details/citydetails.css";
 
 const CityDetails = () => {
   const [city, setCity] = useState({});
@@ -21,16 +21,19 @@ const CityDetails = () => {
 
   return (
     <div className="container">
-      <h2>Detalles de la Ciudad</h2>
+<div className='underConstContainer'>
+
+     </div> 
+<h2>City Details</h2>
       <div className="card">
         <img src={city.image} className="card-img-top" alt={city.name} />
         <div className="card-body">
           <h5 className="card-title">{city.name}</h5>
-          <p className="card-text">Descripción detallada de la ciudad.</p>
+          <p className="card-text">Under construction</p>
         </div>
       </div>
       <Link to="/cities" className="btn btn-primary">
-        Volver a la página de ciudades
+         Back to Cities
       </Link>
     </div>
   );

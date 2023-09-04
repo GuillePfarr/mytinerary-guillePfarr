@@ -78,8 +78,8 @@ text-align: center;
   justify-content: center;
   align-items: center;
  background-image:"https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg" ;
-  height: 40vh;
-z-index: 1;
+  /* height: 40vh; */
+z-index: 100;
 }
 
 .carousel-title{
@@ -160,6 +160,7 @@ position:relative;
   color: rgb(170, 18, 18);
   animation: moveText 2s infinite;
 }
+
 
 
 
