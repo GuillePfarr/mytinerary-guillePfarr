@@ -19,11 +19,18 @@ const Home = () => {
           <Link className="button cta-button" to="/Cities"></Link>
 
           <p className='cta-text'>Explore Cities</p>
+
+
+
+
         </div>
 
       </section>
+<div className='carousel-title'><h3 className='h3-carousel-title'>Popular MyTineraries</h3></div>
       <section className="home-carousel">
-        <Carousel />
+
+  
+  <Carousel />
       </section>
     </main>
   );

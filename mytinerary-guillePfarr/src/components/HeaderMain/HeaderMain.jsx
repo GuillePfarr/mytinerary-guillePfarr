@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import NavbarMain from '../NavbarMain/NavbarMain';
+import NavbarMain from '../NavbarMain/NavbarMain';
 import './headermain.css';
 
 const links = [
@@ -15,7 +15,7 @@ const HeaderMain = () => {
   return (
     <header className="HeaderMain">
       <button className="toggle-button" onClick={() => setShowMenu(showMenu)}>
-       
+       Menu
       </button>
       {showMenu && <NavbarMain links={links} />}
     </header>

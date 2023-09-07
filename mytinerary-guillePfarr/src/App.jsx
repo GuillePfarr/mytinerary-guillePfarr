@@ -4,6 +4,7 @@ import Home from './pages/Home/Home';
 import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom';
 import Componente404 from './pages/Componente404';
 import Cities from './pages/Cities/Cities';
+import CityDetails from './components/Details/CityDetails';
 
 const router = createBrowserRouter([
   {
@@ -18,11 +19,22 @@ const router = createBrowserRouter([
         path: '/cities',
         element: <Cities />
       },
-     
+
+      {
+        path: '/citydetails/:id',
+        element: <CityDetails />
+      },
+
       {
         path: '*',
         element: <Componente404 />
+      },
+      {
+        path: '*',
+        element: <CityDetails />
       }
+
+
     ]
   },
 
@@ -30,9 +42,9 @@ const router = createBrowserRouter([
 
 function App() {
   return (
- 
+
     <RouterProvider router={router} />
-  
+
   )
 }
 

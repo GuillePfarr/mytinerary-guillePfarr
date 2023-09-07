@@ -24,6 +24,10 @@ object-fit: cover;
   align-items: center;
   justify-content: center; 
   text-align: center;
+border: 1px solid black;
+margin-left: 2px;
+border-radius: 3%;
+background-color: #396eac;
 
 }
 
@@ -85,6 +89,8 @@ object-fit: cover;
 .carousel-button.prev {
   left: 20px; 
 }
+
+
 
 .carousel-button.next {
   right: 20px; 

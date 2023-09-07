@@ -1,9 +1,11 @@
+/* c71eb5c ESte tiene header y footer navbar andando*/
+
 .homeHero {
   height: 70vh;
   position: relative;
   place-content: center;
-  background-color: rgb(242, 242, 245);
-  width: 100vw;
+  background-color: rgb(16, 16, 19);
+  width: 98vw;
   max-width: 1440px;
 
 
@@ -16,7 +18,7 @@
 .homeHeroTitle {
   font-family: 'Arial', sans-serif;
   font-weight: bolder;
-  font-size: .5rem;
+  font-size: 1rem;
   color: transparent;
   background-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
   background-size: 200% 100%;
@@ -49,7 +51,7 @@ width: 98vw;
 }
 
 .heroBgImage {
-  width: 100vw;
+  width: 98vw;
   height: 70vh;
   object-fit: cover;
 
@@ -75,9 +77,41 @@ text-align: center;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-
-  height: 40vh;
+ background-image:"https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg" ;
+  
+z-index: 100;
 }
+
+.carousel-title{
+text-align: center;
+}
+
+
+
+.carousel-title {
+  text-align: center; 
+  font-size: 24px; 
+}
+
+.h3-carousel-title {
+  display: inline-block;
+  background-image: linear-gradient(90deg, #ff6a00, #ffcc00, #ff6a00); 
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shine 10s linear infinite; 
+}
+
+@keyframes shine {
+  0%, 100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -200% 0;
+  }
+}
+
 
 
 .button-wrapper {
@@ -126,6 +160,7 @@ position:relative;
   color: rgb(170, 18, 18);
   animation: moveText 2s infinite;
 }
+
 
 
 
