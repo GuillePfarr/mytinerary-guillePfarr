@@ -3,41 +3,30 @@ import { Link, useLocation } from 'react-router-dom';
 import '../Cities/cities.css';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import citiesActions from '../../redux/actions/citiesActions.js'
+import citiesActions from '../../redux/actions/citiesActions.js';
+
 function Cities() {
-  // const [cities, setCities] = useState([]);
-const dispatch = useDispatch()
-const {mostrarCities} = citiesActions
+  const dispatch = useDispatch();
+  const { filtrarCities, getAllCities } = citiesActions;
   const [filter, setFilter] = useState('');
-  const [filteredCities, setFilteredCities] = useState([]);
   const [noResults, setNoResults] = useState(false);
-const cities = useSelector((store)=> store.cities);
+  const { cities, filteredCities } = useSelector((store) => store.cities);
 
-  const handleFilterChange = (city) => {
-    const filterText = city.target.value.toLowerCase();
+  const handleFilterChange = (event) => {
+    const filterText = event.target.value.toLowerCase();
 
-    const filteredCities = cities.filter((city) =>
-      city.name.toLowerCase().startsWith(filterText)
-    );
+    // Dispatch la acción de filtro
+    dispatch(filtrarCities(filterText));
 
-    setFilter(city.target.value);
-    setFilteredCities(filteredCities);
+    setFilter(filterText);
   };
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3000/api/cities')
-      .then((res) => {
-        // setCities(res.data.response);
-dispatch(mostrarCities({cities:res.data.response}))
-        setFilteredCities(res.data.response);
-      })
-      .catch((error) => console.log(error));
-  }, []);
+    dispatch(getAllCities());
+  }, [dispatch]);
 
   useEffect(() => {
-    
-    setNoResults(filteredCities.length === 0);
+    setNoResults(filteredCities?.length === 0);
   }, [filteredCities]);
 
   return (
@@ -54,7 +43,7 @@ dispatch(mostrarCities({cities:res.data.response}))
         <h2 className="display-1 fw-bolder">No matches.</h2>
       )}
       <div className="cardsfield">
-        {filteredCities.map((city) => (
+        {filteredCities?.map((city) => (
           <div className="card" key={city.name}>
             <div className="card-body">
               <h5 className="card-title">{city.name}</h5>

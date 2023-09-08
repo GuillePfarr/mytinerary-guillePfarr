@@ -3,7 +3,7 @@ import citiesReducer from "./reducers/citiesReducers";
 
 const store = configureStore( {
 reducer: {
-citiesReducer : citiesReducer
+cities : citiesReducer
 }
 
 })
