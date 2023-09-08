@@ -3,7 +3,8 @@ import { createReducer } from "@reduxjs/toolkit";
 import { mostrarCities } from "../actions/citiesActions";
 
 const initialState = {
-      cities: []
+      cities: [],
+itineraries: [],
 }
 
 const citiesReducer = createReducer( initialState , (builder) => {

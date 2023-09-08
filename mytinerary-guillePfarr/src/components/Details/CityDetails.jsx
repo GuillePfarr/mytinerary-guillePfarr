@@ -100,6 +100,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import "../Details/citydetails.css";
+import { useSelector } from 'react-redux';
 
 const CityDetails = () => {
   const [city, setCity] = useState({});
