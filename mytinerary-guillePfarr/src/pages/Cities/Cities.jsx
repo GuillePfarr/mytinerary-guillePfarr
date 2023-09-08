@@ -2,13 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../Cities/cities.css';
 import axios from 'axios';
-
+import { useSelector, useDispatch } from 'react-redux';
+import citiesActions from '../../redux/actions/citiesActions.js'
+import  { mostrarCities } from  '../../redux/actions/citiesActions.js'
 function Cities() {
-  const [cities, setCities] = useState([]);
+  // const [cities, setCities] = useState([]);
+const dispatch = useDispatch()
+const {mostrarCities} = citiesActions
   const [filter, setFilter] = useState('');
   const [filteredCities, setFilteredCities] = useState([]);
   const [noResults, setNoResults] = useState(false);
-
+const cities = useSelector((store)=> store.cities);
+console.log(citiesReducer)
   const handleFilterChange = (city) => {
     const filterText = city.target.value.toLowerCase();
 
@@ -24,7 +29,8 @@ function Cities() {
     axios
       .get('http://localhost:3000/api/cities')
       .then((res) => {
-        setCities(res.data.response);
+        // setCities(res.data.response);
+dispatch(mostrarCities({cities:res.data.response}))
         setFilteredCities(res.data.response);
       })
       .catch((error) => console.log(error));
