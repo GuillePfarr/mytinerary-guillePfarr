@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { citiesReducer } from "./redux/reducers"; // Importa tu combinación de reducers aquí
+import citiesReducer from "./reducers/citiesReducer,js";
+
 
 
 const store = configureStore({
-  reducer: citiesReducer, // Pasa aquí tus reducers combinados
-  // Otras configuraciones de Redux si es necesario
+  reducer: {
+citiesReducer : citiesReducer
+}
 });
 
 export default store;

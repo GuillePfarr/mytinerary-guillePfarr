@@ -10,24 +10,24 @@ const initialState = {
 
 const citiesReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(mostrarCities, (state, action) => {
-      // Agregar lógica para mostrar ciudades si es necesario
-      const city = state.cities.find((city) => city._id === action.payload._id);
+    .addCase(mostrarCities, (store, action) => {
+      
+      const city = store.cities.find((city) => city._id === action.payload._id);
       if (!city) {
-        state.cities.push(action.payload);
+        store.cities.push(action.payload);
       }
     })
-    .addCase(getAllCities.fulfilled, (state, action) => {
-      // Agregar lógica para manejar la acción de obtener todas las ciudades
-      const newState = { ...state, cities: action.payload.response, filteredCities: action.payload.response };
+    .addCase(getAllCities.fulfilled, (store, action) => {
+     
+      const newState = { ...store, cities: action.payload.response, filteredCities: action.payload.response };
       return newState;
     })
-    .addCase(setCityFilter, (state, action) => {
-      // Agregar lógica para manejar la acción de establecer el filtro de ciudad
+    .addCase(setCityFilter, (store, action) => {
+      
       const filter = action.payload.toLowerCase();
-      const filteredCities = state.cities.filter((city) => city.name.toLowerCase().startsWith(filter));
+      const filteredCities = store.cities.filter((city) => city.name.toLowerCase().startsWith(filter));
       return {
-        ...state,
+        ...store,
         filter,
         filteredCities,
       };
