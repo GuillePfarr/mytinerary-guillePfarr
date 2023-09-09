@@ -109,8 +109,10 @@ const CityDetails = () => {
           itineraries.map((itinerary) => (
             <div key={itinerary._id} className="itinerary-card" style={cardStyle}>
               <div className="itineraries-card-body">
+<div className='user-img-name'>
                 <img src={itinerary.user_image} className="details-card-img-top" alt={itinerary.user_name} />
                 <h5 className="itinerary-user-name">{itinerary.user_name}</h5>
+</div>
                 <p className="itinerary-price">Price: {itinerary.price}</p>
                 <p className="itinerary-duration">Duration: {itinerary.duration} hours</p>
                 <div className='itinerary-hashtags'>
