@@ -1,3 +1,8 @@
+/* .itineraries-card-container{
+display:column;
+} */
+
+
 .underConst{
 width: 90vw;
 height: 70vh;
@@ -25,4 +30,86 @@ text-shadow:  0 0 0.2em #87F, 0 0 0.2em #87F,0 0 0.2em #87F;
 font-size: 2rem;
 text-shadow: bisque;
 
+}
+.itineraries-card-body{
+display: flex;
+background-color: black;
+height:30vh;
+
+}
+/* Agrega estilos para los itinerarios */
+.itinerary-card {
+  display: flex;
+  /* flex-direction: column; */
+  align-items: center;
+  text-align: center;
+  width: 60vw; /* Aproximadamente 4 columnas por fila */
+  margin: 5px;
+  background-color: #fff; /* Cambia el fondo a blanco */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.no-itineraries-card {
+  background-image: url('https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg');
+  background-size: cover;
+  font-style: italic;
+  color: rgb(7, 1, 1);
+  text-align: center;
+  padding: 20px;
+  object-fit: cover;
+  text-shadow: 0 0 0.2em #87f, 0 0 0.2em #87f, 0 0 0.2em #87f;
+}
+
+.under-const-card-text {
+  font-size: 2rem;
+  text-shadow: bisque;
+}
+
+/* Estilos para la imagen de usuario en los itinerarios */
+.details-card-img-top {
+  height: 15vh;
+  width: 15vw;
+  object-fit: cover;
+  border-radius: 50%; /* Agrega un borde redondeado a la imagen */
+  margin-bottom: 10px; /* Espacio entre la imagen y el nombre */
+}
+
+/* Estilos para el nombre de usuario en los itinerarios */
+.itinerary-username {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Estilos para el precio en los itinerarios */
+.itinerary-price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: green; /* Cambia el color del precio, puedes ajustarlo según tus preferencias */
+}
+
+/* Estilos para la duración en los itinerarios */
+.itinerary-duration {
+  font-size: 1rem;
+}
+
+/* Estilos para los hashtags en los itinerarios */
+.itinerary-hashtags {
+  font-size: 0.9rem;
+  color: #555; /* Color más tenue para los hashtags */
+}
+
+@media (max-width: 768px) {
+  /* Cambia a una columna por fila en dispositivos más pequeños */
+  .itinerary-card {
+    width: calc(50% - 10px); /* Aproximadamente 2 columnas por fila */
+  }
+}
+
+@media (max-width: 480px) {
+  /* Cambia a una columna por fila en dispositivos móviles */
+  .itinerary-card {
+    width: 100%; /* Una columna por fila */
+  }
 }
