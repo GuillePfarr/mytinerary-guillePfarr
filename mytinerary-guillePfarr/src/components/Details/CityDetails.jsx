@@ -50,12 +50,7 @@ const CityDetails = () => {
         </div>
       </div>
 
-      <Link to="/cities" className="btn btn-primary">
-        Back to Cities
-      </Link>
-
-
-
+     
       <h3>Itineraries for {city.name}</h3>
       <div className="itineraries">
         {itineraries.map((itinerary) => (
