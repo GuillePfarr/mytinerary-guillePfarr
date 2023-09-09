@@ -88,8 +88,8 @@ const CityDetails = () => {
   }, [dispatch, id]);
 
   const cardStyle = {
-    width: '60vw',
-    height: '40vh',
+    width: '70vw',
+    minheight: '40vh',
   };
 
   return (
@@ -100,6 +100,7 @@ const CityDetails = () => {
         <div className="card-body">
           <img src={city.image} className="card-img-top" alt={city.name} />
           <h5 className="card-title">{city.name}</h5>
+<p className='city-description'>{city.description}</p>
         </div>
       </div>
 
