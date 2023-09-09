@@ -9,3 +9,20 @@ width: 15vw;
 object-fit: cover;
 }
 
+
+.no-itineraries-card {
+  background-image: url('https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg'); 
+  background-size: cover;
+font-style: italic;
+  color: rgb(7, 1, 1); 
+  text-align: center;
+  padding: 20px;
+object-fit: cover;
+text-shadow:  0 0 0.2em #87F, 0 0 0.2em #87F,0 0 0.2em #87F;
+}
+
+.under-const-card-text{
+font-size: 2rem;
+text-shadow: bisque;
+
+}
