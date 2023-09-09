@@ -1,33 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCityDetails, fetchCityItineraries } from '../../redux/reducers/cityDetailsSlice'; 
+
 import '../Details/citydetails.css';
-import { useSelector } from 'react-redux';
 
 const CityDetails = () => {
-  const [city, setCity] = useState({});
-  const [itineraries, setItineraries] = useState([]);
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  
+  const city = useSelector((state) => state.cityDetails.city);
+  const itineraries = useSelector((state) => state.cityDetails.itineraries);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/api/cities/${id}`)
-      .then((res) => {
-        setCity(res.data.response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    axios
-      .get(`http://localhost:3000/api/itineraries/bycity/${id}`)
-      .then((res) => {
-        setItineraries(res.data.response);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [id]);
+    
+    dispatch(fetchCityDetails(id));
+    dispatch(fetchCityItineraries(id));
+  }, [dispatch, id]);
 
   const cardStyle = {
     width: '60vw',
@@ -42,7 +32,6 @@ const CityDetails = () => {
         <div className="card-body">
           <img src={city.image} className="card-img-top" alt={city.name} />
           <h5 className="card-title">{city.name}</h5>
-          
         </div>
       </div>
 
@@ -60,7 +49,6 @@ const CityDetails = () => {
             </div>
           ))
         ) : (
-          
           <div className="no-itineraries-card" style={cardStyle}>
             <div className="under-const-card-body">
               <p className="under-const-card-text"><strong>This city does not have itineraries yet.</strong></p>
@@ -77,6 +65,4 @@ const CityDetails = () => {
 };
 
 export default CityDetails;
-
-
 
