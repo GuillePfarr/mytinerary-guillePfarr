@@ -5,7 +5,7 @@ import axios from "axios";
 const initialState = {
   city: {},
   itineraries: [],
-};
+};  
 
 export const fetchCityDetails = createAsyncThunk(
   'cityDetails/fetchCityDetails',
