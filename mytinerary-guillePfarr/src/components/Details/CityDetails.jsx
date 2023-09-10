@@ -3,8 +3,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCityDetails, fetchCityItineraries } from '../../redux/reducers/cityDetailsSlice';
 import { Card, Row, Col } from 'react-bootstrap';
-
 import '../Details/citydetails.css';
+import bankNote from "../../../public/bankNote.png"
 
 const CityDetails = () => {
   const { id } = useParams();
@@ -51,14 +51,14 @@ const CityDetails = () => {
                   </p>
                 </Card.Body>
                 <ul className="list-group list-group-flush">
-                  <li className="list-group-item">Price: {itinerary.price}</li>
+                  <li className="list-group-item">Price:  <div className="price-indicator">
+                      {[...Array(itinerary.price)].map((_, index) => (
+                        <img className='bankNote' key={index} src={bankNote} alt={`Billete ${index + 1}`} />
+                      ))}
+                    </div></li>
                   <li className="list-group-item">Duration: {itinerary.duration} hours</li>
                   <li className="list-group-item">
-                    <div className="price-indicator">
-                      {[...Array(itinerary.price)].map((_, index) => (
-                        <img key={index} src="" alt={`Billete ${index + 1}`} />
-                      ))}
-                    </div>
+                   
                     <p class="list-group-title">#Hashtags</p>
                     <ul>
 

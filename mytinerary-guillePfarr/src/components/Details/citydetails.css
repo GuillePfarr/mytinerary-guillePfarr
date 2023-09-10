@@ -1,4 +1,7 @@
-
+.bankNote{
+height: 1rem;
+width: 1rem;
+}
 .underConst{
 width: 90vw;
 height: 70vh;
