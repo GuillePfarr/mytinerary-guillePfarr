@@ -36,7 +36,7 @@ function Cities() {
   }, [filteredCities]);
 
   return (
-    <div className="container">
+    <div className="cities-container">
       <h1 className='CitiesTitle'>Cities</h1>
       <input
         className='inputCities'
