@@ -47,13 +47,18 @@ const CityDetails = () => {
                   <img src={itinerary.user_image} className="card-img-top" alt={itinerary.user_name} />
                   <h5 className="card-title">{itinerary.user_name}</h5>
                   <p className="card-text">
-                    Un texto de ejemplo rápido para colocar cerca del título de la tarjeta y componer la mayor parte del contenido de la tarjeta.
+                    
                   </p>
                 </Card.Body>
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item">Price: {itinerary.price}</li>
                   <li className="list-group-item">Duration: {itinerary.duration} hours</li>
                   <li className="list-group-item">
+                    <div className="price-indicator">
+                      {[...Array(itinerary.price)].map((_, index) => (
+                        <img key={index} src="" alt={`Billete ${index + 1}`} />
+                      ))}
+                    </div>
                     <p class="list-group-title">#Hashtags</p>
                     <ul>
 
