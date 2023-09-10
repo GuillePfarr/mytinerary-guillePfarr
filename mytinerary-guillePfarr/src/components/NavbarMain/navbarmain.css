@@ -5,11 +5,14 @@
 
 .NavbarContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content:left  ;
   align-items: center;
   padding: 10px 20px;
 }
-
+.MyTNabvar{
+text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
+		0 0 0.2em #87F
+}
 .Logo {
   text-decoration: none;
   font-size: 2rem;
@@ -108,4 +111,13 @@ right: 1rem;
   .ShowMenu {
     display: block;
   }
+}
+
+.LogoMyTinerary{
+height: 4rem;
+width: 4rem;
+border-radius: 4%;
+margin-right: .2rem;
+box-shadow:0 0 0.2em #87F, 0 0 0.2em #87F,
+		0 0 0.2em #87F ;
 }

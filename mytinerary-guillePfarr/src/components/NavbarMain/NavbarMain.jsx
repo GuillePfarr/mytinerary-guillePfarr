@@ -9,13 +9,13 @@ const NavbarMain = () => {
   return (
     <header className="HeaderMain">
       <div className="NavbarContainer">
-        <Link to="/" className="Logo">
-          MyTinerary
-        </Link>
+             <img className='LogoMyTinerary' src="../public/MyTinerary.png"></img>
+         <h1 className='MyTNabvar'>      MyTinerary     </h1>
+
         <button
           className={`ToggleButton ${showMenu ? 'CloseButton' : ''}`}
-          onClick={() => setShowMenu(!showMenu)}
-        >
+          onClick={() => setShowMenu(!showMenu)}>
+        
           {showMenu ? 'Close' : 'Menu'}
         </button>
       </div>
