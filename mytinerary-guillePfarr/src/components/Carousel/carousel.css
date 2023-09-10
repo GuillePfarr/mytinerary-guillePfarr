@@ -1,10 +1,7 @@
 .carousel {
-display: flex;
-
-
+  display: flex;
   width: 100%;
-  max-width: 800px; 
-height: 100%;
+  height: 100%;
   margin: 0 auto;
 }
 
@@ -13,60 +10,51 @@ height: 100%;
   grid-template-columns: repeat(2, 1fr);
   flex-direction: column;
   width: 100%;
-height: 100%;
-  max-width: 800px; 
-object-fit: cover;
+  height: 100%;
+  object-fit: cover;
 }
 
 .carousel-image {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
   text-align: center;
-border: 1px solid black;
-margin-left: 2px;
-border-radius: 3%;
-background-color: #396eac;
+  border: 1px solid black;
+  margin-left: 2px;
+  border-radius: 3%;
+  background-color: #396eac;
 
 }
 
 .carousel-image img {
   width: 100%;
-  
-  height: 100%; 
+  height: 100%;
   object-fit: cover;
 }
 
-.cardName{
-background-color:blue;
-
-width: 100%;
+.cardName {
+  background-color: blue;
+  width: 100%;
 }
 
 @media only screen and (min-width:574px) {
 
-.carousel-slide{
-flex-direction: row;
+  .carousel-slide {
+    flex-direction: row;
+
+  }
+
+  .carousel-slide {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
 }
-
-
-.carousel-slide {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  flex-direction: column;
-  width: 100%;
-height: 100%;
-  max-width: 800px; 
-object-fit: cover;
-}
-
-}
-
-
-
-
 
 .carousel {
   position: relative;
@@ -74,11 +62,11 @@ object-fit: cover;
 
 .carousel-button {
   position: absolute;
-  top: 50%;
+  bottom: 4%;
   transform: translateY(-50%);
   background-color: transparent;
   border: none;
-  font-size: 2rem;
+  font-size: 4rem;
   color: #c9c60a;
   border-radius: 50%;
   width: 40px;
@@ -87,24 +75,11 @@ object-fit: cover;
 }
 
 .carousel-button.prev {
-  left: 20px; 
+  left: 30px;
 }
 
 
 
 .carousel-button.next {
-  right: 20px; 
-}
-
-@media (min-width: 920px){
-
-.carousel-button.prev {
-  left: -60px; 
-}
-
-.carousel-button.next {
-  right:-60px; 
-}
-
-
+  right: 60px;
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./carousel.css";
 
+
 const slides = [[
   { image: "https://upload.wikimedia.org/wikipedia/commons/a/ae/Castle_Neuschwanstein.jpg", name: "Schwangau", country: "Germany" },
   { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Salzburg_panorama.jpg/1280px-Salzburg_panorama.jpg", name: "Salzburg", country: "Austria" },
@@ -10,7 +11,7 @@ const slides = [[
 ],
 [
   { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg/1024px-Calle_Dlugie_Pobrzeze%2C_Gdansk%2C_Polonia%2C_2013-05-20%2C_DD_06.jpg", name: "Danzig", country: "Poland" },
-  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Hagia_Sophia_Mars_2013.jpg/800px-Hagia_Sophia_Mars_2013.jpg", name: "Istambul", country: "Turkey" },
+  { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Hagia_Sophia_Mars_2013.jpg/800px-Hagia_Sophia_Mars_2013.jpg", name: "Istanbul", country: "Turkey" },
   { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Luzern_Kapellbruecke.jpg/800px-Luzern_Kapellbruecke.jpg", name: "Lucerne", country: "Swizerland" },
   { image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Kremlevskaya_Naberezhnaja_Moscow.hires.jpg/800px-Kremlevskaya_Naberezhnaja_Moscow.hires.jpg", name: "Moscow", country: " Russia" },
 ],
