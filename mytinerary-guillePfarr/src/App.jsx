@@ -5,6 +5,11 @@ import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-d
 import Componente404 from './pages/Componente404';
 import Cities from './pages/Cities/Cities';
 import CityDetails from './components/Details/CityDetails';
+import SignUp from './pages/signup.jsx';
+import SignIn from './pages/signin.jsx';
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -30,8 +35,12 @@ const router = createBrowserRouter([
         element: <Componente404 />
       },
       {
-        path: '*',
-        element: <CityDetails />
+        path: '/signUp',
+        element: <SignUp />
+      },
+      {
+        path: '/signin',
+        element: <SignIn />
       }
 
 

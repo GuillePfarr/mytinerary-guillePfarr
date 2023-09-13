@@ -28,11 +28,12 @@ const NavbarMain = () => {
             <Link to="/cities">Cities</Link>
           </li>
           <li>
-            <Link to="/favourites">Favourites</Link>
+            <Link to="/signup">SignUp</Link>
           </li>
           <li>
-            <Link to="/mybookings">MyBookings</Link>
+            <Link to="/sognin">SignIn</Link>
           </li>
+
         </ul>
       </nav>
     </header>
