@@ -35,14 +35,14 @@ const router = createBrowserRouter([
         element: <Componente404 />
       },
       {
-        path: '/signUp',
+        path: '/signup',
         element: <SignUp />
       },
       {
         path: '/signin',
         element: <SignIn />
       }
-
+      
 
     ]
   },

@@ -40,3 +40,32 @@
     font-size: 14px; 
   }
 }
+
+.cta-signup-button{
+display: inline-block;
+  padding: 0;
+  width: 2em;
+  height: 2em;
+  background-image: url('https://tnaa.com/wp-content/uploads/2021/10/hero-684x620.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  text-indent: -9999px;
+  border: none;
+  border-radius: 90%;
+  cursor: pointer;
+  animation: pulse 4s infinite, moveText 6s infinite;
+
+}
+
+.button-wrapper {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}

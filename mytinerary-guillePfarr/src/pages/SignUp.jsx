@@ -2,7 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './SignUp.css';
 import { useDispatch } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+
 import { signUp } from '../redux/actions/userActions'
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 const SignUp = () => {
     const [countries, setCountries] = useState([]);
 
@@ -72,6 +75,14 @@ const SignUp = () => {
                     </select>
                 </label>
                 <button className='bt btn-secondary' type="submit">Registrarse</button>
+                {/* <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
+                    <GoogleLogin />
+                </GoogleOAuthProvider> */}
+                <div className="button-wrapper">
+                    <Link className="button cta-signup-button" to="/signin"></Link>
+                    <p className='cta-text'>Already registered?</p>
+
+                </div>
             </form>
         </div>
     );
