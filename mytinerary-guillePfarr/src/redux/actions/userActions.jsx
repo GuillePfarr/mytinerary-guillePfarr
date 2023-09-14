@@ -11,8 +11,9 @@ export const signUp = createAsyncThunk("create_user", async (body) => {
     try {
         const response = await axios.post("http://localhost:3000/api/auth/signUp", body)
         localStorage.setItem('token', response.data.token)
-        return response.data.user
         console.log(response)
+        return response.data.user
+
     } catch (error) {
         console.log(error)
     }

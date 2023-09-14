@@ -57,9 +57,9 @@ const FooterMain = () => {
               Our insiders love what they do and they do it so that
               you can enjoy your itinerary in all its dimensions.</p>
             <div className='input-group mb-3'>
-              <input type="text" className="form-control" placeholder="Enter your Email..."
+              {/* <input type="text" className="form-control" placeholder="Enter your Email..."
                 aria-label="Recipients's name"
-                aria-aria-describedby="basic-addon2"></input>
+                aria-aria-describedby="basic-addon2"></input> */}
               <span className='input-group-text' id="basic-addon2">
                 <i className="fa fa-long-arrow-right"></i></span>
 
