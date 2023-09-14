@@ -31,7 +31,7 @@ const NavbarMain = () => {
             <Link to="/signup">SignUp</Link>
           </li>
           <li>
-            <Link to="/sognin">SignIn</Link>
+            <Link to="/signin">SignIn</Link>
           </li>
 
         </ul>

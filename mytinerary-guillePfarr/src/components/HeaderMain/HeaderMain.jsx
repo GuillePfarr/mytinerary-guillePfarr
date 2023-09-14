@@ -5,8 +5,8 @@ import './headermain.css';
 const links = [
   { value: '/', content: 'Home', id: '1', active: true },
   { value: '/cities', content: 'Cities', id: '2', active: false },
-  { value: '/favourites', content: 'Favourites', id: '3', active: false },
-  { value: '/mybookings', content: 'MyBookings', id: '4', active: false },
+  { value: '/signup', content: 'SignUp', id: '3', active: false },
+  { value: '/signin', content: 'SignIn', id: '4', active: false },
 ];
 
 const HeaderMain = () => {
