@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavbarMain.css';
+import { useSelector } from 'react-redux';
 
 
 const NavbarMain = () => {
   const [showMenu, setShowMenu] = useState(false);
+const {token} = useSelector(store => store.citiesReducer)
 
   return (
     <header className="HeaderMain">
@@ -27,6 +29,11 @@ const NavbarMain = () => {
           <li>
             <Link to="/cities">Cities</Link>
           </li>
+{
+console.log(token)
+
+
+}
           <li>
             <Link to="/signup">SignUp</Link>
           </li>

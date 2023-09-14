@@ -49,12 +49,17 @@ const SignIn = () => {
                         <input type="password" name="password" className="signin-input" ref={password} />
                     </label>
 
-                    <button className='bt btn-secondary' type="submit">Registrarse</button>
-                    {/* <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
-                        <GoogleLogin />
-                    </GoogleOAuthProvider> */}
-
-
+                    <button className='bt btn-secondary' type="submit">Login</button>
+                    <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
+                        <GoogleLogin
+                            onSuccess={credentialResponse => {
+                                console.log(credentialResponse);
+                            }}
+                            onError={() => {
+                                console.log('Login Failed');
+                            }}
+                        />;
+                    </GoogleOAuthProvider>
                 </form>
                 <div className="button-wrapper">
                     <Link className="button cta-signup-button" to="/signup"></Link>

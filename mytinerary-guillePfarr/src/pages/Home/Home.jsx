@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from "../../components/Carousel/Carousel";
 import { Link, useLocation } from 'react-router-dom';
 import "./home.css";
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 const Home = () => {
   const location = useLocation();

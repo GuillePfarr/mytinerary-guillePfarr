@@ -3,7 +3,8 @@ import { cargarUsuario, signUp } from "../actions/userActions"
 
 
 const initialState = {
-    user: null
+    user: null,
+token: ""
 }
 
 export const userReducer = createReducer(initialState, (builder) =>
