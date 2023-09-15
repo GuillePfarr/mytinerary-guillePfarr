@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './NavbarMain.css';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../redux/actions/userActions';
 
 const NavbarMain = () => {
   const [showMenu, setShowMenu] = useState(false);
   const { token } = useSelector(store => store.citiesReducer)
   const user = useSelector((store) => store.userReducer.user)
+  const dispatch = useDispatch()
   return (
     <header className="HeaderMain">
       <div className="NavbarContainer">
@@ -31,7 +32,7 @@ const NavbarMain = () => {
           </li>
           {user ? (
             <li>
-              <Link to="/logout">LogOut</Link>
+              <button className='button logout' onClick={() => dispatch(logout())}>LogOut</button>
             </li>
           ) : (
             <>

@@ -57,6 +57,7 @@ export const logout = createAction("reset", () => {
      localStorage.removeItem('token')
      return{
      payload: null
+
 }
 })
 
