@@ -32,16 +32,16 @@ export const signIn = createAsyncThunk("logear", async (body) => {
 })
 
 
-export const signInWithToken = createAsyncThunk("logear_token", async (token) => {
+export const signInWithToken = createAsyncThunk("signInWithToken", async (token) => {
     try {
 
         
-        const response = await axios.post("http://localhost:3000/api/auth/signin/token", {}, {
+        const response = await axios.post("http://localhost:3000/api/auth/signIn/token", {}, {
             headers: {
-                Authorization: " Bearer" + token
+                Authorization: "Bearer " + token
             }
         })
-        console.log(response.data)
+                                                                                                            
         return {
            user: response.data.user,
             token: token
