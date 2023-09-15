@@ -1,20 +1,20 @@
 import { cargarUsuario, signUp } from "../actions/userActions"
-
+import { createReducer } from "@reduxjs/toolkit";
+import { signIn } from '../actions/userActions';
+import { signInWithToken } from "../actions/userActions";
 const initialState = {
     user: null,
     token: ""
 }
 
-export const userReducer = createReducer(initialState, (builder) =>
+const userReducer = createReducer(initialState, (builder) => {
     builder
-
         .addCase(cargarUsuario, (stateActual, action) => {
             return {
                 ...stateActual,
                 user: action.payload
             }
         }
-
         ).addCase(signUp.fulfilled, (stateActual, action) => {
             return {
                 ...stateActual,
@@ -23,11 +23,11 @@ export const userReducer = createReducer(initialState, (builder) =>
             }
         }
         ).addCase(signIn.fulfilled, (stateActual, action) => {
+            console.log(action.payload)
             return {
                 ...stateActual,
                 user: action.payload.user,
                 token: action.payload.token
-
             }
         }
         ).addCase(signInWithToken, (stateActual, action) => {
@@ -35,9 +35,10 @@ export const userReducer = createReducer(initialState, (builder) =>
                 ...stateActual,
                 user: action.payload.user,
                 token: action.payload.token
-
             }
         }
         )
-
+}
 )
+
+export default userReducer

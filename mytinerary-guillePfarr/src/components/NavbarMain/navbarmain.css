@@ -65,6 +65,7 @@ right: 1rem;
   font-size: 18px;
   font-weight: 600;
   animation: colorChange 3s infinite; 
+margin-right: 1rem;
 }
 
 @keyframes colorChange {

@@ -29,7 +29,7 @@ const SignIn = () => {
                 if (response.payload.success) {
                     alert("Welcome" + response.payload.user.name);
                 }
-                navigate("/");
+                // navigate("/");
             });
         }
     };
