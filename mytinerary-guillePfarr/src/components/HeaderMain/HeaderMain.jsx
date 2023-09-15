@@ -7,7 +7,7 @@ const links = [
   { value: '/cities', content: 'Cities', id: '2', active: false },
   { value: '/signup', content: 'SignUp', id: '3', active: false },
   { value: '/signin', content: 'SignIn', id: '4', active: false },
-  { value: '/signout', content: 'SignOut', id: '5', active: false }
+  { value: '/logout', content: 'LogOut', id: '5', active: false }
 ];
 
 const HeaderMain = () => {

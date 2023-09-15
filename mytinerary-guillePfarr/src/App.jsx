@@ -7,7 +7,8 @@ import Cities from './pages/Cities/Cities';
 import CityDetails from './components/Details/CityDetails';
 import SignUp from './pages/signup.jsx';
 import SignIn from './pages/signin.jsx';
-import SignOut from './pages/signout.jsx';
+import LogOut from './pages/LogOut';
+
 
 
 
@@ -43,8 +44,8 @@ const router = createBrowserRouter([
         element: <SignIn />
       },
       {
-        path: '/signout',
-        element: <SignOut />
+        path: '/logout',
+        element: <LogOut />
       }
 
     ]

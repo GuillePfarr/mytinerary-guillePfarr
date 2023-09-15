@@ -31,7 +31,7 @@ const NavbarMain = () => {
           </li>
           {user ? (
             <li>
-              <Link to="/signout">SignOut</Link>
+              <Link to="/logout">LogOut</Link>
             </li>
           ) : (
             <>
