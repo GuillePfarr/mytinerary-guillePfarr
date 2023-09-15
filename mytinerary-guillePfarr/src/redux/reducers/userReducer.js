@@ -20,7 +20,7 @@ const userReducer = createReducer(initialState, (builder) => {
         ).addCase(signUp.fulfilled, (stateActual, action) => {
             return {
                 ...stateActual,
-                user: action.payload,
+                user: action.payload.user,
                 token: action.payload.token
             }
         }
