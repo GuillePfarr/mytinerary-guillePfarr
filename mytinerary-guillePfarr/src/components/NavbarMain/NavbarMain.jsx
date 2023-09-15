@@ -29,11 +29,7 @@ const {token} = useSelector(store => store.citiesReducer)
           <li>
             <Link to="/cities">Cities</Link>
           </li>
-{
-console.log(token)
 
-
-}
           <li>
             <Link to="/signup">SignUp</Link>
           </li>
@@ -48,3 +44,5 @@ console.log(token)
 };
 
 export default NavbarMain;
+
+

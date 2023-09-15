@@ -41,10 +41,7 @@ const SignUp = () => {
             console.log(body)
             dispatch(signUp(body))
         }
-
-
     };
-
     return (
         <div className="signup-container">
             <form className="signup-form" onSubmit={handleSubmit}>
@@ -76,10 +73,16 @@ const SignUp = () => {
                     </select>
                 </label>
                 <button className='bt btn-secondary' type="submit">Registrarse</button>
-                {/* <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
-                    <GoogleLogin />
-                </GoogleOAuthProvider> */}
-
+               <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
+                        <GoogleLogin
+                            onSuccess={credentialResponse => {
+                                console.log(credentialResponse);
+                            }}
+                            onError={() => {
+                                console.log('Login Failed');
+                            }}
+                        />;
+                    </GoogleOAuthProvider>
                 <div className="button-wrapper">
                     <Link className="button cta-signup-button" to="/signin"></Link>
                     <p className='cta-text'>Already registered?</p>

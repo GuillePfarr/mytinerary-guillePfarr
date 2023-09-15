@@ -25,8 +25,6 @@ const SignIn = () => {
                 password: password.current.value,
             };
             console.log(body);
-
-
             dispatch(signIn(body)).then((response) => {
                 if (response.payload.success) {
                     alert("Welcome" + response.payload.user.name);
