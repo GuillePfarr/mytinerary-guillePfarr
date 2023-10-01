@@ -1,11 +1,11 @@
 .cities-container {
-width: 100%;
+  width: 100%;
   min-height: 70vh;
   display: flex;
   justify-content: center;
-  flex-direction: column; 
-  align-items: center; 
-background-color: #87F;
+  flex-direction: column;
+  align-items: center;
+  background-color: #87F;
 }
 
 
@@ -20,7 +20,7 @@ background-color: #87F;
 .card {
   width: 300px;
   border: 1px solid #ccc;
-border-radius: 3%;
+  border-radius: 3%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
@@ -37,52 +37,50 @@ border-radius: 3%;
   font-size: 1.25rem;
   font-weight: bold;
   margin: 10px;
-text-align: center;
+  text-align: center;
 }
 
 .card-country-field {
   margin: 10px;
-font-size: 1.5rem;
-text-align: center;
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 .card-footer {
-align-items: center;
+  align-items: center;
   text-align: center;
   padding: 10px 0;
 }
 
-.btn-primary {
+.detailsButt {
   text-decoration: none;
   color: #0c0202;
-border: 1px thin transparent;
-
+  border: 1px thin transparent;
+  background-color: #87F;
   border-radius: 3%;
   padding: 8px 16px;
   cursor: pointer;
   transition: background-color 0.3s;
-
-
-
-
 }
 
-.btn-primary:hover {
+.detailsButt:hover {
   background-color: #0056b3;
-border-radius: 5%;
+  border-radius: 5%;
+  color: white;
 }
 
 .CitiesTitle {
- 
+
   margin-bottom: 1rem;
- 
-text-align: center;
+
+  text-align: center;
 }
 
 .inputCities {
   height: 2rem;
   width: 100%;
-  max-width: 400px; /* Limita el ancho del campo de filtro */
+  max-width: 400px;
+  /* Limita el ancho del campo de filtro */
   margin-bottom: 1rem;
 }
 

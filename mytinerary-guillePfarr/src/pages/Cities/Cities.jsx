@@ -110,9 +110,7 @@ function Cities() {
   useEffect(() => {
     setNoResults(filteredCities.length === 0);
 
-    // Aquí, usamos la función scrollTo para mover la vista al principio de la página.
-    // window.scrollTo recibe las coordenadas x e y a las que se debe desplazar la página.
-    // En este caso, desplazamos la página a la parte superior (y = 0).
+    
     window.scrollTo(0, 0);
   }, [filteredCities]);
 
@@ -138,11 +136,11 @@ function Cities() {
               <div className='cardFooter'>
                 <h5 className="card-country-field">{city.country}</h5>
                 <div className='text-center'>
-                  <button>
-                    <Link to={`/citydetails/${city._id}`} className="btn btn-primary">
+                  <div>
+                    <Link to={`/citydetails/${city._id}`} className="detailsButt">
                       Details
                     </Link>
-                  </button>
+                  </div>
                 </div>
               </div>
             </div>
