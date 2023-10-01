@@ -22,8 +22,13 @@ margin-right: 1rem;
 .NavbarContainer {
   display: flex;
   justify-content:left  ;
-  align-items: center;
+  justify-content: space-between;
   padding: 10px 20px;
+}
+
+.LogoAndTitle{
+display: flex;
+align-items: center;
 }
 .MyTNabvar{
 text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
