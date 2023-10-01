@@ -23,7 +23,7 @@ const NavbarMain = () => {
           onClick={() => setShowMenu(!showMenu)}
         >   
         {showMenu ? 'X' : '☰'}
-          
+          {/* {showMenu ? 'Close' : 'Menu'} */}
         </button>
       </div>
       <nav className={`NavbarLinks ${showMenu ? 'ShowMenu' : ''}`}>

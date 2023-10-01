@@ -66,7 +66,7 @@
   justify-content: flex-end;
   align-items: center;
   list-style: none;
-
+width: 100%;
   padding: 0;
 }
 
@@ -89,7 +89,22 @@
   font-size: 18px;
   font-weight: 600;
   animation: colorChange 3s infinite;
-  margin-right: 1rem;
+  margin-right: 0;
+}
+
+.menuList{
+ display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+
+.menu > li {
+  margin: 0 1rem;
+  overflow: hidden;
 }
 
 @keyframes colorChange {
@@ -138,6 +153,18 @@
   .ShowMenu {
     display: block;
   }
+.menuList {
+    position: absolute;
+    top: 0;
+    margin-top: 50px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+
 }
 
 .LogoMyTinerary {
@@ -148,3 +175,4 @@
   box-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
     0 0 0.2em #87F;
 }
+
