@@ -5,6 +5,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from 'react-router-dom';
 import './SignIn.css';
+import jwtDecode from 'jwt-decode';
 
 const location = useLocation
 const SignIn = () => {
@@ -34,6 +35,20 @@ const SignIn = () => {
         }
     };
 
+     const handleSubmitGoogle = async (data) => {
+         const body = {
+                email: data.email,
+                password: data.sub + "@Ab",
+            };
+            console.log(body);
+            dispatch(signIn(body)).then((response) => {
+                if (response.payload.success) {
+                    alert("Welcome" + response.payload.user.name);
+                }
+                navigate("/");
+            });
+           }
+
     return (
         <div>
             <div className="signin-container">
@@ -52,6 +67,8 @@ const SignIn = () => {
                         <GoogleLogin
                             onSuccess={credentialResponse => {
                                 console.log(credentialResponse);
+                             const infoUser = jwtDecode(credentialResponse.credential)
+                            handleSubmitGoogle(infoUser)
                             }}
                             onError={() => {
                                 console.log('Login Failed');

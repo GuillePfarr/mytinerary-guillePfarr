@@ -20,7 +20,7 @@ const userReducer = createReducer(initialState, (builder) => {
         ).addCase(signUp.fulfilled, (stateActual, action) => {
             return {
                 ...stateActual,
-                user: action.payload,
+                user: action.payload.user,
                 token: action.payload.token
             }
         }
@@ -32,7 +32,8 @@ const userReducer = createReducer(initialState, (builder) => {
                 token: action.payload.token
             }
         }
-        ).addCase(signInWithToken, (stateActual, action) => {
+        ).addCase(signInWithToken.fulfilled,  (stateActual, action) => {
+            console.log(action.payload)
             return {
                 ...stateActual,
                 user: action.payload.user,

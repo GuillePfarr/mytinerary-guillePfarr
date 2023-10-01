@@ -12,7 +12,7 @@ export const signUp = createAsyncThunk("create_user", async (body) => {
         const response = await axios.post("http://localhost:3000/api/auth/signup", body)
         localStorage.setItem('token', response.data.token)
         console.log(response)
-        return response.data.user
+        return response.data
 
     } catch (error) {
         console.log(error)
@@ -32,16 +32,16 @@ export const signIn = createAsyncThunk("logear", async (body) => {
 })
 
 
-export const signInWithToken = createAsyncThunk("logear_token", async () => {
+export const signInWithToken = createAsyncThunk("signInWithToken", async (token) => {
     try {
 
-        const token = localStorage.getItem(' token')
-        const response = await axios.post("http://localhost:3000/api/auth/signin/token", {}, {
+        
+        const response = await axios.post("http://localhost:3000/api/auth/signIn/token", {}, {
             headers: {
-                Authorization: " Bearer" + token
+                Authorization: "Bearer " + token
             }
         })
-
+                                                                                                            
         return {
            user: response.data.user,
             token: token
