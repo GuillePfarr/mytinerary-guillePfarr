@@ -11,7 +11,7 @@ export const fetchCityDetails = createAsyncThunk(
   'cityDetails/fetchCityDetails',
   async (id) => {
     try {
-      const res = await axios.get(`https://mytinerary-2s20.onrender.com/api/cities/${id}`);
+      const res = await axios.get(`http://localhost:3000/api/cities/${id}`);
       return res.data.response;
     } catch (error) {
       console.error(error);
