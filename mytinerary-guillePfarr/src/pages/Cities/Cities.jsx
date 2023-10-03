@@ -99,7 +99,7 @@ function Cities() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/cities')
+      .get('https://mytinerary-2s20.onrender.com//api/cities')
       .then((res) => {
         setCities(res.data.response);
         setFilteredCities(res.data.response);

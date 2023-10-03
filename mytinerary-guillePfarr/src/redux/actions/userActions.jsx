@@ -9,7 +9,7 @@ export const cargarUsuario = createAction('cargar_usuario', (user) => {
 
 export const signUp = createAsyncThunk("create_user", async (body) => {
     try {
-        const response = await axios.post("http://localhost:3000/api/auth/signup", body)
+        const response = await axios.post("https://mytinerary-2s20.onrender.com//api/auth/signup", body)
         localStorage.setItem('token', response.data.token)
         console.log(response)
         return response.data
@@ -21,7 +21,7 @@ export const signUp = createAsyncThunk("create_user", async (body) => {
 
 export const signIn = createAsyncThunk("logear", async (body) => {
     try {
-        const response = await axios.post("http://localhost:3000/api/auth/signin", body)
+        const response = await axios.post("https://mytinerary-2s20.onrender.com//api/auth/signin", body)
         localStorage.setItem('token', response.data.token)
         console.log(response)
         return response.data
@@ -36,7 +36,7 @@ export const signInWithToken = createAsyncThunk("signInWithToken", async (token)
     try {
 
         
-        const response = await axios.post("http://localhost:3000/api/auth/signIn/token", {}, {
+        const response = await axios.post("https://mytinerary-2s20.onrender.com//api/auth/signIn/token", {}, {
             headers: {
                 Authorization: "Bearer " + token
             }
