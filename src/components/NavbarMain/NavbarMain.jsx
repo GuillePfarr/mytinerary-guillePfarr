@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './NavbarMain.css';
+import './navbarmain.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../redux/actions/userActions';
 
