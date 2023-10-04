@@ -16,7 +16,6 @@ const links = [
 const LayoutMain = () => {
  
   const location = useLocation()
-  console.log(location);
   
 
   return (

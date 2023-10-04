@@ -15,7 +15,7 @@ const NavbarMain = () => {
     <header className="HeaderMain">
       <div className="NavbarContainer">
       <div className="LogoAndTitle">
-        <img className="LogoMyTinerary" src="../public/MyTinerary.png" alt="MyTinerary Logo" />
+        <img className="LogoMyTinerary" src="/MyTinerary.png" alt="MyTinerary Logo" />
         <h1 className="MyTNabvar">MyTinerary</h1>
       </div>
         <button

@@ -11,7 +11,7 @@ export const fetchCityDetails = createAsyncThunk(
   'cityDetails/fetchCityDetails',
   async (id) => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/cities/${id}`);
+      const res = await axios.get(import.meta.env.VITE_API_URL + `/api/cities/${id}`);
       return res.data.response;
     } catch (error) {
       console.error(error);
@@ -24,7 +24,7 @@ export const fetchCityItineraries = createAsyncThunk(
   'cityDetails/fetchCityItineraries',
   async (id) => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/itineraries/bycity/${id}`);
+      const res = await axios.get(import.meta.env.VITE_API_URL + `/api/itineraries/bycity/${id}`);
       return res.data.response;
     } catch (error) {
       console.error(error);

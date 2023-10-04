@@ -12,7 +12,6 @@ const FooterMain = () => {
       <div className='row'>
         <div className='col-lg-3 col-sm-6'>
           <div className='single-box'>
-            <img src='img/logo.png' alt=""></img>
             <h1>MyTinerary</h1>
             <h3>We accept</h3>
             <div className="card-area">

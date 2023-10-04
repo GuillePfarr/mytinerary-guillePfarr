@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCityDetails, fetchCityItineraries, toggleAccordion } from '../../redux/reducers/cityDetailsSlice';
 import { Card, Row, Col } from 'react-bootstrap';
 import '../Details/citydetails.css';
-import bankNote from "../../../public/bankNote.png";
+// import bankNote from "../../../public/bankNote.png";
 
 const CityDetails = () => {
   const { id } = useParams();
@@ -52,7 +52,7 @@ const CityDetails = () => {
                   <ul className="list-group list-group-flush">
                     <li className="list-group-item">Price:  <div className="price-indicator">
                       {[...Array(itinerary.price)].map((_, index) => (
-                        <img className="bankNote" key={index} src={bankNote} alt={`Billete ${index + 1}`} />
+                        <img className="bankNote" key={index} src="/bankNote.png" alt={`Billete ${index + 1}`} />
                       ))}
                     </div></li>
                     <li className="list-group-item">Duration: <div className="duration-indicator">
@@ -60,7 +60,7 @@ const CityDetails = () => {
 
                     <li className="list-group-item">
 
-                      <p class="list-group-title">Hashtags</p>
+                      <p className="list-group-title">Hashtags</p>
                       <ul>
 
                         {itinerary.hashtag.map((tag, index) => (

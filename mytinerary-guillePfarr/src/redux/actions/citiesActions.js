@@ -10,7 +10,7 @@ export const mostrarCities = createAction('mostrarCities', (cities) => {
 
 export const getAllCities = createAsyncThunk('getAllCities', async () => {
   try {
-    const res = await axios.get('http://localhost:3000/api/cities');
+    const res = await axios.get(import.meta.env.VITE_API_URL + '/api/cities');
     return res.data.response;
   } catch (error) {
     console.error(error);

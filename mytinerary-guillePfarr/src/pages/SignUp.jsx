@@ -47,21 +47,21 @@ const SignUp = () => {
                 image: image.current.value,
                 country: country.current.value,
             };
-            console.log(body)
+            
             dispatch(signUp(body))
         }
     };
 
     const handleSubmitGoogle = async (data) => {
-       console.log(data)
+       
         const body = {
             name: data.given_name + " " + data.family_name,
             email: data.email,
-            password: data.sub + "@Ab",
+            password: data.sub + import.meta.env.VITE_GG_KEY,
             image: data.picture,
             country: "Argentina",
         };
-        console.log(body)
+        
         dispatch(signUp(body))
     }
     return (
@@ -98,7 +98,7 @@ const SignUp = () => {
                 <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
                     <GoogleLogin
                         onSuccess={credentialResponse => {
-                            console.log(credentialResponse);
+                            
                             const infoUser = jwtDecode(credentialResponse.credential)
                             handleSubmitGoogle(infoUser)
                         }}

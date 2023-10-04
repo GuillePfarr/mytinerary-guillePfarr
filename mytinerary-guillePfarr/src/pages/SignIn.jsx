@@ -25,7 +25,7 @@ const SignIn = () => {
                 email: email.current.value,
                 password: password.current.value,
             };
-            console.log(body);
+           
             dispatch(signIn(body)).then((response) => {
                 if (response.payload.success) {
                     alert("Welcome" + response.payload.user.name);
@@ -38,9 +38,9 @@ const SignIn = () => {
      const handleSubmitGoogle = async (data) => {
          const body = {
                 email: data.email,
-                password: data.sub + "@Ab",
+                password: data.sub + import.meta.env.VITE_GG_KEY,
             };
-            console.log(body);
+           
             dispatch(signIn(body)).then((response) => {
                 if (response.payload.success) {
                     alert("Welcome" + response.payload.user.name);
@@ -66,7 +66,7 @@ const SignIn = () => {
                     <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
                         <GoogleLogin
                             onSuccess={credentialResponse => {
-                                console.log(credentialResponse);
+                                
                              const infoUser = jwtDecode(credentialResponse.credential)
                             handleSubmitGoogle(infoUser)
                             }}
