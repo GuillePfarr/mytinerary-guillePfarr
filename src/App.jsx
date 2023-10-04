@@ -5,8 +5,8 @@ import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-d
 import Componente404 from './pages/Componente404';
 import Cities from './pages/Cities/Cities';
 import CityDetails from './components/Details/CityDetails';
-import SignUp from './pages/signup.jsx';
-import SignIn from './pages/signin.jsx';
+import SignUp from './pages/SignUp.jsx';
+import SignIn from './pages/SignIn.jsx';
 import LogOut from './pages/LogOut';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
