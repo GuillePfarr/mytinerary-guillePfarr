@@ -14,3 +14,4 @@ export default Componente404
 // JWT_SECRET = Aldi$Berliner*
 
 // <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
+// estas lineas son agregadas el siete de enero de 2024
