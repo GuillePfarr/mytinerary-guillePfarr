@@ -7,3 +7,10 @@ const Componente404 = () => {
 }
 
 export default Componente404
+
+
+// DATABASE_URL = mongodb+srv://guillepfarr:<t4oMDpmkNf10L9Qu>@cluster0.unvadoq.mongodb.net/cities
+// PORT=3000
+// JWT_SECRET = Aldi$Berliner*
+
+// <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">

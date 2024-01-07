@@ -43,7 +43,7 @@ const Carousel = () => {
     setPause(true);
     setTimeout(() => {
       setPause(false);
-    }, 10000);
+    }, 20000);
   };
 
   return (
