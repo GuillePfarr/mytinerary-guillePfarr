@@ -62,4 +62,4 @@ function Sensors() {
   );
 }
 
-export default Sensors;
+export default Vanguard;
