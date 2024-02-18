@@ -7,6 +7,7 @@ const NavbarLinks = ({ showMenu }) => {
     { to: '/cities', content: 'Cities', id: '2' },
     { to: '/signup', content: 'SignUp', id: '3' },
     { to: '/signin', content: 'SignIn', id: '4' },
+    { to: '/vanguard', content: 'Vanguard', id: '5' }
   ];
 
   return (
