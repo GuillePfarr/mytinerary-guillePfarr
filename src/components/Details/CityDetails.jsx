@@ -57,7 +57,7 @@ const CityDetails = () => {
                     </div></li>
                     <li className="list-group-item">Duration: <div className="duration-indicator">
                       {itinerary.duration} hours</div></li>
-
+                      
                     <li className="list-group-item">
 
                       <p className="list-group-title">Hashtags</p>
