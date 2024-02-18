@@ -11,6 +11,7 @@ import LogOut from './pages/LogOut';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { signInWithToken } from './redux/actions/userActions';
+import Vanguard from './pages/Vanguard/Vanguard.jsx';
 
 
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: '/logout',
         element: <LogOut />
+      },
+      {
+        path: '/vanguard',
+        element: <Vanguard />
       }
 
     ]
