@@ -45,8 +45,11 @@ const NavbarMain = () => {
               <button className="buttonLogout" onClick={() => dispatch(logout())}>
                 Log Out
               </button>
+              <li>
+                <Link to="/vanguard">Vanguard</Link>
+              </li>
             </li>
-
+            
           ) : (
             <>
               <li>
@@ -55,9 +58,7 @@ const NavbarMain = () => {
               <li>
                 <Link to="/signin">Sign In</Link>
               </li>
-              <li>
-                <Link to="/vanguard">Vanguard</Link>
-              </li>
+              
             </>
           )}
         </ul>
