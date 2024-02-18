@@ -102,7 +102,7 @@ function Vanguard() {
 
         // Llama a fetchData al montar el componente y cada 30 segundos
         fetchData();
-        const interval = setInterval(fetchData, 30000);
+        const interval = setInterval(fetchData, 10000);
 
         // Limpia el intervalo al desmontar el componente
         return () => clearInterval(interval);
