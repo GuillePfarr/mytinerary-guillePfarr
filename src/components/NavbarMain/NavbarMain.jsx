@@ -46,6 +46,9 @@ const NavbarMain = () => {
                 Log Out
               </button>
             </li>
+            <li>
+            <Link to="/vanguard">Vanguard</Link>
+          </li>
           ) : (
             <>
               <li>
