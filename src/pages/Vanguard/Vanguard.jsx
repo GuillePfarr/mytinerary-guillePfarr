@@ -119,7 +119,7 @@ function Vanguard() {
           {minTemperature !== null ? (
             <>
               <p>Temperature: {minTemperature} °C</p>
-              <p>Recorded at: {new Date(maxTemperatureTime).toLocaleString()}</p>
+              <p>Recorded at: {minTemperatureTime}</p>
             </>
           ) : (
             <p>No data available</p>
