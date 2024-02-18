@@ -23,6 +23,7 @@ function Vanguard() {
   useEffect(() => {
     axios
       .get(import.meta.env.VITE_API_URL + '/api/vanguards')
+            console.log()
       .then((res) => {
         setVanguards(res.data.response);
         setFilteredVanguards(res.data.response);
