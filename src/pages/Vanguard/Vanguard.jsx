@@ -82,9 +82,9 @@ function Vanguard() {
                 // setMinTemperature(minTempEntry);
                 // setMinTemperatureTime(minTempEntry === Infinity ? null : minTempEntry.createdAt);
                 // Calcula la temperatura mínima del día
-                const minTempEntry = vanguards.reduce((min, entry) => (entry.tempInt1 < min.tempInt1 ? entry : min), { tempInt1: Infinity, dateTime: null });
+                const minTempEntry = vanguards.reduce((min, entry) => (entry.tempInt1 < min.tempInt1 ? entry : min), { tempInt1: Infinity, date: null });
                 setMinTemperature(minTempEntry.tempInt1);
-                setMinTemperatureTime(minTempEntry.dateTime);
+                setMinTemperatureTime(minTempEntry.date);
 
 
                 // Calcula la temperatura máxima del día
