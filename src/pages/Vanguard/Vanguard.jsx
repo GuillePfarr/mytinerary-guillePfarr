@@ -1,58 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-
-// function Vanguard() {
-//   const [vanguards, setVanguards] = useState([]);
-//   const [noResults, setNoResults] = useState(false);
-
-//   const fetchData = () => {
-//     axios
-//       .get(import.meta.env.VITE_API_URL + '/api/vanguard')
-//       .then((res) => {
-//         setVanguards(res.data.response);
-//       })
-//       .catch((error) => console.log(error));
-//   };
-
-//   useEffect(() => {
-//     fetchData(); 
-
-//     const intervalId = setInterval(() => {
-//       fetchData(); 
-//     }, 30000);
-
-//     return () => clearInterval(intervalId); 
-//   }, []); 
-
-//   useEffect(() => {
-//     setNoResults(vanguards.length === 0);
-//     window.scrollTo(0, 0);
-//   }, [vanguards]);
-
-//   return (
-//     <div className="sensors-container">
-//       <h1 className='SensorsTitle'>Temperature Sensors</h1>
-//       {noResults && (
-//         <h2 className="display-1 fw-bolder">No matches.</h2>
-//       )}
-//       <div className="cardsfield">
-//         {vanguards.map((vanguard) => (
-//           <div className="card" key={vanguard._id}>
-//             <div className="card-body">
-//               <h5 className="card-title">Temperature Sensor {vanguard._id}</h5>
-//               <p>Temperature 1: {vanguard.tempInt1} °C</p>
-//               {vanguard.tempInt2 && <p>Temperature 2: {vanguard.tempInt2} °C</p>}
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Vanguard;
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -75,14 +20,26 @@ function Vanguard() {
         setCurrentTemperature(latestTemperature);
 
         // Calcula la temperatura mínima del día
-        const minTempEntry = vanguards.reduce((min, entry) => (entry.tempInt1 < min ? entry.tempInt1 : min), Infinity);
-        setMinTemperature(minTempEntry);
-        setMinTemperatureTime(minTempEntry === Infinity ? null : minTempEntry.createdAt);
+        const minTempEntry = vanguards.reduce((min, entry) => {
+          if (entry.tempInt1 < min.temp || min.temp === null) {
+            return { temp: entry.tempInt1, time: entry.createdAt };
+          }
+          return min;
+        }, { temp: null, time: null });
+
+        setMinTemperature(minTempEntry.temp);
+        setMinTemperatureTime(minTempEntry.time);
 
         // Calcula la temperatura máxima del día
-        const maxTempEntry = vanguards.reduce((max, entry) => (entry.tempInt1 > max ? entry.tempInt1 : max), -Infinity);
-        setMaxTemperature(maxTempEntry);
-        setMaxTemperatureTime(maxTempEntry === -Infinity ? null : maxTempEntry.createdAt);
+        const maxTempEntry = vanguards.reduce((max, entry) => {
+          if (entry.tempInt1 > max.temp || max.temp === null) {
+            return { temp: entry.tempInt1, time: entry.createdAt };
+          }
+          return max;
+        }, { temp: null, time: null });
+
+        setMaxTemperature(maxTempEntry.temp);
+        setMaxTemperatureTime(maxTempEntry.time);
 
         // Obtiene las temperaturas objetivo por ID específico
         const targetTempsEntry = vanguards.find((entry) => entry._id === '65b8017e1efb81f1ed066adc');
@@ -119,7 +76,7 @@ function Vanguard() {
           {minTemperature !== null ? (
             <>
               <p>Temperature: {minTemperature} °C</p>
-              <p>Recorded at: {minTemperatureTime}</p>
+              <p>Recorded at: {new Date(minTemperatureTime).toLocaleString()}</p>
             </>
           ) : (
             <p>No data available</p>
@@ -134,7 +91,7 @@ function Vanguard() {
           {maxTemperature !== null ? (
             <>
               <p>Temperature: {maxTemperature} °C</p>
-              <p>Recorded at: {maxTemperatureTime}</p>
+              <p>Recorded at: {new Date(maxTemperatureTime).toLocaleString()}</p>
             </>
           ) : (
             <p>No data available</p>
@@ -161,4 +118,3 @@ function Vanguard() {
 }
 
 export default Vanguard;
-
