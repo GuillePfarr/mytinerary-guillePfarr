@@ -155,12 +155,12 @@ function Vanguard() {
                 setCurrentTemperature(latestTemperature);
 
                 // Calcula la temperatura mínima del día
-                const minTempEntry = vanguards.reduce((min, entry) => (entry.tempInt1 < min.tempInt1 ? entry : min), { tempInt1: null, date: null });
+                const minTempEntry = vanguards.reduce((min, entry) => (entry.tempInt1 > min.tempInt1 ? entry : min), { tempInt1: null, date: null });
                 setMinTemperature(minTempEntry.tempInt1);
                 setMinTemperatureTime(minTempEntry.date);
 
                 // Calcula la temperatura máxima del día
-                const maxTempEntry = vanguards.reduce((max, entry) => (entry.tempInt1 > max.tempInt1 ? entry : max), { tempInt1: null, date: null });
+                const maxTempEntry = vanguards.reduce((max, entry) => (entry.tempInt1 < max.tempInt1 ? entry : max), { tempInt1: null, date: null });
                 setMaxTemperature(maxTempEntry.tempInt1);
                 setMaxTemperatureTime(maxTempEntry.date);
 
@@ -211,10 +211,10 @@ function Vanguard() {
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title">Max Temperature Today</h5>
-                    {minTemperature !== null ? (
+                    {maxTemperature !== null ? (
                         <>
-                            <p>Temperature: {minTemperature} °C</p>
-                            <p>Recorded at: {formatDateTime(minTemperatureTime)}</p>
+                            <p>Temperature: {maxTemperature} °C</p>
+                            <p>Recorded at: {formatDateTime(maxTemperatureTime)}</p>
                         </>
                     ) : (
                         <p>No data available</p>
