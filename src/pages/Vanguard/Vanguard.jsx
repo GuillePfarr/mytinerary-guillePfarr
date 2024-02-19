@@ -234,67 +234,67 @@
 
 // export default Vanguard;
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
 
 
-const formatDateTime = (dateTimeString) => {
-    if (!dateTimeString) return "No data available";
-    console.log("Invalid date:", dateTimeString);
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
-    const localDate = new Date(dateTimeString);
-    console.log("Formatted date:", localDate);
-    return localDate.toLocaleString('en-US', options);
-};
+// const formatDateTime = (dateTimeString) => {
+//     if (!dateTimeString) return "No data available";
+//     console.log("Invalid date:", dateTimeString);
+//     const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+//     const localDate = new Date(dateTimeString);
+//     console.log("Formatted date:", localDate);
+//     return localDate.toLocaleString('en-US', options);
+// };
 
-function Vanguard() {
-    const [currentTemperature, setCurrentTemperature] = useState(null);
-    const [minTemperature, setMinTemperature] = useState(null);
-    const [minTemperatureTime, setMinTemperatureTime] = useState(null);
-    const [maxTemperature, setMaxTemperature] = useState(null);
-    const [maxTemperatureTime, setMaxTemperatureTime] = useState(null);
-    const [targetTemperatures, setTargetTemperatures] = useState(null);
+// function Vanguard() {
+//     const [currentTemperature, setCurrentTemperature] = useState(null);
+//     const [minTemperature, setMinTemperature] = useState(null);
+//     const [minTemperatureTime, setMinTemperatureTime] = useState(null);
+//     const [maxTemperature, setMaxTemperature] = useState(null);
+//     const [maxTemperatureTime, setMaxTemperatureTime] = useState(null);
+//     const [targetTemperatures, setTargetTemperatures] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
-                const vanguards = response.data.response;
+//     useEffect(() => {
+//         const fetchData = async () => {
+//             try {
+//                 const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+//                 const vanguards = response.data.response;
 
-                const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
-                setCurrentTemperature(latestTemperature);
+//                 const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
+//                 setCurrentTemperature(latestTemperature);
 
-                // Si hay más de una entrada, compara con el último valor registrado
-                if (vanguards.length > 1) {
-                    const lastEntry = vanguards[1]; // El índice 1 representa el último valor registrado
-                    const minTemp = Math.min(latestTemperature, lastEntry.tempInt1);
-                    const maxTemp = Math.max(latestTemperature, lastEntry.tempInt1);
+//                 // Si hay más de una entrada, compara con el último valor registrado
+//                 if (vanguards.length > 1) {
+//                     const lastEntry = vanguards[1]; // El índice 1 representa el último valor registrado
+//                     const minTemp = Math.min(latestTemperature, lastEntry.tempInt1);
+//                     const maxTemp = Math.max(latestTemperature, lastEntry.tempInt1);
 
-                    setMinTemperature(minTemp);
-                    setMinTemperatureTime(lastEntry.date);
+//                     setMinTemperature(minTemp);
+//                     setMinTemperatureTime(lastEntry.date);
 
-                    setMaxTemperature(maxTemp);
-                    setMaxTemperatureTime(lastEntry.date);
-                } else {
-                    // Si solo hay una entrada, asigna un valor inicial arbitrario
-                    setMinTemperature(latestTemperature);
-                    setMaxTemperature(latestTemperature);
-                    setMinTemperatureTime("No data available");
-                    setMaxTemperatureTime("No data available");
-                }
+//                     setMaxTemperature(maxTemp);
+//                     setMaxTemperatureTime(lastEntry.date);
+//                 } else {
+//                     // Si solo hay una entrada, asigna un valor inicial arbitrario
+//                     setMinTemperature(latestTemperature);
+//                     setMaxTemperature(latestTemperature);
+//                     setMinTemperatureTime("No data available");
+//                     setMaxTemperatureTime("No data available");
+//                 }
 
-                const targetTempsEntry = vanguards.find((entry) => entry._id === '65b8017e1efb81f1ed066adc');
-                setTargetTemperatures(targetTempsEntry ? targetTempsEntry : null);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+//                 const targetTempsEntry = vanguards.find((entry) => entry._id === '65b8017e1efb81f1ed066adc');
+//                 setTargetTemperatures(targetTempsEntry ? targetTempsEntry : null);
+//             } catch (error) {
+//                 console.error('Error fetching data:', error);
+//             }
+//         };
 
-        fetchData();
-        const interval = setInterval(fetchData, 10000);
+//         fetchData();
+//         const interval = setInterval(fetchData, 10000);
 
-        return () => clearInterval(interval);
-    }, []);
+//         return () => clearInterval(interval);
+//     }, []);
 
 
 
@@ -360,6 +360,58 @@ function Vanguard() {
 
     //     return () => clearInterval(interval);
     // }, []);
+
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const formatDateTime = (dateTimeString) => {
+    if (!dateTimeString) return "No data available";
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+    const localDate = new Date(dateTimeString);
+    return localDate.toLocaleString('en-US', options);
+};
+
+function Vanguard() {
+    const [currentTemperature, setCurrentTemperature] = useState(null);
+    const [minTemperature, setMinTemperature] = useState({ tempInt1: null, date: null });
+    const [maxTemperature, setMaxTemperature] = useState({ tempInt1: null, date: null });
+    const [targetTemperatures, setTargetTemperatures] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+                const vanguards = response.data.response;
+
+                const latestEntry = vanguards.length > 0 ? vanguards[0] : null;
+
+                // Actualizar temperatura actual y su fecha asociada
+                setCurrentTemperature(latestEntry ? latestEntry.tempInt1 : null);
+
+                // Comparar y actualizar temperatura mínima
+                if (latestEntry && (minTemperature.tempInt1 === null || latestEntry.tempInt1 < minTemperature.tempInt1)) {
+                    setMinTemperature({ tempInt1: latestEntry.tempInt1, date: latestEntry.date });
+                }
+
+                // Comparar y actualizar temperatura máxima
+                if (latestEntry && (maxTemperature.tempInt1 === null || latestEntry.tempInt1 > maxTemperature.tempInt1)) {
+                    setMaxTemperature({ tempInt1: latestEntry.tempInt1, date: latestEntry.date });
+                }
+
+                // Obtener las temperaturas objetivo por ID específico
+                const targetTempsEntry = vanguards.find((entry) => entry._id === '65a4e581b5b64969d2315ec3');
+                setTargetTemperatures(targetTempsEntry ? targetTempsEntry : null);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+
+        fetchData();
+        const interval = setInterval(fetchData, 10000);
+
+        return () => clearInterval(interval);
+    }, [minTemperature, maxTemperature]);
+
 
     return (
         <div className="sensors-container">
