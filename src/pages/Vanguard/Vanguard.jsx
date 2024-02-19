@@ -127,12 +127,12 @@ import axios from 'axios';
 // };
 // Función para formatear la fecha y hora
 const formatDateTime = (dateTimeString) => {
-    if (!dateTimeString) return "No data available";
-    console.log("Invalid date:", dateTimeString);
-    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
-    const localDate = new Date(dateTimeString);
-    console.log("Formatted date:", localDate);
-    return localDate.toLocaleString('en-US', options);
+  if (!dateTimeString) return "No data available";
+console.log("Invalid date:", dateTimeString);
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+  const localDate = new Date(dateTimeString);
+console.log("Formatted date:", localDate);
+  return localDate.toLocaleString('en-US', options);
 };
 
 function Vanguard() {
@@ -159,11 +159,9 @@ function Vanguard() {
                 setMinTemperatureTime(minTempEntry.date);
 
                 // Calcula la temperatura máxima del día
-                const maxTempEntry = vanguards.reduce((max, entry) => (entry.tempInt1 > max.tempInt1 ? entry : max), { tempInt1: -Infinity, date: null });
-                setMaxTemperature(maxTempEntry.tempInt1);
-                setMaxTemperatureTime(maxTempEntry.date);
-
-
+                const maxTempEntry = vanguards.reduce((max, entry) => (entry.tempInt1 > max ? entry.tempInt1 : max), -Infinity);
+                setMaxTemperature(maxTempEntry);
+                setMaxTemperatureTime(maxTempEntry === -Infinity ? null : maxTempEntry.createdAt);
 
                 // Obtiene las temperaturas objetivo por ID específico
                 const targetTempsEntry = vanguards.find((entry) => entry._id === '65b8017e1efb81f1ed066adc');
@@ -209,11 +207,10 @@ function Vanguard() {
             </div>
 
             {/* Tarjeta para la temperatura máxima del día */}
-            {/* Tarjeta para la temperatura máxima del día */}
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title">Max Temperature Today</h5>
-                    {maxTemperature !== -Infinity ? (
+                    {maxTemperature !== null ? (
                         <>
                             <p>Temperature: {maxTemperature} °C</p>
                             <p>Recorded at: {formatDateTime(maxTemperatureTime)}</p>
@@ -223,7 +220,6 @@ function Vanguard() {
                     )}
                 </div>
             </div>
-
 
             {/* Tarjeta para las temperaturas objetivo */}
             <div className="card">
