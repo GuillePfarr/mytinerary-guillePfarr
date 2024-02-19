@@ -234,7 +234,18 @@
 
 // export default Vanguard;
 
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
+
+const formatDateTime = (dateTimeString) => {
+    if (!dateTimeString) return "No data available";
+    console.log("Invalid date:", dateTimeString);
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+    const localDate = new Date(dateTimeString);
+    console.log("Formatted date:", localDate);
+    return localDate.toLocaleString('en-US', options);
+};
 
 function Vanguard() {
     const [currentTemperature, setCurrentTemperature] = useState(null);
