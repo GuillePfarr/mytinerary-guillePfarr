@@ -264,46 +264,24 @@ function Vanguard() {
                 const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
                 setCurrentTemperature(latestTemperature);
 
-                // const minTempEntry = vanguards.reduce((min, entry) => {
-                //     if (!min.date || (entry.tempInt1 < min.tempInt1 && entry.date > min.date)) {
-                //         return { tempInt1: entry.tempInt1, date: entry.date };
-                //     }
-                //     return min;
-                // }, { tempInt1: null, date: null });
+                // Si hay más de una entrada, compara con el último valor registrado
+                if (vanguards.length > 1) {
+                    const lastEntry = vanguards[1]; // El índice 1 representa el último valor registrado
+                    const minTemp = Math.min(latestTemperature, lastEntry.tempInt1);
+                    const maxTemp = Math.max(latestTemperature, lastEntry.tempInt1);
 
-                // setMinTemperature(minTempEntry.tempInt1);
-                // setMinTemperatureTime(minTempEntry.date);
+                    setMinTemperature(minTemp);
+                    setMinTemperatureTime(lastEntry.date);
 
-                // const maxTempEntry = vanguards.reduce((max, entry) => {
-                //     if (!max.date || (entry.tempInt1 > max.tempInt1 && entry.date > max.date)) {
-                //         return { tempInt1: entry.tempInt1, date: entry.date };
-                //     }
-                //     return max;
-                // }, { tempInt1: null, date: null });
-
-                // setMaxTemperature(maxTempEntry.tempInt1);
-                // setMaxTemperatureTime(maxTempEntry.date);
-
-                const minTempEntry = vanguards.reduce((min, entry) => {
-                    if (min.date || entry.date < min.date) {
-                        return { tempInt1: entry.tempInt1, date: entry.date };
-                    }
-                    return min;
-                }, { tempInt1: null, date: null });
-
-                setMinTemperature(minTempEntry.tempInt1);
-                setMinTemperatureTime(minTempEntry.date);
-
-                const maxTempEntry = vanguards.reduce((max, entry) => {
-                    if (max.date || entry.date > max.date) {
-                        return { tempInt1: entry.tempInt1, date: entry.date };
-                    }
-                    return max;
-                }, { tempInt1: null, date: null });
-
-                setMaxTemperature(maxTempEntry.tempInt1);
-                setMaxTemperatureTime(maxTempEntry.date);
-
+                    setMaxTemperature(maxTemp);
+                    setMaxTemperatureTime(lastEntry.date);
+                } else {
+                    // Si solo hay una entrada, asigna un valor inicial arbitrario
+                    setMinTemperature(latestTemperature);
+                    setMaxTemperature(latestTemperature);
+                    setMinTemperatureTime("No data available");
+                    setMaxTemperatureTime("No data available");
+                }
 
                 const targetTempsEntry = vanguards.find((entry) => entry._id === '65b8017e1efb81f1ed066adc');
                 setTargetTemperatures(targetTempsEntry ? targetTempsEntry : null);
@@ -317,6 +295,71 @@ function Vanguard() {
 
         return () => clearInterval(interval);
     }, []);
+
+
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+    //             const vanguards = response.data.response;
+
+    //             const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
+    //             setCurrentTemperature(latestTemperature);
+
+    // const minTempEntry = vanguards.reduce((min, entry) => {
+    //     if (!min.date || (entry.tempInt1 < min.tempInt1 && entry.date > min.date)) {
+    //         return { tempInt1: entry.tempInt1, date: entry.date };
+    //     }
+    //     return min;
+    // }, { tempInt1: null, date: null });
+
+    // setMinTemperature(minTempEntry.tempInt1);
+    // setMinTemperatureTime(minTempEntry.date);
+
+    // const maxTempEntry = vanguards.reduce((max, entry) => {
+    //     if (!max.date || (entry.tempInt1 > max.tempInt1 && entry.date > max.date)) {
+    //         return { tempInt1: entry.tempInt1, date: entry.date };
+    //     }
+    //     return max;
+    // }, { tempInt1: null, date: null });
+
+    // setMaxTemperature(maxTempEntry.tempInt1);
+    // setMaxTemperatureTime(maxTempEntry.date);
+
+    //             const minTempEntry = vanguards.reduce((min, entry) => {
+    //                 if (min.date || entry.date < min.date) {
+    //                     return { tempInt1: entry.tempInt1, date: entry.date };
+    //                 }
+    //                 return min;
+    //             }, { tempInt1: null, date: null });
+
+    //             setMinTemperature(minTempEntry.tempInt1);
+    //             setMinTemperatureTime(minTempEntry.date);
+
+    //             const maxTempEntry = vanguards.reduce((max, entry) => {
+    //                 if (max.date || entry.date > max.date) {
+    //                     return { tempInt1: entry.tempInt1, date: entry.date };
+    //                 }
+    //                 return max;
+    //             }, { tempInt1: null, date: null });
+
+    //             setMaxTemperature(maxTempEntry.tempInt1);
+    //             setMaxTemperatureTime(maxTempEntry.date);
+
+
+    //             const targetTempsEntry = vanguards.find((entry) => entry._id === '65b8017e1efb81f1ed066adc');
+    //             setTargetTemperatures(targetTempsEntry ? targetTempsEntry : null);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     };
+
+    //     fetchData();
+    //     const interval = setInterval(fetchData, 10000);
+
+    //     return () => clearInterval(interval);
+    // }, []);
 
     return (
         <div className="sensors-container">
