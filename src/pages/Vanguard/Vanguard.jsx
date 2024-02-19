@@ -214,7 +214,7 @@ function Vanguard() {
                     {maxTemperature !== null ? (
                         <>
                             <p>Temperature: {minTemperature} °C</p>
-                            <p>Recorded at: {formatDateTime(maxTemperatureTime)}</p>
+                            <p>Recorded at: {formatDateTime(minTemperatureTime)}</p>
                         </>
                     ) : (
                         <p>No data available</p>
