@@ -285,7 +285,7 @@ function Vanguard() {
                 // setMaxTemperatureTime(maxTempEntry.date);
 
                 const minTempEntry = vanguards.reduce((min, entry) => {
-                    if (!min.date || entry.date < min.date) {
+                    if (min.date || entry.date < min.date) {
                         return { tempInt1: entry.tempInt1, date: entry.date };
                     }
                     return min;
@@ -295,7 +295,7 @@ function Vanguard() {
                 setMinTemperatureTime(minTempEntry.date);
 
                 const maxTempEntry = vanguards.reduce((max, entry) => {
-                    if (!max.date || entry.date > max.date) {
+                    if (max.date || entry.date > max.date) {
                         return { tempInt1: entry.tempInt1, date: entry.date };
                     }
                     return max;
