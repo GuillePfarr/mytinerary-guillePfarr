@@ -127,12 +127,12 @@ import axios from 'axios';
 // };
 // Función para formatear la fecha y hora
 const formatDateTime = (dateTimeString) => {
-  if (!dateTimeString) return "No data available";
-console.log("Invalid date:", dateTimeString);
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
-  const localDate = new Date(dateTimeString);
-console.log("Formatted date:", localDate);
-  return localDate.toLocaleString('en-US', options);
+    if (!dateTimeString) return "No data available";
+    console.log("Invalid date:", dateTimeString);
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+    const localDate = new Date(dateTimeString);
+    console.log("Formatted date:", localDate);
+    return localDate.toLocaleString('en-US', options);
 };
 
 function Vanguard() {
@@ -213,7 +213,7 @@ function Vanguard() {
                     <h5 className="card-title">Max Temperature Today</h5>
                     {maxTemperature !== null ? (
                         <>
-                            <p>Temperature: {maxTemperature} °C</p>
+                            <p>Temperature: {minTemperature} °C</p>
                             <p>Recorded at: {formatDateTime(maxTemperatureTime)}</p>
                         </>
                     ) : (
