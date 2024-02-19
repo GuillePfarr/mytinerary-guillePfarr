@@ -211,7 +211,7 @@ function Vanguard() {
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title">Max Temperature Today</h5>
-                    {maxTemperature !== null ? (
+                    {minTemperature !== null ? (
                         <>
                             <p>Temperature: {minTemperature} °C</p>
                             <p>Recorded at: {formatDateTime(minTemperatureTime)}</p>
