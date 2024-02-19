@@ -264,25 +264,26 @@ function Vanguard() {
                 const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
                 setCurrentTemperature(latestTemperature);
 
-                const minTempEntry = vanguards.reduce((min, entry) => {
-                    if (!min.date || (entry.tempInt1 < min.tempInt1 && entry.date > min.date)) {
-                        return { tempInt1: entry.tempInt1, date: entry.date };
-                    }
-                    return min;
-                }, { tempInt1: null, date: null });
+                // const minTempEntry = vanguards.reduce((min, entry) => {
+                //     if (!min.date || (entry.tempInt1 < min.tempInt1 && entry.date > min.date)) {
+                //         return { tempInt1: entry.tempInt1, date: entry.date };
+                //     }
+                //     return min;
+                // }, { tempInt1: null, date: null });
 
-                setMinTemperature(minTempEntry.tempInt1);
-                setMinTemperatureTime(minTempEntry.date);
+                // setMinTemperature(minTempEntry.tempInt1);
+                // setMinTemperatureTime(minTempEntry.date);
 
-                const maxTempEntry = vanguards.reduce((max, entry) => {
-                    if (!max.date || (entry.tempInt1 > max.tempInt1 && entry.date > max.date)) {
-                        return { tempInt1: entry.tempInt1, date: entry.date };
-                    }
-                    return max;
-                }, { tempInt1: null, date: null });
+                // const maxTempEntry = vanguards.reduce((max, entry) => {
+                //     if (!max.date || (entry.tempInt1 > max.tempInt1 && entry.date > max.date)) {
+                //         return { tempInt1: entry.tempInt1, date: entry.date };
+                //     }
+                //     return max;
+                // }, { tempInt1: null, date: null });
 
-                setMaxTemperature(maxTempEntry.tempInt1);
-                setMaxTemperatureTime(maxTempEntry.date);
+                // setMaxTemperature(maxTempEntry.tempInt1);
+                // setMaxTemperatureTime(maxTempEntry.date);
+
 
                 const targetTempsEntry = vanguards.find((entry) => entry._id === '65b8017e1efb81f1ed066adc');
                 setTargetTemperatures(targetTempsEntry ? targetTempsEntry : null);
