@@ -119,10 +119,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 // Función para formatear la fecha y hora
+// const formatDateTime = (dateTimeString) => {
+//   const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+//   const utcDate = new Date(dateTimeString);
+//   const localDate = new Date(utcDate.getTime() - (utcDate.getTimezoneOffset() * 60000));
+//   return localDate.toLocaleString('en-US', options);
+// };
+// Función para formatear la fecha y hora
 const formatDateTime = (dateTimeString) => {
+  if (!dateTimeString) return "No data available";
+
   const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
-  const utcDate = new Date(dateTimeString);
-  const localDate = new Date(utcDate.getTime() - (utcDate.getTimezoneOffset() * 60000));
+  const localDate = new Date(dateTimeString);
   return localDate.toLocaleString('en-US', options);
 };
 
