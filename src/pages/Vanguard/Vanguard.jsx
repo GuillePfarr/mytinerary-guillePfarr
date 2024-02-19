@@ -159,10 +159,10 @@ function Vanguard() {
                 setMinTemperatureTime(minTempEntry.date);
 
                 // Calcula la temperatura máxima del día
-                // Calcula la temperatura máxima del día
                 const maxTempEntry = vanguards.reduce((max, entry) => (entry.tempInt1 > max.tempInt1 ? entry : max), { tempInt1: -Infinity, date: null });
                 setMaxTemperature(maxTempEntry.tempInt1);
                 setMaxTemperatureTime(maxTempEntry.date);
+
 
 
                 // Obtiene las temperaturas objetivo por ID específico
