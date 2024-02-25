@@ -36,8 +36,9 @@ function Vanguard() {
                         return { tempInt1: entry.tempInt1, date: entry.date };
                     }
                     return min;
+                
                 }, { tempInt1: null, date: null });
-
+                console.log("min=",min)
                 setMinTemperature(minTempEntry.tempInt1);
                 setMinTemperatureTime(minTempEntry.date);
 
@@ -47,7 +48,7 @@ function Vanguard() {
                     }
                     return max;
                 }, { tempInt1: null, date: null });
-
+                console.log("max=",max)
                 setMaxTemperature(maxTempEntry.tempInt1);
                 setMaxTemperatureTime(maxTempEntry.date);
 
