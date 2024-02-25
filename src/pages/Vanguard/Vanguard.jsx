@@ -35,10 +35,11 @@ function Vanguard() {
                     if (!min.date || (entry.tempInt1 < min.tempInt1 && entry.date > min.date)) {
                         return { tempInt1: entry.tempInt1, date: entry.date };
                     }
-                    return min;
-                
-                }, { tempInt1: null, date: null });
                 console.log("min=",min)
+
+                    return min;
+                }, { tempInt1: null, date: null });
+                
                 setMinTemperature(minTempEntry.tempInt1);
                 setMinTemperatureTime(minTempEntry.date);
 
@@ -46,9 +47,10 @@ function Vanguard() {
                     if (!max.date || (entry.tempInt1 > max.tempInt1 && entry.date > max.date)) {
                         return { tempInt1: entry.tempInt1, date: entry.date };
                     }
+                console.log("max=",max)
                     return max;
                 }, { tempInt1: null, date: null });
-                console.log("max=",max)
+                
                 setMaxTemperature(maxTempEntry.tempInt1);
                 setMaxTemperatureTime(maxTempEntry.date);
 
