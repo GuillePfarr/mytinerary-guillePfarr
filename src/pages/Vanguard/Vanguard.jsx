@@ -260,7 +260,7 @@ function Vanguard() {
             try {
                 const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
                 const vanguards = response.data.response;
-                console.log(vanguards)
+                console.log("Length of vanguards:", vanguards.length);
                 const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
                 setCurrentTemperature(latestTemperature);
 
