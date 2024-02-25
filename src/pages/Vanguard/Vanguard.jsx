@@ -31,16 +31,12 @@ function Vanguard() {
                 const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
                 setCurrentTemperature(latestTemperature);
 
-                const parseDate = (dateString) => new Date(dateString);
+
 
                 const minTempEntry = vanguards.reduce((min, entry) => {
-                    const entryDate = parseDate(entry.date);
-                    const minDate = parseDate(min.date);
-
-                    if (!min.date || (entry.tempInt1 < min.tempInt1 && entryDate > minDate)) {
+                    if (entry.tempInt1 < min.tempInt1 || min.tempInt1 === null) {
                         return { tempInt1: entry.tempInt1, date: entry.date };
                     }
-
                     return min;
                 }, { tempInt1: null, date: null });
 
@@ -48,18 +44,15 @@ function Vanguard() {
                 setMinTemperatureTime(minTempEntry.date);
 
                 const maxTempEntry = vanguards.reduce((max, entry) => {
-                    const entryDate = parseDate(entry.date);
-                    const maxDate = parseDate(max.date);
-
-                    if (!max.date || (entry.tempInt1 > max.tempInt1 && entryDate > maxDate)) {
+                    if (entry.tempInt1 > max.tempInt1 || max.tempInt1 === null) {
                         return { tempInt1: entry.tempInt1, date: entry.date };
                     }
-
                     return max;
                 }, { tempInt1: null, date: null });
 
                 setMaxTemperature(maxTempEntry.tempInt1);
                 setMaxTemperatureTime(maxTempEntry.date);
+
 
 
                 const targetTempsEntry = vanguards.find((entry) => entry._id === '65b8017e1efb81f1ed066adc');
