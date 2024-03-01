@@ -160,12 +160,12 @@ function Vanguard() {
                 const latestTemperature = vanguards.length > 0 ? { temp: vanguards[0].tempInt1, date: vanguards[0].date } : null;
 
                 // Actualizar historial de temperaturas
-               setTemperatureHistory(prevHistory => {
-    // Filtra las entradas antiguas para evitar duplicados
-    const filteredHistory = prevHistory.filter(entry => entry.temp !== latestTemperature.temp);
-    const newHistory = [...filteredHistory, { temp: latestTemperature.temp, date: latestTemperature.date }];
-    return newHistory.sort((a, b) => a.temp - b.temp);
-});
+                setTemperatureHistory(prevHistory => {
+                    // Filtra las entradas antiguas para evitar duplicados
+                    const filteredHistory = prevHistory.filter(entry => entry.temp !== latestTemperature.temp);
+                    const newHistory = [...filteredHistory, { temp: latestTemperature.temp, date: latestTemperature.date }];
+                    return newHistory.sort((a, b) => a.temp - b.temp);
+                });
 
                 // Agrega este console.log para imprimir el array de temperaturas ordenadas
                 console.log("Ordered Temperatures:", temperatureHistory);
@@ -176,14 +176,14 @@ function Vanguard() {
                 // ...
 
                 // Actualiza la temperatura mínima si la última entrada es menor
-                if (latestTemperature < minTemperature || minTemperature === null) {
-                    setMinTemperature(latestTemperature);
+                if (latestTemperature && (latestTemperature.temp < minTemperature || minTemperature === null)) {
+                    setMinTemperature(latestTemperature.temp);
                     setMinTemperatureTime(formatDateTime(latestTemperature.date));
                 }
 
                 // Actualiza la temperatura máxima si la última entrada es mayor
-                if (latestTemperature > maxTemperature || maxTemperature === null) {
-                    setMaxTemperature(latestTemperature);
+                if (latestTemperature && (latestTemperature.temp > maxTemperature || maxTemperature === null)) {
+                    setMaxTemperature(latestTemperature.temp);
                     setMaxTemperatureTime(formatDateTime(latestTemperature.date));
                 }
 
@@ -207,7 +207,7 @@ function Vanguard() {
             <div className="card">
                 <div className="card-body">
                     <h5 className="card-title">Current Temperature</h5>
-                    <p>Temperature: {currentTemperature} °C</p>
+                    <p>Temperature: {currentTemperature ? currentTemperature.temp : "No data available"} °C</p>
                 </div>
             </div>
 
