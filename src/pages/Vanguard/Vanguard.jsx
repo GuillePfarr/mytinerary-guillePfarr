@@ -19,7 +19,7 @@ function Vanguard() {
     const [maxTemperature, setMaxTemperature] = useState(null);
     const [maxTemperatureTime, setMaxTemperatureTime] = useState(null);
     const [targetTemperatures, setTargetTemperatures] = useState(null);
-    const [orderedTemperatures, setOrderedTemperatures] = useState([]);
+    const [temperatureHistory, setTemperatureHistory] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -32,18 +32,23 @@ function Vanguard() {
                 // Obtén la última entrada de temperatura
                 const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
 
-// Obtener el array ordenado de temperaturas y fechas asociadas
-        const orderedEntries = orderedTemperatures.concat({ temp: latestTemperature, date: new Date() })
-                                                  .sort((a, b) => a.temp - b.temp);
-
- console.log("Ordered Temperatures:", orderedEntries);
-
-
-
 
                 setCurrentTemperature(latestTemperature);
 
 
+
+  // Agregar la temperatura actual al historial
+        setTemperatureHistory(prevHistory => [
+          ...prevHistory,
+          { temp: latestTemperature, date: new Date() }
+        ]);
+
+        // Ordenar el historial por temperatura en orden ascendente
+        const orderedEntries = [...temperatureHistory, { temp: latestTemperature, date: new Date() }]
+          .sort((a, b) => a.temp - b.temp);
+
+
+console.log("Temperature History:", temperatureHistory);
 
                 // Actualiza la temperatura mínima si la última entrada es menor
                 if (latestTemperature < minTemperature || minTemperature === null) {
