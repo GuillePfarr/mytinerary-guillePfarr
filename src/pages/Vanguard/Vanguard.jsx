@@ -28,19 +28,6 @@ function Vanguard() {
                 const vanguards = response.data.response;
                 console.log(vanguards);
 
-
-                // Obtener las temperaturas y fechas
-        const temperatures = vanguards.map(entry => entry.tempInt1);
-        const dates = vanguards.map(entry => entry.date);
-
-        // Crear un array ordenado de temperaturas y sus fechas asociadas
-        const orderedEntries = temperatures.map((temp, index) => ({ temp, date: dates[index] }))
-                                          .sort((a, b) => a.temp - b.temp);
-
-        // Mostrar el array ordenado en la consola
-        console.log("Ordered Temperatures:", orderedEntries);
-
-
                 console.log("Length of vanguards:", vanguards.length);
                 // Obtén la última entrada de temperatura
                 const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
