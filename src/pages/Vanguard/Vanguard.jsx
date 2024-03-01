@@ -45,7 +45,7 @@ setTemperatureHistory(prevHistory => {
 
 
 
-console.log("Temperature History:", temperatureHistory);
+console.log("Temperature History:", newHistory);
 
                 // Actualiza la temperatura mínima si la última entrada es menor
                 if (latestTemperature < minTemperature || minTemperature === null) {
