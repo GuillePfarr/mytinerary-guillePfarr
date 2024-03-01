@@ -19,6 +19,7 @@ function Vanguard() {
     const [maxTemperature, setMaxTemperature] = useState(null);
     const [maxTemperatureTime, setMaxTemperatureTime] = useState(null);
     const [targetTemperatures, setTargetTemperatures] = useState(null);
+    const [orderedTemperatures, setOrderedTemperatures] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -26,6 +27,19 @@ function Vanguard() {
                 const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
                 const vanguards = response.data.response;
                 console.log(vanguards);
+
+
+                // Obtener las temperaturas y fechas
+        const temperatures = vanguards.map(entry => entry.tempInt1);
+        const dates = vanguards.map(entry => entry.date);
+
+        // Crear un array ordenado de temperaturas y sus fechas asociadas
+        const orderedEntries = temperatures.map((temp, index) => ({ temp, date: dates[index] }))
+                                          .sort((a, b) => a.temp - b.temp);
+
+        // Mostrar el array ordenado en la consola
+        console.log("Ordered Temperatures:", orderedEntries);
+
 
                 console.log("Length of vanguards:", vanguards.length);
                 // Obtén la última entrada de temperatura
