@@ -178,22 +178,21 @@ function Vanguard() {
                 console.log("Ordered Temperatures:", temperatureHistory);
 
                 setCurrentTemperature(latestTemperature);
-console.log("Temperature History:", newHistory);
 
-                
+                // Resto del código sin cambios
+                // ...
+
+                // Actualiza la temperatura mínima si la última entrada es menor
                 if (latestTemperature < minTemperature || minTemperature === null) {
                     setMinTemperature(latestTemperature);
                     setMinTemperatureTime(formatDateTime(new Date()));
                 }
 
-               
+                // Actualiza la temperatura máxima si la última entrada es mayor
                 if (latestTemperature > maxTemperature || maxTemperature === null) {
                     setMaxTemperature(latestTemperature);
                     setMaxTemperatureTime(formatDateTime(new Date()));
                 }
-
-
-
 
                 const targetTempsEntry = vanguards.find((entry) => entry._id === '65b8017e1efb81f1ed066adc');
                 setTargetTemperatures(targetTempsEntry ? targetTempsEntry : null);
@@ -206,7 +205,7 @@ console.log("Temperature History:", newHistory);
         const interval = setInterval(fetchData, 10000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [temperatureHistory]);
 
     return (
         <div className="sensors-container">
