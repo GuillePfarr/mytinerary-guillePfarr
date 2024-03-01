@@ -170,9 +170,18 @@ function Vanguard() {
 
         setCurrentTemperature(latestTemperature);
 
-        // Resto del código...
-        // ...
+        if (latestTemperature && (latestTemperature.temp < minTemperature || minTemperature === null)) {
+          setMinTemperature(latestTemperature.temp);
+          setMinTemperatureTime(formatDateTime(latestTemperature.date));
+        }
 
+        if (latestTemperature && (latestTemperature.temp > maxTemperature || maxTemperature === null)) {
+          setMaxTemperature(latestTemperature.temp);
+          setMaxTemperatureTime(formatDateTime(latestTemperature.date));
+        }
+
+        const targetTempsEntry = vanguards.find((entry) => entry._id === '65b8017e1efb81f1ed066adc');
+        setTargetTemperatures(targetTempsEntry ? targetTempsEntry : null);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
