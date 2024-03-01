@@ -31,7 +31,19 @@ function Vanguard() {
                 console.log("Length of vanguards:", vanguards.length);
                 // Obtén la última entrada de temperatura
                 const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
+
+// Obtener el array ordenado de temperaturas y fechas asociadas
+        const orderedEntries = orderedTemperatures.concat({ temp: latestTemperature, date: new Date() })
+                                                  .sort((a, b) => a.temp - b.temp);
+
+ console.log("Ordered Temperatures:", orderedEntries);
+
+
+
+
                 setCurrentTemperature(latestTemperature);
+
+
 
                 // Actualiza la temperatura mínima si la última entrada es menor
                 if (latestTemperature < minTemperature || minTemperature === null) {
