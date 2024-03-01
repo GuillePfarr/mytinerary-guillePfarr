@@ -26,26 +26,23 @@ function Vanguard() {
             try {
                 const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
                 const vanguards = response.data.response;
-                console.log(vanguards);
-
-                console.log("Length of vanguards:", vanguards.length);
+               
                 // Obtén la última entrada de temperatura
                 const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
+
+// Actualizar historial de temperaturas
+setTemperatureHistory(prevHistory => {
+  const newHistory = [...prevHistory, { temp: latestTemperature, date: new Date() }];
+  return newHistory.sort((a, b) => a.temp - b.temp);
+});
 
 
                 setCurrentTemperature(latestTemperature);
 
 
 
-  // Agregar la temperatura actual al historial
-        setTemperatureHistory(prevHistory => [
-          ...prevHistory,
-          { temp: latestTemperature, date: new Date() }
-        ]);
 
-        // Ordenar el historial por temperatura en orden ascendente
-        const orderedEntries = [...temperatureHistory, { temp: latestTemperature, date: new Date() }]
-          .sort((a, b) => a.temp - b.temp);
+
 
 
 console.log("Temperature History:", temperatureHistory);
