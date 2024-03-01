@@ -157,15 +157,15 @@ function Vanguard() {
                 const vanguards = response.data.response;
 
                 // Obtén la última entrada de temperatura
-                const latestTemperature = vanguards.length > 0 ? vanguards[0].tempInt1 : null;
+                const latestTemperature = vanguards.length > 0 ? { temp: vanguards[0].tempInt1, date: vanguards[0].date } : null;
 
                 // Actualizar historial de temperaturas
-                setTemperatureHistory(prevHistory => {
-                    // Filtra las entradas antiguas para evitar duplicados
-                    const filteredHistory = prevHistory.filter(entry => entry.temp !== latestTemperature);
-                    const newHistory = [...filteredHistory, { temp: latestTemperature, date: latestTemperature.date }];
-                    return newHistory.sort((a, b) => a.temp - b.temp);
-                });
+               setTemperatureHistory(prevHistory => {
+    // Filtra las entradas antiguas para evitar duplicados
+    const filteredHistory = prevHistory.filter(entry => entry.temp !== latestTemperature.temp);
+    const newHistory = [...filteredHistory, { temp: latestTemperature.temp, date: latestTemperature.date }];
+    return newHistory.sort((a, b) => a.temp - b.temp);
+});
 
                 // Agrega este console.log para imprimir el array de temperaturas ordenadas
                 console.log("Ordered Temperatures:", temperatureHistory);
