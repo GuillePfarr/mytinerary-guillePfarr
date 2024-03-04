@@ -34,6 +34,9 @@ const NavbarMain = () => {
           <li>
             <Link to="/cities">Cities</Link>
           </li>
+          <li>
+            <Link to="/vanguard">Vanguard</Link>
+          </li>
           {user ? (
             <li className="user-profile">
               {/* <img className="userImage" src={user.image || '/generic-user-image.png'} alt="User" /> */}
@@ -45,11 +48,9 @@ const NavbarMain = () => {
               <button className="buttonLogout" onClick={() => dispatch(logout())}>
                 Log Out
               </button>
-              <li>
-                <Link to="/vanguard">Vanguard</Link>
-              </li>
+
             </li>
-            
+
           ) : (
             <>
               <li>
@@ -58,7 +59,7 @@ const NavbarMain = () => {
               <li>
                 <Link to="/signin">Sign In</Link>
               </li>
-              
+
             </>
           )}
         </ul>
