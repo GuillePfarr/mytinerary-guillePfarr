@@ -65,8 +65,8 @@ function Vanguard() {
 
 
 
-      <div className="sensors-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-      
+    <div className="sensors-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+
 
       <div className="card">
         <div className="card-body">
