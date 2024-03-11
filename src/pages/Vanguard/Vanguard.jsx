@@ -123,14 +123,73 @@
 // export default Vanguard;
 
 
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import "./vanguard.css";
+
+// const formatDateTime = (dateTimeString) => {
+//   if (!dateTimeString) return "No data available";
+
+//   const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+//   const localDate = new Date(dateTimeString);
+
+//   return localDate.toLocaleString('en-US', options);
+// };
+
+// function Vanguard() {
+//   const [vanguardData, setVanguardData] = useState(null);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+//         const vanguards = response.data.response;
+
+       
+//         const specificVanguard = vanguards.find((vanguard) => vanguard._id === '65a4e581b5b64969d2315ec3');
+
+        
+//         setVanguardData(specificVanguard);
+//       } catch (error) {
+//         console.error('Error fetching vanguard data:', error);
+//       }
+//     };
+
+//     fetchData();
+//     const interval = setInterval(fetchData, 10000);
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   return (
+//     <div className="vanguard-container">
+//       <h1 className='VanguardTitle'>Vanguard Data</h1>
+
+//       {vanguardData && (
+//         <div className="card">
+//           <div className="card-body">
+//             <h5 className="card-title">Current Temperature</h5>
+//             <p>Temperature: {vanguardData.tempInt1} °C</p>
+//             <p>Date: {vanguardData.date} °C</p>
+            
+//           </div>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default Vanguard;
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./vanguard.css";
 
-const formatDateTime = (dateTimeString) => {
+const formatTime = (dateTimeString) => {
   if (!dateTimeString) return "No data available";
 
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+  const options = { hour: '2-digit', minute: '2-digit' };
   const localDate = new Date(dateTimeString);
 
   return localDate.toLocaleString('en-US', options);
@@ -170,7 +229,10 @@ function Vanguard() {
           <div className="card-body">
             <h5 className="card-title">Current Temperature</h5>
             <p>Temperature: {vanguardData.tempInt1} °C</p>
-            <p>Date: {vanguardData.date} °C</p>
+
+            {/* Mostrar solo la hora y minutos */}
+            <p>Time: {formatTime(vanguardData.date)}</p>
+
             {/* Agregar más detalles según sea necesario */}
           </div>
         </div>
