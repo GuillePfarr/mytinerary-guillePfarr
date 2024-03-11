@@ -170,7 +170,7 @@ function Vanguard() {
           <div className="card-body">
             <h5 className="card-title">Current Temperature</h5>
             <p>Temperature: {vanguardData.tempInt1} °C</p>
-
+            <p>Date: {vanguardData.date} °C</p>
             {/* Agregar más detalles según sea necesario */}
           </div>
         </div>
