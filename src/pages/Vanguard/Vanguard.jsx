@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "./vanguard.css";
 
 const formatDateTime = (dateTimeString) => {
   if (!dateTimeString) return "No data available";
