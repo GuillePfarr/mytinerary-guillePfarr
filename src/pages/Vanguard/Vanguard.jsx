@@ -62,8 +62,11 @@ function Vanguard() {
   }, [temperatureHistory]);
 
   return (
+
+
+
       <div className="sensors-container" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-      <h1 className='SensorsTitle'>Temperature Sensors</h1>
+      
 
       <div className="card">
         <div className="card-body">
