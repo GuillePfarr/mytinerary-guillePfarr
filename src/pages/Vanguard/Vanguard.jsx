@@ -182,6 +182,70 @@
 // export default Vanguard;
 
 
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import "./vanguard.css";
+
+// const formatTime = (dateTimeString) => {
+//   if (!dateTimeString) return "No data available";
+
+//   const options = { hour: '2-digit', minute: '2-digit' };
+//   const localDate = new Date(dateTimeString);
+
+//   return localDate.toLocaleString('en-US', options);
+// };
+
+// function Vanguard() {
+//   const [vanguardData, setVanguardData] = useState(null);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+//         const vanguards = response.data.response;
+
+       
+//         const specificVanguard = vanguards.find((vanguard) => vanguard._id === '65a4e581b5b64969d2315ec3');
+
+        
+//         setVanguardData(specificVanguard);
+//       } catch (error) {
+//         console.error('Error fetching vanguard data:', error);
+//       }
+//     };
+
+//     fetchData();
+//     const interval = setInterval(fetchData, 10000);
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   return (
+//     <div className="vanguard-container">
+//       <h1 className='VanguardTitle'>Vanguard Data</h1>
+
+//       {vanguardData && (
+//         <div className="card">
+//           <div className="card-body">
+//             <h5 className="card-title">Current Temperature</h5>
+//             <p>Temperature: {vanguardData.tempInt1} °C</p>
+
+         
+//             <p>Time: {formatTime(vanguardData.date)}</p>
+
+           
+//           </div>
+//         </div>
+        
+//       )}
+//     </div>
+    
+//   );
+// }
+
+// export default Vanguard;
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./vanguard.css";
@@ -225,16 +289,26 @@ function Vanguard() {
       <h1 className='VanguardTitle'>Vanguard Data</h1>
 
       {vanguardData && (
-        <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Current Temperature</h5>
-            <p>Temperature: {vanguardData.tempInt1} °C</p>
-
-            {/* Mostrar solo la hora y minutos */}
-            <p>Time: {formatTime(vanguardData.date)}</p>
-
-            {/* Agregar más detalles según sea necesario */}
+        <div>
+          {/* Card original */}
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Current Temperature</h5>
+              <p>Temperature: {vanguardData.tempInt1} °C</p>
+              <p>Time: {formatTime(vanguardData.date)}</p>
+            </div>
           </div>
+
+          {/* Cinco cards adicionales */}
+          {[...Array(5)].map((_, index) => (
+            <div className="card" key={index}>
+              <div className="card-body">
+                <h5 className="card-title">Temperature Reading {index + 1}</h5>
+                <p>Temperature: {vanguardData.tempInt1} °C</p>
+                <p>Time: {formatTime(vanguardData.date)}</p>
+              </div>
+            </div>
+          ))}
         </div>
       )}
     </div>
