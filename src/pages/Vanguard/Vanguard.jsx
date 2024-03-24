@@ -246,6 +246,78 @@
 // export default Vanguard;
 
 
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import "./vanguard.css";
+
+// const formatTime = (dateTimeString) => {
+//   if (!dateTimeString) return "No data available";
+
+//   const options = { hour: '2-digit', minute: '2-digit' };
+//   const localDate = new Date(dateTimeString);
+
+//   return localDate.toLocaleString('en-US', options);
+// };
+
+// function Vanguard() {
+//   const [vanguardData, setVanguardData] = useState(null);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+//         const vanguards = response.data.response;
+
+       
+//         const specificVanguard = vanguards.find((vanguard) => vanguard._id === '65a4e581b5b64969d2315ec3');
+
+        
+//         setVanguardData(specificVanguard);
+//       } catch (error) {
+//         console.error('Error fetching vanguard data:', error);
+//       }
+//     };
+
+//     fetchData();
+//     const interval = setInterval(fetchData, 10000);
+
+//     return () => clearInterval(interval);
+//   }, []);
+
+//   return (
+//     <div className="vanguard-container">
+//       <h1 className='VanguardTitle'>Vanguard Data</h1>
+
+//       {vanguardData && (
+//         <div>
+//           {/* Card original */}
+//           <div className="card">
+//             <div className="card-body">
+//               <h5 className="card-title">Current Temperature</h5>
+//               <p>Temperature: {vanguardData.tempInt1} °C</p>
+//               <p>Time: {formatTime(vanguardData.date)}</p>
+//             </div>
+//           </div>
+
+         
+//           {[...Array(5)].map((_, index) => (
+//             <div className="card" key={index}>
+//               <div className="card-body">
+//                 <h5 className="card-title">Temperature Reading {index + 1}</h5>
+//                 <p>Temperature: {vanguardData.tempInt1} °C</p>
+//                 <p>Time: {formatTime(vanguardData.date)}</p>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default Vanguard;
+
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./vanguard.css";
@@ -261,6 +333,7 @@ const formatTime = (dateTimeString) => {
 
 function Vanguard() {
   const [vanguardData, setVanguardData] = useState(null);
+  const [maxTemperatureToday, setMaxTemperatureToday] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -268,11 +341,17 @@ function Vanguard() {
         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
         const vanguards = response.data.response;
 
-       
-        const specificVanguard = vanguards.find((vanguard) => vanguard._id === '65a4e581b5b64969d2315ec3');
+        // Buscar el objeto con el ID específico para la máxima temperatura del día
+        const maxTemperatureObj = vanguards.find((vanguard) => vanguard._id === '660007c47971b25e62392264');
 
-        
-        setVanguardData(specificVanguard);
+        // Buscar el objeto con el ID específico para la primera card
+        const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '65a4e581b5b64969d2315ec3');
+
+        // Establecer los datos del vanguard específico para la primera card
+        setVanguardData(currentTemperatureObj);
+
+        // Establecer los datos de la máxima temperatura del día
+        setMaxTemperatureToday(maxTemperatureObj.tempInt1Max);
       } catch (error) {
         console.error('Error fetching vanguard data:', error);
       }
@@ -299,7 +378,15 @@ function Vanguard() {
             </div>
           </div>
 
-         
+          {/* Segunda card para mostrar la máxima temperatura del día */}
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Max Temperature Today</h5>
+              <p>Max Temperature: {maxTemperatureToday} °C</p>
+            </div>
+          </div>
+
+          {/* Resto de las cinco cards adicionales */}
           {[...Array(5)].map((_, index) => (
             <div className="card" key={index}>
               <div className="card-body">
@@ -316,5 +403,3 @@ function Vanguard() {
 }
 
 export default Vanguard;
-
-
