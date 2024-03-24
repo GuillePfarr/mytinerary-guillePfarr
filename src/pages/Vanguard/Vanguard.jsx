@@ -398,6 +398,7 @@ function Vanguard() {
             <div className="card-body">
               <h5 className="card-title">Max Temperature Today</h5>
               <p>Max Temperature: {maxTemperatureToday} °C</p>
+              <p>Time: {formatTime(vanguardData.date)}</p>
             </div>
           </div>
 
