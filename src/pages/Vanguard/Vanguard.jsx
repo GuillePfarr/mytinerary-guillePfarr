@@ -413,7 +413,7 @@ function Vanguard() {
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Error Status Today</h5>
-              <p>Estado de Error: {errorStatusToday} °C</p>
+              <p>Estado de Error: {errorStatusToday} </p>
             </div>
           </div>
 
