@@ -389,9 +389,9 @@ function Vanguard() {
             <div className="card-body">
               <h5 className="card-title">Current Temperature</h5>
               <p>Current Temperature: {vanguardData.tempInt1} °C</p>
-              <p>Max Temperature: {maxTemperatureToday} °C</p>
-              <p>Min Temperature: {minTemperatureToday} °C</p>
-              <p>Estado de Error: {errorStatusToday} </p>
+              <p>Max Temperature: {vanguardData.tempInt1Max} °C</p>
+              <p>Min Temperature: {vanguardData.tempInt1Min} °C</p>
+              <p>Estado de Error: {vanguardData.errorStatus} </p>
               <p>Time: {formatTime(vanguardData.date)}</p>
             </div>
           </div>
