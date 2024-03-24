@@ -246,78 +246,6 @@
 // export default Vanguard;
 
 
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import "./vanguard.css";
-
-// const formatTime = (dateTimeString) => {
-//   if (!dateTimeString) return "No data available";
-
-//   const options = { hour: '2-digit', minute: '2-digit' };
-//   const localDate = new Date(dateTimeString);
-
-//   return localDate.toLocaleString('en-US', options);
-// };
-
-// function Vanguard() {
-//   const [vanguardData, setVanguardData] = useState(null);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
-//         const vanguards = response.data.response;
-
-       
-//         const specificVanguard = vanguards.find((vanguard) => vanguard._id === '65a4e581b5b64969d2315ec3');
-
-        
-//         setVanguardData(specificVanguard);
-//       } catch (error) {
-//         console.error('Error fetching vanguard data:', error);
-//       }
-//     };
-
-//     fetchData();
-//     const interval = setInterval(fetchData, 10000);
-
-//     return () => clearInterval(interval);
-//   }, []);
-
-//   return (
-//     <div className="vanguard-container">
-//       <h1 className='VanguardTitle'>Vanguard Data</h1>
-
-//       {vanguardData && (
-//         <div>
-//           {/* Card original */}
-//           <div className="card">
-//             <div className="card-body">
-//               <h5 className="card-title">Current Temperature</h5>
-//               <p>Temperature: {vanguardData.tempInt1} °C</p>
-//               <p>Time: {formatTime(vanguardData.date)}</p>
-//             </div>
-//           </div>
-
-         
-//           {[...Array(5)].map((_, index) => (
-//             <div className="card" key={index}>
-//               <div className="card-body">
-//                 <h5 className="card-title">Temperature Reading {index + 1}</h5>
-//                 <p>Temperature: {vanguardData.tempInt1} °C</p>
-//                 <p>Time: {formatTime(vanguardData.date)}</p>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default Vanguard;
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./vanguard.css";
@@ -340,10 +268,10 @@ function Vanguard() {
         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
         const vanguards = response.data.response;
 
-        // Buscar el objeto con el ID específico
+       
         const specificVanguard = vanguards.find((vanguard) => vanguard._id === '65a4e581b5b64969d2315ec3');
 
-        // Establecer los datos del vanguard específico
+        
         setVanguardData(specificVanguard);
       } catch (error) {
         console.error('Error fetching vanguard data:', error);
@@ -371,45 +299,16 @@ function Vanguard() {
             </div>
           </div>
 
-          {/* Cinco cards adicionales */}
-          <div>
-            <div className="card">
+         
+          {[...Array(5)].map((_, index) => (
+            <div className="card" key={index}>
               <div className="card-body">
-                <h5 className="card-title">Max Temperature Today</h5>
-                <p>Temperature: {vanguardData.tempInt1Max} °C</p>
+                <h5 className="card-title">Temperature Reading {index + 1}</h5>
+                <p>Temperature: {vanguardData.tempInt1} °C</p>
                 <p>Time: {formatTime(vanguardData.date)}</p>
               </div>
             </div>
-
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Min Temperature Today</h5>
-                <p>Temperature: {vanguardData.tempInt1Min} °C</p>
-                <p>Time: {formatTime(vanguardData.date)}</p>
-              </div>
-            </div>
-
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Error Status</h5>
-                <p>Error status data</p>
-              </div>
-            </div>
-
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Additional Card 1</h5>
-                <p>Additional card 1 data</p>
-              </div>
-            </div>
-
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Additional Card 2</h5>
-                <p>Additional card 2 data</p>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       )}
     </div>
@@ -417,3 +316,5 @@ function Vanguard() {
 }
 
 export default Vanguard;
+
+
