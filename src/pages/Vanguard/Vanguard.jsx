@@ -334,6 +334,8 @@ const formatTime = (dateTimeString) => {
 function Vanguard() {
   const [vanguardData, setVanguardData] = useState(null);
   const [maxTemperatureToday, setMaxTemperatureToday] = useState(null);
+  const [minTemperatureToday, setMinTemperatureToday] = useState(null);
+  const [errorStatus, setErrorStatus] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -344,6 +346,12 @@ function Vanguard() {
         // Buscar el objeto con el ID específico para la máxima temperatura del día
         const maxTemperatureObj = vanguards.find((vanguard) => vanguard._id === '660007c47971b25e62392264');
 
+        // Buscar el objeto con el ID específico para la mínima temperatura del día
+        const minTemperatureObj = vanguards.find((vanguard) => vanguard._id === '66000a1a7971b25e62392287');
+
+        // Buscar el objeto con el ID específico para el "Error Status"
+        const errorStatusObj = vanguards.find((vanguard) => vanguard._id === '66000b1e0373f6c30767877a');
+
         // Buscar el objeto con el ID específico para la primera card
         const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '65a4e581b5b64969d2315ec3');
 
@@ -351,7 +359,13 @@ function Vanguard() {
         setVanguardData(currentTemperatureObj);
 
         // Establecer los datos de la máxima temperatura del día
-        setMaxTemperatureToday(maxTemperatureObj.tempInt1Max);
+        setMaxTemperatureToday(maxTemperatureObj.tempInt1);
+
+        // Establecer los datos de la mínima temperatura del día
+        setMinTemperatureToday(minTemperatureObj.tempInt1);
+
+        // Establecer el "Error Status"
+        setErrorStatus(errorStatusObj);
       } catch (error) {
         console.error('Error fetching vanguard data:', error);
       }
@@ -386,6 +400,22 @@ function Vanguard() {
             </div>
           </div>
 
+          {/* Tercera card para mostrar la mínima temperatura del día */}
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Min Temperature Today</h5>
+              <p>Min Temperature: {minTemperatureToday} °C</p>
+            </div>
+          </div>
+
+          {/* Cuarta card para mostrar el "Error Status" */}
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Error Status</h5>
+              <p>{errorStatus ? errorStatus.error : "No data available"}</p>
+            </div>
+          </div>
+
           {/* Resto de las cinco cards adicionales */}
           {[...Array(5)].map((_, index) => (
             <div className="card" key={index}>
@@ -397,9 +427,7 @@ function Vanguard() {
             </div>
           ))}
         </div>
-      )}
-    </div>
+    )}
+//     </div>
   );
 }
-
-export default Vanguard;
