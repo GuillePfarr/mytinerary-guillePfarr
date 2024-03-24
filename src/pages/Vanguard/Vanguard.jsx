@@ -372,36 +372,44 @@ function Vanguard() {
           </div>
 
           {/* Cinco cards adicionales */}
-          {[...Array(5)].map((_, index) => {
-            let additionalData = null;
-            switch (index) {
-              case 1:
-                additionalData = { title: "Max Temperature", id: "660007c47971b25e62392264" };
-                break;
-              case 2:
-                additionalData = { title: "Min Temperature", id: "66000a1a7971b25e62392287" };
-                break;
-              case 3:
-                additionalData = { title: "Error Status", id: "66000b1e0373f6c30767877a" };
-                break;
-              default:
-                break;
-            }
+          <div>
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Max Temperature Today</h5>
+                <p>Temperature: {vanguardData.tempInt1Max} °C</p>
+                <p>Time: {formatTime(vanguardData.date)}</p>
+              </div>
+            </div>
 
-            if (additionalData) {
-              const specificVanguard = vanguards.find((vanguard) => vanguard._id === additionalData.id);
-              return (
-                <div className="card" key={index}>
-                  <div className="card-body">
-                    <h5 className="card-title">{additionalData.title}</h5>
-                    <p>Temperature: {specificVanguard.tempInt1} °C</p>
-                    <p>Time: {formatTime(specificVanguard.date)}</p>
-                  </div>
-                </div>
-              );
-            }
-            return null;
-          })}
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Min Temperature Today</h5>
+                <p>Temperature: {vanguardData.tempInt1Min} °C</p>
+                <p>Time: {formatTime(vanguardData.date)}</p>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Error Status</h5>
+                <p>Error status data</p>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Additional Card 1</h5>
+                <p>Additional card 1 data</p>
+              </div>
+            </div>
+
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Additional Card 2</h5>
+                <p>Additional card 2 data</p>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
