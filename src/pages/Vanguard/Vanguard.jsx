@@ -427,7 +427,9 @@ function Vanguard() {
             </div>
           ))}
         </div>
-    )}
-//     </div>
+      )}
+    </div>
   );
 }
+
+export default Vanguard;
