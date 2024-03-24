@@ -342,10 +342,10 @@ function Vanguard() {
         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
         const vanguards = response.data.response;
 
-        // Buscar el objeto con el ID específico para la máxima temperatura del día
+        // Buscar el objeto con el ID específico para estado de errores
         const errorStatusObj = vanguards.find((vanguard) => vanguard._id === '66000b1e0373f6c30767877a');
 
-        // Buscar el objeto con el ID específico para la máxima temperatura del día
+        // Buscar el objeto con el ID específico para la mínima temperatura del día
         const minTemperatureObj = vanguards.find((vanguard) => vanguard._id === '66000a1a7971b25e62392287');
 
         // Buscar el objeto con el ID específico para la máxima temperatura del día
@@ -360,7 +360,7 @@ function Vanguard() {
         // Establecer los datos de la máxima temperatura del día
         setMaxTemperatureToday(maxTemperatureObj.tempInt1Max);
 
-        // Establecer los datos de la máxima temperatura del día
+        // Establecer los datos de la mínima temperatura del día
         setMinTemperatureToday(minTemperatureObj.tempInt1Min);
 
         // Establecer los datos de estados de error del día
@@ -398,7 +398,7 @@ function Vanguard() {
             <div className="card-body">
               <h5 className="card-title">Max Temperature Today</h5>
               <p>Max Temperature: {maxTemperatureToday} °C</p>
-              <p>Time: {formatTime(vanguardData.date)}</p>
+              <p>Time: {formatTime(item.date)}</p>
             </div>
           </div>
 
