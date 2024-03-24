@@ -335,12 +335,15 @@ function Vanguard() {
   const [vanguardData, setVanguardData] = useState(null);
   const [maxTemperatureToday, setMaxTemperatureToday] = useState(null);
   const [minTemperatureToday, setMinTemperatureToday] = useState(null);
-
+  const [errorStatusToday, setErrorStatusToday] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
         const vanguards = response.data.response;
+
+        // Buscar el objeto con el ID específico para la máxima temperatura del día
+        const errorStatusObj = vanguards.find((vanguard) => vanguard._id === '66000b1e0373f6c30767877a');
 
         // Buscar el objeto con el ID específico para la máxima temperatura del día
         const minTemperatureObj = vanguards.find((vanguard) => vanguard._id === '66000a1a7971b25e62392287');
@@ -359,6 +362,11 @@ function Vanguard() {
 
         // Establecer los datos de la máxima temperatura del día
         setMinTemperatureToday(minTemperatureObj.tempInt1Min);
+
+        // Establecer los datos de estados de error del día
+        setErrorStatusToday(errorStatusObj.errorStatus);
+
+
       } catch (error) {
         console.error('Error fetching vanguard data:', error);
       }
@@ -400,6 +408,15 @@ function Vanguard() {
               <p>Min Temperature: {minTemperatureToday} °C</p>
             </div>
           </div>
+
+           {/* Cuarta card para mostrar los estados de error del día */}
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Error Status Today</h5>
+              <p>Estado de Error: {errorStatusToday} °C</p>
+            </div>
+          </div>
+
 
           {/* Resto de las cinco cards adicionales */}
           {[...Array(5)].map((_, index) => (
