@@ -359,13 +359,19 @@ function Vanguard() {
         setVanguardData(currentTemperatureObj);
 
         // Establecer los datos de la máxima temperatura del día
-        setMaxTemperatureToday(maxTemperatureObj.tempInt1);
+        if (maxTemperatureObj) {
+          setMaxTemperatureToday(maxTemperatureObj.tempInt1);
+        }
 
         // Establecer los datos de la mínima temperatura del día
-        setMinTemperatureToday(minTemperatureObj.tempInt1);
+        if (minTemperatureObj) {
+          setMinTemperatureToday(minTemperatureObj.tempInt1);
+        }
 
         // Establecer el "Error Status"
-        setErrorStatus(errorStatusObj);
+        if (errorStatusObj) {
+          setErrorStatus(errorStatusObj);
+        }
       } catch (error) {
         console.error('Error fetching vanguard data:', error);
       }
@@ -393,29 +399,36 @@ function Vanguard() {
           </div>
 
           {/* Segunda card para mostrar la máxima temperatura del día */}
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Max Temperature Today</h5>
-              <p>Max Temperature: {maxTemperatureToday} °C</p>
+          {maxTemperatureToday && (
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Max Temperature Today</h5>
+                <p>Max Temperature: {maxTemperatureToday} °C</p>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Tercera card para mostrar la mínima temperatura del día */}
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Min Temperature Today</h5>
-              <p>Min Temperature: {minTemperatureToday} °C</p>
+          {minTemperatureToday && (
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Min Temperature Today</h5>
+                <p>Min Temperature: {minTemperatureToday} °C</p>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Cuarta card para mostrar el "Error Status" */}
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Error Status</h5>
-              <p>{errorStatus ? errorStatus.error : "No data available"}</p>
+          {errorStatus && (
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">Error Status</h5>
+                <p>{errorStatus.error}</p>
+              </div>
             </div>
-          </div>
+          )}
 
+          {/* Resto de las cinco cards
           {/* Resto de las cinco cards adicionales */}
           {[...Array(5)].map((_, index) => (
             <div className="card" key={index}>
