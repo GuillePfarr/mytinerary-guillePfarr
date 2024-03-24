@@ -334,12 +334,16 @@ const formatTime = (dateTimeString) => {
 function Vanguard() {
   const [vanguardData, setVanguardData] = useState(null);
   const [maxTemperatureToday, setMaxTemperatureToday] = useState(null);
+  const [minTemperatureToday, setMinTemperatureToday] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
         const vanguards = response.data.response;
+
+        // Buscar el objeto con el ID específico para la máxima temperatura del día
+        const minTemperatureObj = vanguards.find((vanguard) => vanguard._id === '66000a1a7971b25e62392287');
 
         // Buscar el objeto con el ID específico para la máxima temperatura del día
         const maxTemperatureObj = vanguards.find((vanguard) => vanguard._id === '660007c47971b25e62392264');
@@ -352,6 +356,9 @@ function Vanguard() {
 
         // Establecer los datos de la máxima temperatura del día
         setMaxTemperatureToday(maxTemperatureObj.tempInt1Max);
+
+        // Establecer los datos de la máxima temperatura del día
+        setMinTemperatureToday(minTemperatureObj.tempInt1Min);
       } catch (error) {
         console.error('Error fetching vanguard data:', error);
       }
@@ -383,6 +390,14 @@ function Vanguard() {
             <div className="card-body">
               <h5 className="card-title">Max Temperature Today</h5>
               <p>Max Temperature: {maxTemperatureToday} °C</p>
+            </div>
+          </div>
+
+            {/* Tercera card para mostrar la míninma temperatura del día */}
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Min Temperature Today</h5>
+              <p>Min Temperature: {minTemperatureToday} °C</p>
             </div>
           </div>
 
