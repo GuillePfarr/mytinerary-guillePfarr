@@ -352,7 +352,7 @@ function Vanguard() {
         const maxTemperatureObj = vanguards.find((vanguard) => vanguard._id === '660007c47971b25e62392264');
 
         // Buscar el objeto con el ID específico para la primera card
-        const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6606c06e2460c8888192ae11');
+        const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6606fda52460c8888192ae13');
 
         // Establecer los datos del vanguard específico para la primera card
         setVanguardData(currentTemperatureObj);
