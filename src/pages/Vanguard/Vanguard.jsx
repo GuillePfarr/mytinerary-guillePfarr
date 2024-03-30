@@ -333,9 +333,9 @@ const formatTime = (dateTimeString) => {
 
 function Vanguard() {
   const [vanguardData, setVanguardData] = useState(null);
-  const [maxTemperatureToday, setMaxTemperatureToday] = useState(null);
-  const [minTemperatureToday, setMinTemperatureToday] = useState(null);
-  const [errorStatusToday, setErrorStatusToday] = useState(null);
+  // const [maxTemperatureToday, setMaxTemperatureToday] = useState(null);
+  // const [minTemperatureToday, setMinTemperatureToday] = useState(null);
+  // const [errorStatusToday, setErrorStatusToday] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -396,16 +396,16 @@ function Vanguard() {
           </div>
 
         
-          <div className="card">
+          {/* <div className="card">
             <div className="card-body">
               <h5 className="card-title">Max Temperature Today</h5>
               <p>Max Temperature: {maxTemperatureToday} °C</p>
               <p>Time: {formatTime(vanguardData.date)}</p>
             </div>
-          </div>
+          </div> */}
 
            
-          <div className="card">
+          {/* <div className="card">
             <div className="card-body">
               <h5 className="card-title">Min Temperature Today</h5>
               <p>Min Temperature: {minTemperatureToday} °C</p>
@@ -418,11 +418,11 @@ function Vanguard() {
               <h5 className="card-title">Error Status Today</h5>
               <p>Estado de Error: {errorStatusToday} </p>
             </div>
-          </div>
+          </div> */}
 
 
           
-          {[...Array(5)].map((_, index) => (
+          {/* {[...Array(5)].map((_, index) => (
             <div className="card" key={index}>
               <div className="card-body">
                 <h5 className="card-title">Temperature Reading {index + 1}</h5>
@@ -430,7 +430,7 @@ function Vanguard() {
                 <p>Time: {formatTime(vanguardData.date)}</p>
               </div>
             </div>
-          ))}
+          ))} */}
         </div>
       )}
     </div>
