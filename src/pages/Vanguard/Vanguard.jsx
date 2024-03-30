@@ -358,12 +358,12 @@ function Vanguard() {
         setVanguardData(currentTemperatureObj);
 
     
-        setMaxTemperatureToday(maxTemperatureObj.tempInt1Max);
+        // setMaxTemperatureToday(maxTemperatureObj.tempInt1Max);
 
 
-        setMinTemperatureToday(minTemperatureObj.tempInt1Min);
+        // setMinTemperatureToday(minTemperatureObj.tempInt1Min);
 
-        setErrorStatusToday(errorStatusObj.errorStatus);
+        // setErrorStatusToday(errorStatusObj.errorStatus);
 
 
       } catch (error) {
