@@ -454,21 +454,28 @@ const formatTime = (dateTimeString) => {
 };
 
 function Vanguard() {
-  const [vanguardData, setVanguardData] = useState(null);
+  const [data, setData] = useState([]);
+  const [latestData, setLatestData] = useState(null); // Nuevo estado para almacenar el último objeto de datos
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard/6607bbe9fb6e9bf0fd48f142');
-        const latestData = response.data.response.data.slice(-1)[0]; // Obtener el último objeto del array
-        setVanguardData(latestData);
+        const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+        const vanguards = response.data.response;
+
+        // Establecer todos los datos en el estado
+        setData(vanguards);
+
+        // Establecer el último objeto de datos en el estado de latestData
+        setLatestData(vanguards[vanguards.length - 1]);
+
       } catch (error) {
         console.error('Error fetching vanguard data:', error);
       }
     };
 
     fetchData();
-    const interval = setInterval(fetchData, 1000);
+    const interval = setInterval(fetchData, 15000); // Ejecutar fetchData cada 15 segundos
 
     return () => clearInterval(interval);
   }, []);
@@ -477,7 +484,7 @@ function Vanguard() {
     <div className="vanguard-container">
       <h1 className='VanguardTitle'>Vanguard Data</h1>
 
-      {vanguardData && (
+      {latestData && (
         <div>
           {/* Card original */}
           <div className="card">
@@ -491,13 +498,13 @@ function Vanguard() {
             </div>
           </div>
 
-          {/* Resto de las cards adicionales */}
+          {/* Resto de las cinco cards adicionales */}
           {[...Array(5)].map((_, index) => (
             <div className="card" key={index}>
               <div className="card-body">
                 <h5 className="card-title">Temperature Reading {index + 1}</h5>
-                <p>Temperature: {vanguardData.tempInt1} °C</p>
-                <p>Time: {formatTime(vanguardData.date)}</p>
+                <p>Temperature: {latestData.tempInt1} °C</p>
+                <p>Time: {formatTime(latestData.date)}</p>
               </div>
             </div>
           ))}
