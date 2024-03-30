@@ -455,21 +455,37 @@ const formatTime = (dateTimeString) => {
 
 function Vanguard() {
   const [vanguardData, setVanguardData] = useState(null);
+  const [maxTemperatureToday, setMaxTemperatureToday] = useState(null);
+  const [minTemperatureToday, setMinTemperatureToday] = useState(null);
+  const [errorStatusToday, setErrorStatusToday] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard/6607bbe9fb6e9bf0fd48f142');
-        const latestData = response.data; // Modificación para obtener el último objeto de la colección directamente
+        const responseData = response.data;
 
+        // Obtener el último objeto de datos del array
+        const latestData = responseData.response.data[responseData.response.data.length - 1];
+
+        // Establecer los datos del vanguard específico para la primera card
         setVanguardData(latestData);
+
+        // Establecer los datos de la máxima temperatura del día
+        setMaxTemperatureToday(latestData.tempInt1Max);
+
+        // Establecer los datos de la mínima temperatura del día
+        setMinTemperatureToday(latestData.tempInt1Min);
+
+        // Establecer los datos de estados de error del día
+        setErrorStatusToday(latestData.errorStatus);
       } catch (error) {
         console.error('Error fetching vanguard data:', error);
       }
     };
 
     fetchData();
-    const interval = setInterval(fetchData, 15000); // Ejecutar fetchData cada 15 segundos
+    const interval = setInterval(fetchData, 5000); // Realizar la petición cada 15 segundos
 
     return () => clearInterval(interval);
   }, []);
@@ -489,6 +505,31 @@ function Vanguard() {
               <p>Min Temperature: {vanguardData.tempInt1Min} °C</p>
               <p>Estado de Error: {vanguardData.errorStatus} </p>
               <p>Time: {formatTime(vanguardData.date)}</p>
+            </div>
+          </div>
+
+          {/* Segunda card para mostrar la máxima temperatura del día */}
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Max Temperature Today</h5>
+              <p>Max Temperature: {maxTemperatureToday} °C</p>
+              <p>Time: {formatTime(vanguardData.date)}</p>
+            </div>
+          </div>
+
+          {/* Tercera card para mostrar la míninma temperatura del día */}
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Min Temperature Today</h5>
+              <p>Min Temperature: {minTemperatureToday} °C</p>
+            </div>
+          </div>
+
+          {/* Cuarta card para mostrar los estados de error del día */}
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">Error Status Today</h5>
+              <p>Estado de Error: {errorStatusToday} </p>
             </div>
           </div>
 
