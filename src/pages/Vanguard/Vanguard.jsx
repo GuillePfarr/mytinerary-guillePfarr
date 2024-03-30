@@ -454,21 +454,15 @@ const formatTime = (dateTimeString) => {
 };
 
 function Vanguard() {
-  const [data, setData] = useState([]);
-  const [latestData, setLatestData] = useState(null); // Nuevo estado para almacenar el último objeto de datos
+  const [vanguardData, setVanguardData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
-        const vanguards = response.data.response;
+        const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard/6607bbe9fb6e9bf0fd48f142');
+        const latestData = response.data; // Modificación para obtener el último objeto de la colección directamente
 
-        // Establecer todos los datos en el estado
-        setData(vanguards);
-
-        // Establecer el último objeto de datos en el estado de latestData
-        setLatestData(vanguards[vanguards.length - 1]);
-
+        setVanguardData(latestData);
       } catch (error) {
         console.error('Error fetching vanguard data:', error);
       }
@@ -484,17 +478,17 @@ function Vanguard() {
     <div className="vanguard-container">
       <h1 className='VanguardTitle'>Vanguard Data</h1>
 
-      {latestData && (
+      {vanguardData && (
         <div>
           {/* Card original */}
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Current Temperature</h5>
-              <p>Current Temperature: {latestData.tempInt1} °C</p>
-              <p>Max Temperature: {latestData.tempInt1Max} °C</p>
-              <p>Min Temperature: {latestData.tempInt1Min} °C</p>
-              <p>Estado de Error: {latestData.errorStatus} </p>
-              <p>Time: {formatTime(latestData.date)}</p>
+              <p>Current Temperature: {vanguardData.tempInt1} °C</p>
+              <p>Max Temperature: {vanguardData.tempInt1Max} °C</p>
+              <p>Min Temperature: {vanguardData.tempInt1Min} °C</p>
+              <p>Estado de Error: {vanguardData.errorStatus} </p>
+              <p>Time: {formatTime(vanguardData.date)}</p>
             </div>
           </div>
 
@@ -503,8 +497,8 @@ function Vanguard() {
             <div className="card" key={index}>
               <div className="card-body">
                 <h5 className="card-title">Temperature Reading {index + 1}</h5>
-                <p>Temperature: {latestData.tempInt1} °C</p>
-                <p>Time: {formatTime(latestData.date)}</p>
+                <p>Temperature: {vanguardData.tempInt1} °C</p>
+                <p>Time: {formatTime(vanguardData.date)}</p>
               </div>
             </div>
           ))}
