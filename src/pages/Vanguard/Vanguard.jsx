@@ -318,128 +318,6 @@
 // export default Vanguard;
 
 
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import "./vanguard.css";
-
-// const formatTime = (dateTimeString) => {
-//   if (!dateTimeString) return "No data available";
-
-//   const options = { hour: '2-digit', minute: '2-digit' };
-//   const localDate = new Date(dateTimeString);
-
-//   return localDate.toLocaleString('en-US', options);
-// };
-
-// function Vanguard() {
-//   const [vanguardData, setVanguardData] = useState(null);
-//   const [maxTemperatureToday, setMaxTemperatureToday] = useState(null);
-//   const [minTemperatureToday, setMinTemperatureToday] = useState(null);
-//   const [errorStatusToday, setErrorStatusToday] = useState(null);
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
-//         const vanguards = response.data.response;
-
-       
-//         const errorStatusObj = vanguards.find((vanguard) => vanguard._id === '66000b1e0373f6c30767877a');
-
-    
-//         const minTemperatureObj = vanguards.find((vanguard) => vanguard._id === '66000a1a7971b25e62392287');
-
-       
-//         const maxTemperatureObj = vanguards.find((vanguard) => vanguard._id === '660007c47971b25e62392264');
-
-        
-//         const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6606fda52460c8888192ae13');
-
-      
-//         setVanguardData(currentTemperatureObj);
-
-    
-//         setMaxTemperatureToday(maxTemperatureObj.tempInt1Max);
-
-
-//         setMinTemperatureToday(minTemperatureObj.tempInt1Min);
-
-//         setErrorStatusToday(errorStatusObj.errorStatus);
-
-
-//       } catch (error) {
-//         console.error('Error fetching vanguard data:', error);
-//       }
-//     };
-
-//     fetchData();
-//     const interval = setInterval(fetchData, 1000);
-
-//     return () => clearInterval(interval);
-//   }, []);
-
-//   return (
-//     <div className="vanguard-container">
-//       <h1 className='VanguardTitle'>Vanguard Data</h1>
-
-//       {vanguardData && (
-//         <div>
-       
-//           <div className="card">
-//             <div className="card-body">
-//               <h5 className="card-title">Current Temperature</h5>
-//               <p>Current Temperature: {vanguardData.tempInt1} °C</p>
-//               <p>Max Temperature: {vanguardData.tempInt1Max} °C</p>
-//               <p>Min Temperature: {vanguardData.tempInt1Min} °C</p>
-//               <p>Estado de Error: {vanguardData.errorStatus} </p>
-//               <p>Time: {formatTime(vanguardData.date)}</p>
-//             </div>
-//           </div>
-
-        
-//           <div className="card">
-//             <div className="card-body">
-//               <h5 className="card-title">Max Temperature Today</h5>
-//               <p>Max Temperature: {maxTemperatureToday} °C</p>
-//               <p>Time: {formatTime(vanguardData.date)}</p>
-//             </div>
-//           </div>
-
-           
-//           <div className="card">
-//             <div className="card-body">
-//               <h5 className="card-title">Min Temperature Today</h5>
-//               <p>Min Temperature: {minTemperatureToday} °C</p>
-//             </div>
-//           </div>
-
-           
-//           <div className="card">
-//             <div className="card-body">
-//               <h5 className="card-title">Error Status Today</h5>
-//               <p>Estado de Error: {errorStatusToday} </p>
-//             </div>
-//           </div>
-
-
-          
-//           {[...Array(5)].map((_, index) => (
-//             <div className="card" key={index}>
-//               <div className="card-body">
-//                 <h5 className="card-title">Temperature Reading {index + 1}</h5>
-//                 <p>Temperature: {vanguardData.tempInt1} °C</p>
-//                 <p>Time: {formatTime(vanguardData.date)}</p>
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default Vanguard;
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./vanguard.css";
@@ -458,34 +336,43 @@ function Vanguard() {
   const [maxTemperatureToday, setMaxTemperatureToday] = useState(null);
   const [minTemperatureToday, setMinTemperatureToday] = useState(null);
   const [errorStatusToday, setErrorStatusToday] = useState(null);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard/6607bbe9fb6e9bf0fd48f142');
-        const responseData = response.data;
+        const response = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+        const vanguards = response.data.response;
 
-        // Obtener el último objeto de datos del array
-        const latestData = responseData.response.data[responseData.response.data.length - 1];
+       
+        const errorStatusObj = vanguards.find((vanguard) => vanguard._id === '66000b1e0373f6c30767877a');
 
-        // Establecer los datos del vanguard específico para la primera card
-        setVanguardData(latestData);
+    
+        const minTemperatureObj = vanguards.find((vanguard) => vanguard._id === '66000a1a7971b25e62392287');
 
-        // Establecer los datos de la máxima temperatura del día
-        setMaxTemperatureToday(latestData.tempInt1Max);
+       
+        const maxTemperatureObj = vanguards.find((vanguard) => vanguard._id === '660007c47971b25e62392264');
 
-        // Establecer los datos de la mínima temperatura del día
-        setMinTemperatureToday(latestData.tempInt1Min);
+        
+        const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6606fda52460c8888192ae13');
 
-        // Establecer los datos de estados de error del día
-        setErrorStatusToday(latestData.errorStatus);
+      
+        setVanguardData(currentTemperatureObj);
+
+    
+        setMaxTemperatureToday(maxTemperatureObj.tempInt1Max);
+
+
+        setMinTemperatureToday(minTemperatureObj.tempInt1Min);
+
+        setErrorStatusToday(errorStatusObj.errorStatus);
+
+
       } catch (error) {
         console.error('Error fetching vanguard data:', error);
       }
     };
 
     fetchData();
-    const interval = setInterval(fetchData, 5000); // Realizar la petición cada 15 segundos
+    const interval = setInterval(fetchData, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -496,7 +383,7 @@ function Vanguard() {
 
       {vanguardData && (
         <div>
-          {/* Card original */}
+       
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Current Temperature</h5>
@@ -508,7 +395,7 @@ function Vanguard() {
             </div>
           </div>
 
-          {/* Segunda card para mostrar la máxima temperatura del día */}
+        
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Max Temperature Today</h5>
@@ -517,7 +404,7 @@ function Vanguard() {
             </div>
           </div>
 
-          {/* Tercera card para mostrar la míninma temperatura del día */}
+           
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Min Temperature Today</h5>
@@ -525,7 +412,7 @@ function Vanguard() {
             </div>
           </div>
 
-          {/* Cuarta card para mostrar los estados de error del día */}
+           
           <div className="card">
             <div className="card-body">
               <h5 className="card-title">Error Status Today</h5>
@@ -533,7 +420,8 @@ function Vanguard() {
             </div>
           </div>
 
-          {/* Resto de las cinco cards adicionales */}
+
+          
           {[...Array(5)].map((_, index) => (
             <div className="card" key={index}>
               <div className="card-body">
@@ -550,4 +438,6 @@ function Vanguard() {
 }
 
 export default Vanguard;
+
+
 
