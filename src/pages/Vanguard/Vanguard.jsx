@@ -352,7 +352,7 @@ function Vanguard() {
         // const maxTemperatureObj = vanguards.find((vanguard) => vanguard._id === '660007c47971b25e62392264');
 
         
-        const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '66090cc1f9b3c368a23f0571');
+        const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6609c0e76cfbe770c4735e09');
 
       
         setVanguardData(currentTemperatureObj);
