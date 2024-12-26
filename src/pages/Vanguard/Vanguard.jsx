@@ -30,9 +30,12 @@ function Vanguard() {
         const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6609c0e76cfbe770c4735e09');
         setVanguardData(currentTemperatureObj);
 
-        // Fetch parameters data (same as above, we use the same logic)
-        const parametersResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/parameters');
-        setParameters(parametersResponse.data.response); // Se espera que sea un objeto con los parámetros
+        // Fetch parameters data using the correct _id
+        const parametersId = '676d6f02d6ae0a6ca083bee6'; // ID de parameters que compartiste
+        const parametersResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/parameters/' + parametersId);
+        const parametersData = parametersResponse.data.response;
+
+        setParameters(parametersData); // Set parameters directly
       } catch (error) {
         console.error('Error fetching data:', error);
       }
