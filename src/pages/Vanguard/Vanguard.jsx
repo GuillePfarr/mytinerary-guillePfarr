@@ -123,7 +123,7 @@ useEffect(() => {
       setVanguardData(currentTemperatureObj);
 
       // Fetch parameters data
-      const parameterResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/parameters');
+      const parameterResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/parameter');
       const parameters = parameterResponse.data.response;
       console.log('Datos de Parameters:', parameters);
       const currentValuesObj = parameters.find((parameter) => parameter._id === '676d6f02d6ae0a6ca083bee6');
