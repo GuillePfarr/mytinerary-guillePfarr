@@ -11,7 +11,7 @@ import jwtDecode from 'jwt-decode';
 const setData = ({
     email: "",
     name: "",
-    password: "",
+    password: "",  
     terms: false
 
 })
