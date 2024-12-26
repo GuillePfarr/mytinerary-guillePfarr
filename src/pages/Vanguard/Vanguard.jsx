@@ -46,6 +46,32 @@ function Vanguard() {
   // }, []);
 
 
+// useEffect(() => {
+//   const fetchData = async () => {
+//     try {
+      
+//       const vanguardResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+//       const vanguards = vanguardResponse.data.response;
+//       const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6609c0e76cfbe770c4735e09');
+//       setVanguardData(currentTemperatureObj);
+
+    
+//       const parameterId = '676d6f02d6ae0a6ca083bee6'; 
+//       const parameterResponse = await axios.get(import.meta.env.VITE_API_URL + `/api/parameter/${parameterId}`);
+//       const parameterObj = parameterResponse.data.response;
+
+      
+//       if (parameterObj) {
+//         setParameterData(parameterObj);
+//       } else {
+//         console.error('Parameter with the given ID not found.');
+//       }
+//     } catch (error) {
+//       console.error('Error fetching data:', error);
+//     }
+//   };
+
+
 useEffect(() => {
   const fetchData = async () => {
     try {
@@ -60,6 +86,9 @@ useEffect(() => {
       const parameterResponse = await axios.get(import.meta.env.VITE_API_URL + `/api/parameter/${parameterId}`);
       const parameterObj = parameterResponse.data.response;
 
+      // Log the parameter data to the console to inspect it
+      console.log('Parameter Data:', parameterObj);
+
       // Set the parameter data
       if (parameterObj) {
         setParameterData(parameterObj);
@@ -71,8 +100,11 @@ useEffect(() => {
     }
   };
 
+
+
+
   fetchData();
-  const interval = setInterval(fetchData, 10000); // Fetch data every 10 seconds
+  const interval = setInterval(fetchData, 10000); 
 
   return () => clearInterval(interval);
 }, []);
