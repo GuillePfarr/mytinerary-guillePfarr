@@ -115,22 +115,19 @@ function Vanguard() {
 useEffect(() => {
   const fetchData = async () => {
     try {
-
-
-      // const parameterResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/parameter');
-      // const parameters = parameterResponse.data.response;
-      // const currentValuesObj = parameters.find((parameter) => parameter._id === '676d6f02d6ae0a6ca083bee6');
-      // setParameters(currentValuesObj); 
-
-
-
+      // Fetch vanguard data
       const vanguardResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
       const vanguards = vanguardResponse.data.response;
+      console.log('Datos de Parameters:', vanguardData);
       const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6609c0e76cfbe770c4735e09');
       setVanguardData(currentTemperatureObj);
 
-      
-      
+      // Fetch parameters data
+      const parameterResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/parameter');
+      const parameters = parameterResponse.data.response;
+      console.log('Datos de Parameters:', parameters);
+      const currentValuesObj = parameters.find((parameter) => parameter._id === '676d6f02d6ae0a6ca083bee6');
+      setParameters(currentValuesObj); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
