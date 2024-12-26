@@ -20,32 +20,62 @@ function Vanguard() {
     humidityMax: null
   });
 
-  // Fetch data for vanguard and parameters
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Fetch vanguard data
-        const vanguardResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
-        const vanguards = vanguardResponse.data.response;
-        const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6609c0e76cfbe770c4735e09');
-        setVanguardData(currentTemperatureObj);
+  
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+        
+  //       const vanguardResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+  //       const vanguards = vanguardResponse.data.response;
+  //       const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6609c0e76cfbe770c4735e09');
+  //       setVanguardData(currentTemperatureObj);
 
-        // Fetch parameters data using the correct _id
-        const parametersId = '676d6f02d6ae0a6ca083bee6'; // ID de parameters que compartiste
-        const parametersResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/parameters/' + parametersId);
-        const parametersData = parametersResponse.data.response;
+  //       const parameterResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/parameter');
+  //       const parameters = parameterResponse.data.response;
+  //       const parametersObj = parameters.find((parameter) => parameter._id === '676d6f02d6ae0a6ca083bee6'); 
+  //       setParameterData(parametersObj)
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
 
-        setParameters(parametersData); // Set parameters directly
-      } catch (error) {
-        console.error('Error fetching data:', error);
+  //   fetchData();
+  //   const interval = setInterval(fetchData, 10000); 
+
+  //   return () => clearInterval(interval);
+  // }, []);
+
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      // Fetch vanguard data
+      const vanguardResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+      const vanguards = vanguardResponse.data.response;
+      const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6609c0e76cfbe770c4735e09');
+      setVanguardData(currentTemperatureObj);
+
+      // Fetch a specific parameter using the ID in the URL
+      const parameterId = '676d6f02d6ae0a6ca083bee6'; // Use the parameter ID directly
+      const parameterResponse = await axios.get(import.meta.env.VITE_API_URL + `/api/parameter/${parameterId}`);
+      const parameterObj = parameterResponse.data.response;
+
+      // Set the parameter data
+      if (parameterObj) {
+        setParameterData(parameterObj);
+      } else {
+        console.error('Parameter with the given ID not found.');
       }
-    };
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
-    fetchData();
-    const interval = setInterval(fetchData, 10000); // Fetch data every 10 seconds
+  fetchData();
+  const interval = setInterval(fetchData, 10000); // Fetch data every 10 seconds
 
-    return () => clearInterval(interval);
-  }, []);
+  return () => clearInterval(interval);
+}, []);
 
   return (
     <div className="vanguard-container">
