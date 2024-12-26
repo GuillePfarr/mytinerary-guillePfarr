@@ -122,10 +122,10 @@ useEffect(() => {
       setVanguardData(currentTemperatureObj);
 
       // Fetch parameters data
-      const parametersResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/parameters');
-      const parameters = parametersResponse.data.response;
-      const currentParametersObj = parameters.find((parameter) => parameter._id === '676d6f02d6ae0a6ca083bee6');
-      setParameterData(currentParametersObj); // Guardamos el objeto específico en el estado
+      const parameterResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/parameter');
+      const parameters = parameterResponse.data.response;
+      const currentValuesObj = parameters.find((parameter) => parameter._id === '676d6f02d6ae0a6ca083bee6');
+      setParameters(currentValuesObj); // Guardamos el objeto específico en el estado
     } catch (error) {
       console.error('Error fetching data:', error);
     }
