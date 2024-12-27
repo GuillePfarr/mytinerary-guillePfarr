@@ -150,8 +150,8 @@ function Vanguard() {
               <h5 className="card-title">Ajustes</h5>
               <p>Min Temperature: {ajustesData.tempMin} °C</p>
               <p>Max Temperature: {ajustesData.tempMax} °C</p>
-              <p>Min Humidity: {ajustesData.humidyMin} %</p>
-              <p>Max Humidity: {ajustesData.humidyMax} %</p>
+              <p>Min Humidity: {ajustesData.humyMin} %</p>
+              <p>Max Humidity: {ajustesData.humyMax} %</p>
             </div>
           </div>
         </div>
