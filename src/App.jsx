@@ -55,10 +55,7 @@ const router = createBrowserRouter([
         path: '/vanguard',
         element: <Vanguard />
       },
-      {
-        path: '/ajuste',
-        element: <Ajuste />
-      }
+      
    
     ]
   },
