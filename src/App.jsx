@@ -56,8 +56,8 @@ const router = createBrowserRouter([
         element: <Vanguard />
       },
       {
-        path: '/parameter',
-        element: <Parameter />
+        path: '/ajuste',
+        element: <Ajuste />
       }
    
     ]
