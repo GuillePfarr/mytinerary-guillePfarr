@@ -108,7 +108,7 @@ function Vanguard() {
    const navigate = useNavigate(); // Hook para la navegación
 
   const goToAjustes = () => {
-    navigate('/ajustes'); // Navegar a la ruta de AjustesForm.jsx
+    navigate('/ajustes', { state: { ajustesData } }); // Navegar a la ruta de AjustesForm.jsx
   };
 
   useEffect(() => {
