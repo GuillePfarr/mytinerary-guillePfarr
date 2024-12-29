@@ -6,9 +6,16 @@
 //     tempMin: '',
 //     tempMax: '',
 //     humyMin: '',
-//     humyMax: ''
+//     humyMax: '',
 //   });
 
+//   const [editMode, setEditMode] = useState(false);
+//   const [codeSent, setCodeSent] = useState(false);
+//   const [accessCode, setAccessCode] = useState('');
+//   const [codeInput, setCodeInput] = useState('');
+//   const [codeValidated, setCodeValidated] = useState(false);
+
+  
 //   useEffect(() => {
 //     const fetchAjustes = async () => {
 //       try {
@@ -33,13 +40,12 @@
 //   };
 
 //   const handleSubmit = async (e) => {
-//     e.preventDefault(); // Evitar recargar la página
+//     e.preventDefault();
 //     try {
 //       const response = await axios.put(
-//         `${import.meta.env.VITE_API_URL}/api/ajuste/${ajustesData._id}`, // Asegúrate de que el endpoint sea correcto
+//         `${import.meta.env.VITE_API_URL}/api/ajuste/${ajustesData._id}`,
 //         ajustesData
 //       );
-//       console.log('Datos actualizados:', response.data);
 //       alert('Ajustes actualizados correctamente');
 //     } catch (error) {
 //       console.error('Error updating ajustes:', error);
@@ -47,50 +53,139 @@
 //     }
 //   };
 
+//   const handleRequestCode = async () => {
+//     try {
+//       const response = await axios.post(import.meta.env.VITE_API_URL + '/api/request-code', {
+//         userId: ajustesData._id, 
+//       });
+//       setCodeSent(true);
+//       setAccessCode(response.data.code); 
+//       alert('Código de acceso enviado a su correo electrónico.');
+//     } catch (error) {
+//       console.error('Error sending access code:', error);
+//       alert('Error al solicitar el código de acceso.');
+//     }
+//   };
+
+//   const handleValidateCode = async () => {
+//     if (codeInput === accessCode) {
+//       setCodeValidated(true);
+//       alert('Código validado. Ahora puede editar los valores.');
+//     } else {
+//       alert('Código incorrecto.');
+//     }
+//   };
+
 //   if (!ajustesData) {
-//     return <p>Loading...</p>;
+//     return <p>Cargando ajustes...</p>;
 //   }
 
 //   return (
-//     <form onSubmit={handleSubmit}>
-//       <label>
-//         Min Temperature:
-//         <input
-//           type="number"
-//           name="tempMin"
-//           value={ajustesData.tempMin || ''}
-//           onChange={handleChange}
-//         />
-//       </label>
-//       <label>
-//         Max Temperature:
-//         <input
-//           type="number"
-//           name="tempMax"
-//           value={ajustesData.tempMax || ''}
-//           onChange={handleChange}
-//         />
-//       </label>
-//       <label>
-//         Min Humidity:
-//         <input
-//           type="number"
-//           name="humyMin"
-//           value={ajustesData.humyMin || ''}
-//           onChange={handleChange}
-//         />
-//       </label>
-//       <label>
-//         Max Humidity:
-//         <input
-//           type="number"
-//           name="humyMax"
-//           value={ajustesData.humyMax || ''}
-//           onChange={handleChange}
-//         />
-//       </label>
-//       <button type="submit">Actualizar Ajustes</button>
-//     </form>
+//     <div>
+//       {!editMode && (
+//         <form>
+//           <label>
+//             Min Temperature:
+//             <input
+//               type="number"
+//               name="tempMin"
+            
+//               value={ajustesData.tempMin !== undefined && ajustesData.tempMin !== null ? ajustesData.tempMin : ''}
+
+//               disabled
+//             />
+//           </label>
+//           <label>
+//             Max Temperature:
+//             <input
+//               type="number"
+//               name="tempMax"
+//               value={ajustesData.tempMax || ''}
+//               disabled
+//             />
+//           </label>
+//           <label>
+//             Min Humidity:
+//             <input
+//               type="number"
+//               name="humyMin"
+//               value={ajustesData.humyMin || ''}
+//               disabled
+//             />
+//           </label>
+//           <label>
+//             Max Humidity:
+//             <input
+//               type="number"
+//               name="humyMax"
+//               value={ajustesData.humyMax || ''}
+//               disabled
+//             />
+//           </label>
+//           <button type="button" onClick={handleRequestCode}>
+//             Modificar Valores
+//           </button>
+//         </form>
+//       )}
+
+//       {editMode && !codeValidated && (
+//         <div>
+//           <p>Ingrese el código de acceso enviado a su correo electrónico:</p>
+//           <input
+//             type="text"
+//             value={codeInput}
+//             onChange={(e) => setCodeInput(e.target.value)}
+//           />
+//           <button type="button" onClick={handleValidateCode}>
+//             Validar Código
+//           </button>
+//         </div>
+//       )}
+
+//       {editMode && codeValidated && (
+//         <form onSubmit={handleSubmit}>
+//           <label>
+//             Min Temperature:
+//             <input
+//               type="number"
+//               name="tempMin"
+           
+//               value={ajustesData.tempMin !== undefined && ajustesData.tempMin !== null ? ajustesData.tempMin : ''}
+
+//               onChange={handleChange}
+//             />
+//           </label>
+//           <label>
+//             Max Temperature:
+//             <input
+//               type="number"
+//               name="tempMax"
+//               value={ajustesData.tempMax || ''}
+//               onChange={handleChange}
+//             />
+//           </label>
+//           <label>
+//             Min Humidity:
+//             <input
+//               type="number"
+//               name="humyMin"
+//               value={ajustesData.humyMin || ''}
+//               onChange={handleChange}
+//             />
+//           </label>
+//           <label>
+//             Max Humidity:
+//             <input
+//               type="number"
+//               name="humyMax"
+//               value={ajustesData.humyMax || ''}
+//               onChange={handleChange}
+//             />
+//           </label>
+//           <button type="submit">Actualizar Ajustes</button>
+//         </form>
+//       )}
+//     </div>
 //   );
 // }
 
@@ -108,28 +203,28 @@ function AjustesForm() {
     humyMax: '',
   });
 
-  const [editMode, setEditMode] = useState(false);
-  const [codeSent, setCodeSent] = useState(false);
-  const [accessCode, setAccessCode] = useState('');
-  const [codeInput, setCodeInput] = useState('');
-  const [codeValidated, setCodeValidated] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [editMode, setEditMode] = useState(false); // Conservamos el modo edición para futuros usos.
 
-  // Cargar datos actuales de la base de datos
+  // Obtener los datos de la base de datos al cargar el componente
   useEffect(() => {
     const fetchAjustes = async () => {
       try {
         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/ajuste');
         const ajustes = response.data.response;
-        const currentAjusteObj = ajustes.find(ajuste => ajuste._id === '676e68bcce18f424bfd35d5a');
+        const currentAjusteObj = ajustes.find(ajuste => ajuste._id === '676e68bcce18f424bfd35d5a'); // Cambia este ID por el que corresponda.
         setAjustesData(currentAjusteObj || {});
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching ajustes:', error);
+        console.error('Error al obtener los ajustes:', error);
+        setLoading(false);
       }
     };
 
     fetchAjustes();
   }, []);
 
+  // Manejar cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAjustesData((prevState) => ({
@@ -138,152 +233,78 @@ function AjustesForm() {
     }));
   };
 
+  // Manejar el envío del formulario al servidor
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.put(
+      await axios.put(
         `${import.meta.env.VITE_API_URL}/api/ajuste/${ajustesData._id}`,
         ajustesData
       );
       alert('Ajustes actualizados correctamente');
+      setEditMode(false); // Desactivamos el modo edición tras guardar.
     } catch (error) {
-      console.error('Error updating ajustes:', error);
+      console.error('Error al actualizar los ajustes:', error);
       alert('Error al actualizar los ajustes');
     }
   };
 
-  const handleRequestCode = async () => {
-    try {
-      const response = await axios.post(import.meta.env.VITE_API_URL + '/api/request-code', {
-        userId: ajustesData._id, // Usamos el ID del usuario actual o cualquier identificación relevante
-      });
-      setCodeSent(true);
-      setAccessCode(response.data.code); // Solo para desarrollo (eliminar en producción)
-      alert('Código de acceso enviado a su correo electrónico.');
-    } catch (error) {
-      console.error('Error sending access code:', error);
-      alert('Error al solicitar el código de acceso.');
-    }
-  };
-
-  const handleValidateCode = async () => {
-    if (codeInput === accessCode) {
-      setCodeValidated(true);
-      alert('Código validado. Ahora puede editar los valores.');
-    } else {
-      alert('Código incorrecto.');
-    }
-  };
-
-  if (!ajustesData) {
+  if (loading) {
     return <p>Cargando ajustes...</p>;
   }
 
   return (
     <div>
-      {!editMode && (
-        <form>
-          <label>
-            Min Temperature:
-            <input
-              type="number"
-              name="tempMin"
-            //   value={ajustesData.tempMin || ''}
-              value={ajustesData.tempMin !== undefined && ajustesData.tempMin !== null ? ajustesData.tempMin : ''}
-
-              disabled
-            />
-          </label>
-          <label>
-            Max Temperature:
-            <input
-              type="number"
-              name="tempMax"
-              value={ajustesData.tempMax || ''}
-              disabled
-            />
-          </label>
-          <label>
-            Min Humidity:
-            <input
-              type="number"
-              name="humyMin"
-              value={ajustesData.humyMin || ''}
-              disabled
-            />
-          </label>
-          <label>
-            Max Humidity:
-            <input
-              type="number"
-              name="humyMax"
-              value={ajustesData.humyMax || ''}
-              disabled
-            />
-          </label>
-          <button type="button" onClick={handleRequestCode}>
-            Modificar Valores
-          </button>
-        </form>
-      )}
-
-      {editMode && !codeValidated && (
-        <div>
-          <p>Ingrese el código de acceso enviado a su correo electrónico:</p>
+      <h1>Ajustes</h1>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Min Temperature:
           <input
-            type="text"
-            value={codeInput}
-            onChange={(e) => setCodeInput(e.target.value)}
+            type="number"
+            name="tempMin"
+            value={ajustesData.tempMin || ''}
+            onChange={handleChange}
+            disabled={!editMode}
           />
-          <button type="button" onClick={handleValidateCode}>
-            Validar Código
+        </label>
+        <label>
+          Max Temperature:
+          <input
+            type="number"
+            name="tempMax"
+            value={ajustesData.tempMax || ''}
+            onChange={handleChange}
+            disabled={!editMode}
+          />
+        </label>
+        <label>
+          Min Humidity:
+          <input
+            type="number"
+            name="humyMin"
+            value={ajustesData.humyMin || ''}
+            onChange={handleChange}
+            disabled={!editMode}
+          />
+        </label>
+        <label>
+          Max Humidity:
+          <input
+            type="number"
+            name="humyMax"
+            value={ajustesData.humyMax || ''}
+            onChange={handleChange}
+            disabled={!editMode}
+          />
+        </label>
+        {editMode ? (
+          <button type="submit">Guardar Cambios</button>
+        ) : (
+          <button type="button" onClick={() => setEditMode(true)}>
+            Modificar Ajustes
           </button>
-        </div>
-      )}
-
-      {editMode && codeValidated && (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Min Temperature:
-            <input
-              type="number"
-              name="tempMin"
-            //   value={ajustesData.tempMin || ''}
-              value={ajustesData.tempMin !== undefined && ajustesData.tempMin !== null ? ajustesData.tempMin : ''}
-
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Max Temperature:
-            <input
-              type="number"
-              name="tempMax"
-              value={ajustesData.tempMax || ''}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Min Humidity:
-            <input
-              type="number"
-              name="humyMin"
-              value={ajustesData.humyMin || ''}
-              onChange={handleChange}
-            />
-          </label>
-          <label>
-            Max Humidity:
-            <input
-              type="number"
-              name="humyMax"
-              value={ajustesData.humyMax || ''}
-              onChange={handleChange}
-            />
-          </label>
-          <button type="submit">Actualizar Ajustes</button>
-        </form>
-      )}
+        )}
+      </form>
     </div>
   );
 }
