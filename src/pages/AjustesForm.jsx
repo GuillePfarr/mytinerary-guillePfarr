@@ -205,7 +205,7 @@ function AjustesForm() {
 
   const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false); // Modo edición.
-  const [changesSaved, setChangesSaved] = useState(false); // Estado para mostrar confirmación.
+  const [message, setMessage] = useState(''); // Mensaje dinámico.
 
   // Obtener los datos de la base de datos al cargar el componente.
   useEffect(() => {
@@ -218,6 +218,7 @@ function AjustesForm() {
         setLoading(false);
       } catch (error) {
         console.error('Error al obtener los ajustes:', error);
+        setMessage('Error al cargar los ajustes. Intente más tarde.');
         setLoading(false);
       }
     };
@@ -237,25 +238,35 @@ function AjustesForm() {
   // Manejar el envío del formulario al servidor.
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validar campos antes de enviar.
+    if (
+      ajustesData.tempMin === '' ||
+      ajustesData.tempMax === '' ||
+      ajustesData.humyMin === '' ||
+      ajustesData.humyMax === ''
+    ) {
+      setMessage('Por favor, complete todos los campos.');
+      return;
+    }
+
     try {
       await axios.put(
         `${import.meta.env.VITE_API_URL}/api/ajuste/${ajustesData._id}`,
         ajustesData
       );
-      setChangesSaved(true);
-      alert('Valores modificados correctamente');
+      setMessage('Valores modificados correctamente.');
       setEditMode(false); // Desactivamos el modo edición tras guardar.
     } catch (error) {
       console.error('Error al actualizar los ajustes:', error);
-      alert('Error al actualizar los ajustes');
+      setMessage('Error al actualizar los valores. Intente nuevamente.');
     }
   };
 
   // Activar el modo edición.
   const enableEditMode = () => {
-    alert('Ahora puede editar los valores');
     setEditMode(true);
-    setChangesSaved(false); // Reiniciamos el estado de cambios guardados.
+    setMessage('Ahora puede editar los valores.');
   };
 
   // Prevenir la visualización incorrecta de valores como 0.
@@ -317,7 +328,7 @@ function AjustesForm() {
           <button type="submit">Confirme los Cambios</button>
         )}
       </form>
-      {changesSaved && <p style={{ color: 'green' }}>Los cambios han sido guardados exitosamente.</p>}
+      {message && <p style={{ color: 'blue', marginTop: '10px' }}>{message}</p>}
     </div>
   );
 }
