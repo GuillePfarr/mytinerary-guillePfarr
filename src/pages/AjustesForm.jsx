@@ -205,7 +205,7 @@ function AjustesForm() {
 
   const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false); // Modo edición.
-  const [changesSaved, setChangesSaved] = useState(false); // Estado para mostrar confirmación.
+  const [changesSaved, setChangesSaved] = useState(false); // Estado para mostrar confirmación de cambios guardados.
 
   // Obtener los datos de la base de datos al cargar el componente.
   useEffect(() => {
@@ -309,6 +309,8 @@ function AjustesForm() {
             disabled={!editMode}
           />
         </label>
+
+        {/* Botón para activar la edición */}
         {!editMode ? (
           <button type="button" onClick={enableEditMode}>
             Modificar Ajustes
