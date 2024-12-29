@@ -325,7 +325,9 @@ function AjustesForm() {
             Modificar Ajustes
           </button>
         ) : (
-          <button type="submit">Confirme los Cambios</button>
+          <button type="submit" disabled={!editMode}>
+            Confirme los Cambios
+          </button>
         )}
       </form>
       {message && <p style={{ color: 'blue', marginTop: '10px' }}>{message}</p>}
