@@ -249,6 +249,12 @@ function AjustesForm() {
     }
   };
 
+  // Activar el modo edición.
+  const enableEditMode = () => {
+    alert('Ahora puede editar los valores');
+    setEditMode(true);
+  };
+
   // Prevenir la visualización incorrecta de valores como 0.
   const formatValue = (value) => (value === null || value === undefined ? '' : value);
 
@@ -300,12 +306,12 @@ function AjustesForm() {
             disabled={!editMode}
           />
         </label>
-        {editMode ? (
-          <button type="submit">Guardar Cambios</button>
-        ) : (
-          <button type="button" onClick={() => setEditMode(true)}>
+        {!editMode ? (
+          <button type="button" onClick={enableEditMode}>
             Modificar Ajustes
           </button>
+        ) : (
+          <button type="submit">Confirme los Cambios</button>
         )}
       </form>
     </div>
