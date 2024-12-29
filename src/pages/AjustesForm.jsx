@@ -234,13 +234,6 @@ function AjustesForm() {
     }));
   };
 
-  // Activar el modo edición.
-  const enableEditMode = () => {
-    setEditMode(true);
-    setChangesSaved(false); // Reiniciamos el estado de cambios guardados.
-    alert('Ahora puede editar los valores');
-  };
-
   // Manejar el envío del formulario al servidor.
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -256,6 +249,13 @@ function AjustesForm() {
       console.error('Error al actualizar los ajustes:', error);
       alert('Error al actualizar los ajustes');
     }
+  };
+
+  // Activar el modo edición.
+  const enableEditMode = () => {
+    alert('Ahora puede editar los valores');
+    setEditMode(true);
+    setChangesSaved(false); // Reiniciamos el estado de cambios guardados.
   };
 
   // Prevenir la visualización incorrecta de valores como 0.
@@ -309,7 +309,6 @@ function AjustesForm() {
             disabled={!editMode}
           />
         </label>
-
         {!editMode ? (
           <button type="button" onClick={enableEditMode}>
             Modificar Ajustes
