@@ -236,29 +236,25 @@ function AjustesForm() {
 
   // Activar el modo edición.
   const enableEditMode = () => {
-    if (!editMode) {
-      setEditMode(true);
-      setChangesSaved(false); // Reiniciamos el estado de cambios guardados.
-      alert('Ahora puede editar los valores'); // Mostrar mensaje solo al habilitar edición.
-    }
+    setEditMode(true);
+    setChangesSaved(false); // Reiniciamos el estado de cambios guardados.
+    alert('Ahora puede editar los valores');
   };
 
   // Manejar el envío del formulario al servidor.
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevenir recarga de página.
-    if (editMode) {
-      try {
-        await axios.put(
-          `${import.meta.env.VITE_API_URL}/api/ajuste/${ajustesData._id}`,
-          ajustesData
-        );
-        setChangesSaved(true);
-        alert('Valores modificados correctamente'); // Mostrar confirmación.
-        setEditMode(false); // Desactivamos el modo edición tras guardar.
-      } catch (error) {
-        console.error('Error al actualizar los ajustes:', error);
-        alert('Error al actualizar los ajustes');
-      }
+    e.preventDefault();
+    try {
+      await axios.put(
+        `${import.meta.env.VITE_API_URL}/api/ajuste/${ajustesData._id}`,
+        ajustesData
+      );
+      setChangesSaved(true);
+      alert('Valores modificados correctamente');
+      setEditMode(false); // Desactivamos el modo edición tras guardar.
+    } catch (error) {
+      console.error('Error al actualizar los ajustes:', error);
+      alert('Error al actualizar los ajustes');
     }
   };
 
@@ -280,7 +276,7 @@ function AjustesForm() {
             name="tempMin"
             value={formatValue(ajustesData.tempMin)}
             onChange={handleChange}
-            disabled={!editMode} // Deshabilitar si no está en modo edición.
+            disabled={!editMode}
           />
         </label>
         <label>
@@ -322,11 +318,7 @@ function AjustesForm() {
           <button type="submit">Confirme los Cambios</button>
         )}
       </form>
-      {changesSaved && (
-        <p style={{ color: 'green' }}>
-          Los cambios han sido guardados exitosamente.
-        </p>
-      )}
+      {changesSaved && <p style={{ color: 'green' }}>Los cambios han sido guardados exitosamente.</p>}
     </div>
   );
 }
