@@ -55,6 +55,10 @@ const router = createBrowserRouter([
         path: '/vanguard',
         element: <Vanguard />
       },
+       {
+        path: '/ajustes',
+        element: <AjustesForm />
+      },
       
    
     ]

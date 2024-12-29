@@ -85,6 +85,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./vanguard.css";
+import { useNavigate } from 'react-router-dom';
+
+  const navigate = useNavigate();
+
+  const goToAjustes = () => {
+    navigate('/ajustes'); // Cambia a la ruta de AjustesForm.jsx
+  };
 
 const formatTime = (dateTimeString) => {
   if (!dateTimeString) return "No data available";
@@ -153,6 +160,7 @@ function Vanguard() {
               <p>Min Humidity: {ajustesData.humyMin} %</p>
               <p>Max Humidity: {ajustesData.humyMax} %</p>
             </div>
+            <button onClick={goToAjustes}>Ir a Ajustes de Parámetros</button>
           </div>
         </div>
       )}
