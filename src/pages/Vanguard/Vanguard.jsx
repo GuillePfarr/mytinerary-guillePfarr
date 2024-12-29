@@ -85,7 +85,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import "./vanguard.css";
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
   // const navigate = useNavigate();
 
@@ -105,6 +105,11 @@ const formatTime = (dateTimeString) => {
 function Vanguard() {
   const [vanguardData, setVanguardData] = useState(null);
   const [ajustesData, setAjustesData] = useState(null);
+   const navigate = useNavigate(); // Hook para la navegación
+
+  const goToAjustes = () => {
+    navigate('/ajustes'); // Navegar a la ruta de AjustesForm.jsx
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -159,6 +164,10 @@ function Vanguard() {
               <p>Max Temperature: {ajustesData.tempMax} °C</p>
               <p>Min Humidity: {ajustesData.humyMin} %</p>
               <p>Max Humidity: {ajustesData.humyMax} %</p>
+              {/* Botón para ir a Ajustes */}
+              <button className="btn btn-primary" onClick={goToAjustes}>
+                Ir a Ajustes de Parámetros
+              </button>
             </div>
             {/* <button onClick={goToAjustes}>Ir a Ajustes de Parámetros</button> */}
           </div>
