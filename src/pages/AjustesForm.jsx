@@ -205,7 +205,7 @@ function AjustesForm() {
 
   const [loading, setLoading] = useState(true);
   const [editMode, setEditMode] = useState(false); // Modo edición.
-  const [changesSaved, setChangesSaved] = useState(false); // Estado para mostrar confirmación de cambios guardados.
+  const [changesSaved, setChangesSaved] = useState(false); // Estado para mostrar confirmación.
 
   // Obtener los datos de la base de datos al cargar el componente.
   useEffect(() => {
@@ -235,8 +235,7 @@ function AjustesForm() {
   };
 
   // Manejar el envío del formulario al servidor.
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     try {
       await axios.put(
         `${import.meta.env.VITE_API_URL}/api/ajuste/${ajustesData._id}`,
@@ -268,7 +267,7 @@ function AjustesForm() {
   return (
     <div>
       <h1>Ajustes</h1>
-      <form onSubmit={handleSubmit}>
+      <form>
         <label>
           Min Temperature:
           <input
@@ -309,14 +308,14 @@ function AjustesForm() {
             disabled={!editMode}
           />
         </label>
-
-        {/* Botón para activar la edición */}
         {!editMode ? (
           <button type="button" onClick={enableEditMode}>
             Modificar Ajustes
           </button>
         ) : (
-          <button type="submit">Confirme los Cambios</button>
+          <button type="button" onClick={handleSubmit}>
+            Confirme los Cambios
+          </button>
         )}
       </form>
       {changesSaved && <p style={{ color: 'green' }}>Los cambios han sido guardados exitosamente.</p>}
