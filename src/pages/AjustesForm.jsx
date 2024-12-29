@@ -102,7 +102,7 @@ import axios from 'axios';
 
 function AjustesForm() {
   const [ajustesData, setAjustesData] = useState({
-    tempMin: '',
+    tempMin: 0,
     tempMax: '',
     humyMin: '',
     humyMax: '',
