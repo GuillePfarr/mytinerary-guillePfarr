@@ -102,7 +102,7 @@ import axios from 'axios';
 
 function AjustesForm() {
   const [ajustesData, setAjustesData] = useState({
-    tempMin: 0,
+    tempMin: '',
     tempMax: '',
     humyMin: '',
     humyMax: '',
@@ -188,7 +188,9 @@ function AjustesForm() {
             <input
               type="number"
               name="tempMin"
-              value={ajustesData.tempMin || ''}
+            //   value={ajustesData.tempMin || ''}
+              value={ajustesData.tempMin !== undefined && ajustesData.tempMin !== null ? ajustesData.tempMin : ''}
+
               disabled
             />
           </label>
@@ -246,7 +248,9 @@ function AjustesForm() {
             <input
               type="number"
               name="tempMin"
-              value={ajustesData.tempMin || ''}
+            //   value={ajustesData.tempMin || ''}
+              value={ajustesData.tempMin !== undefined && ajustesData.tempMin !== null ? ajustesData.tempMin : ''}
+
               onChange={handleChange}
             />
           </label>
