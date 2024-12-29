@@ -204,16 +204,16 @@ function AjustesForm() {
   });
 
   const [loading, setLoading] = useState(true);
-  const [editMode, setEditMode] = useState(false); // Controla si los campos son editables.
-  const [popupMessage, setPopupMessage] = useState(''); // Maneja los mensajes de popup.
+  const [editMode, setEditMode] = useState(false); // Modo edición.
+  const [changesSaved, setChangesSaved] = useState(false); // Estado para mostrar confirmación.
 
-  // Obtener datos iniciales al montar el componente.
+  // Obtener los datos de la base de datos al cargar el componente.
   useEffect(() => {
     const fetchAjustes = async () => {
       try {
         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/ajuste');
         const ajustes = response.data.response;
-        const currentAjusteObj = ajustes.find(ajuste => ajuste._id === '676e68bcce18f424bfd35d5a'); // Cambia el ID.
+        const currentAjusteObj = ajustes.find(ajuste => ajuste._id === '676e68bcce18f424bfd35d5a'); // Cambia este ID por el que corresponda.
         setAjustesData(currentAjusteObj || {});
         setLoading(false);
       } catch (error) {
@@ -234,25 +234,31 @@ function AjustesForm() {
     }));
   };
 
-  // Habilitar edición.
+  // Activar el modo edición.
   const enableEditMode = () => {
-    setEditMode(true);
-    setPopupMessage('Ahora puede editar los valores.');
+    if (!editMode) {
+      setEditMode(true);
+      setChangesSaved(false); // Reiniciamos el estado de cambios guardados.
+      alert('Ahora puede editar los valores'); // Mostrar mensaje solo al habilitar edición.
+    }
   };
 
-  // Enviar datos al servidor.
+  // Manejar el envío del formulario al servidor.
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evitar recarga.
-    try {
-      await axios.put(
-        `${import.meta.env.VITE_API_URL}/api/ajuste/${ajustesData._id}`,
-        ajustesData
-      );
-      setPopupMessage('Valores modificados correctamente.');
-      setEditMode(false); // Desactivar edición después de guardar.
-    } catch (error) {
-      console.error('Error al actualizar los ajustes:', error);
-      setPopupMessage('Error al actualizar los valores. Inténtelo de nuevo.');
+    e.preventDefault(); // Prevenir recarga de página.
+    if (editMode) {
+      try {
+        await axios.put(
+          `${import.meta.env.VITE_API_URL}/api/ajuste/${ajustesData._id}`,
+          ajustesData
+        );
+        setChangesSaved(true);
+        alert('Valores modificados correctamente'); // Mostrar confirmación.
+        setEditMode(false); // Desactivamos el modo edición tras guardar.
+      } catch (error) {
+        console.error('Error al actualizar los ajustes:', error);
+        alert('Error al actualizar los ajustes');
+      }
     }
   };
 
@@ -274,7 +280,7 @@ function AjustesForm() {
             name="tempMin"
             value={formatValue(ajustesData.tempMin)}
             onChange={handleChange}
-            disabled={!editMode} // Solo editable en modo edición.
+            disabled={!editMode} // Deshabilitar si no está en modo edición.
           />
         </label>
         <label>
@@ -316,10 +322,10 @@ function AjustesForm() {
           <button type="submit">Confirme los Cambios</button>
         )}
       </form>
-      {popupMessage && (
-        <div style={{ color: editMode ? 'blue' : 'green', marginTop: '10px' }}>
-          {popupMessage}
-        </div>
+      {changesSaved && (
+        <p style={{ color: 'green' }}>
+          Los cambios han sido guardados exitosamente.
+        </p>
       )}
     </div>
   );
