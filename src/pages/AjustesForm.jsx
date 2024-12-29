@@ -204,9 +204,9 @@ function AjustesForm() {
   });
 
   const [loading, setLoading] = useState(true);
-  const [editMode, setEditMode] = useState(false); // Conservamos el modo edición para futuros usos.
+  const [editMode, setEditMode] = useState(false); // Modo edición.
 
-  // Obtener los datos de la base de datos al cargar el componente
+  // Obtener los datos de la base de datos al cargar el componente.
   useEffect(() => {
     const fetchAjustes = async () => {
       try {
@@ -224,7 +224,7 @@ function AjustesForm() {
     fetchAjustes();
   }, []);
 
-  // Manejar cambios en los campos del formulario
+  // Manejar cambios en los campos del formulario.
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAjustesData((prevState) => ({
@@ -233,7 +233,7 @@ function AjustesForm() {
     }));
   };
 
-  // Manejar el envío del formulario al servidor
+  // Manejar el envío del formulario al servidor.
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -249,6 +249,9 @@ function AjustesForm() {
     }
   };
 
+  // Prevenir la visualización incorrecta de valores como 0.
+  const formatValue = (value) => (value === null || value === undefined ? '' : value);
+
   if (loading) {
     return <p>Cargando ajustes...</p>;
   }
@@ -262,7 +265,7 @@ function AjustesForm() {
           <input
             type="number"
             name="tempMin"
-            value={ajustesData.tempMin || ''}
+            value={formatValue(ajustesData.tempMin)}
             onChange={handleChange}
             disabled={!editMode}
           />
@@ -272,7 +275,7 @@ function AjustesForm() {
           <input
             type="number"
             name="tempMax"
-            value={ajustesData.tempMax || ''}
+            value={formatValue(ajustesData.tempMax)}
             onChange={handleChange}
             disabled={!editMode}
           />
@@ -282,7 +285,7 @@ function AjustesForm() {
           <input
             type="number"
             name="humyMin"
-            value={ajustesData.humyMin || ''}
+            value={formatValue(ajustesData.humyMin)}
             onChange={handleChange}
             disabled={!editMode}
           />
@@ -292,7 +295,7 @@ function AjustesForm() {
           <input
             type="number"
             name="humyMax"
-            value={ajustesData.humyMax || ''}
+            value={formatValue(ajustesData.humyMax)}
             onChange={handleChange}
             disabled={!editMode}
           />
@@ -310,3 +313,4 @@ function AjustesForm() {
 }
 
 export default AjustesForm;
+
