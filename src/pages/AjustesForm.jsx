@@ -204,10 +204,9 @@ function AjustesForm() {
   });
 
   const [loading, setLoading] = useState(true);
-  const [editMode, setEditMode] = useState(false); // Modo edición.
-  const [changesSaved, setChangesSaved] = useState(false); // Estado para mostrar confirmación.
+  const [editMode, setEditMode] = useState(false); // Conservamos el modo edición para futuros usos.
 
-  // Obtener los datos de la base de datos al cargar el componente.
+  // Obtener los datos de la base de datos al cargar el componente
   useEffect(() => {
     const fetchAjustes = async () => {
       try {
@@ -225,7 +224,7 @@ function AjustesForm() {
     fetchAjustes();
   }, []);
 
-  // Manejar cambios en los campos del formulario.
+  // Manejar cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setAjustesData((prevState) => ({
@@ -234,7 +233,7 @@ function AjustesForm() {
     }));
   };
 
-  // Manejar el envío del formulario al servidor.
+  // Manejar el envío del formulario al servidor
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -242,24 +241,13 @@ function AjustesForm() {
         `${import.meta.env.VITE_API_URL}/api/ajuste/${ajustesData._id}`,
         ajustesData
       );
-      setChangesSaved(true);
-      alert('Valores modificados correctamente');
+      alert('Ajustes actualizados correctamente');
       setEditMode(false); // Desactivamos el modo edición tras guardar.
     } catch (error) {
       console.error('Error al actualizar los ajustes:', error);
       alert('Error al actualizar los ajustes');
     }
   };
-
-  // Activar el modo edición.
-  const enableEditMode = () => {
-    alert('Ahora puede editar los valores');
-    setEditMode(true);
-    setChangesSaved(false); // Reiniciamos el estado de cambios guardados.
-  };
-
-  // Prevenir la visualización incorrecta de valores como 0.
-  const formatValue = (value) => (value === null || value === undefined ? '' : value);
 
   if (loading) {
     return <p>Cargando ajustes...</p>;
@@ -274,7 +262,7 @@ function AjustesForm() {
           <input
             type="number"
             name="tempMin"
-            value={formatValue(ajustesData.tempMin)}
+            value={ajustesData.tempMin || ''}
             onChange={handleChange}
             disabled={!editMode}
           />
@@ -284,7 +272,7 @@ function AjustesForm() {
           <input
             type="number"
             name="tempMax"
-            value={formatValue(ajustesData.tempMax)}
+            value={ajustesData.tempMax || ''}
             onChange={handleChange}
             disabled={!editMode}
           />
@@ -294,7 +282,7 @@ function AjustesForm() {
           <input
             type="number"
             name="humyMin"
-            value={formatValue(ajustesData.humyMin)}
+            value={ajustesData.humyMin || ''}
             onChange={handleChange}
             disabled={!editMode}
           />
@@ -304,23 +292,21 @@ function AjustesForm() {
           <input
             type="number"
             name="humyMax"
-            value={formatValue(ajustesData.humyMax)}
+            value={ajustesData.humyMax || ''}
             onChange={handleChange}
             disabled={!editMode}
           />
         </label>
-        {!editMode ? (
-          <button type="button" onClick={enableEditMode}>
+        {editMode ? (
+          <button type="submit">Guardar Cambios</button>
+        ) : (
+          <button type="button" onClick={() => setEditMode(true)}>
             Modificar Ajustes
           </button>
-        ) : (
-          <button type="submit">Confirme los Cambios</button>
         )}
       </form>
-      {changesSaved && <p style={{ color: 'green' }}>Los cambios han sido guardados exitosamente.</p>}
     </div>
   );
 }
 
 export default AjustesForm;
-
