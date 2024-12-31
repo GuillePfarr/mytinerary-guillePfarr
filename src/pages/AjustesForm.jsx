@@ -35,7 +35,7 @@ function AjustesForm() {
       if (!editMode) {
         fetchAjustes(); // Solo actualiza si no estamos en modo edición.
       }
-    }, 15000);
+    }, 30000);
 
     return () => clearInterval(intervalId); // Limpieza del intervalo al desmontar.
     // **FIN DEL NUEVO BLOQUE**
