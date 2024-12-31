@@ -15,6 +15,8 @@ function AjustesForm() {
 
   // Obtener los datos de la base de datos al cargar el componente.
   useEffect(() => {
+    let intervalId;
+
     const fetchAjustes = async () => {
       try {
         const response = await axios.get(import.meta.env.VITE_API_URL + '/api/ajuste');
@@ -28,17 +30,20 @@ function AjustesForm() {
       }
     };
 
+    // Llamar a la API inmediatamente al cargar el componente.
     fetchAjustes();
 
-    // **NUEVO: Configurar actualizaciones automáticas cada 15 segundos**
-    const intervalId = setInterval(() => {
-      if (!editMode) {
-        fetchAjustes(); // Solo actualiza si no estamos en modo edición.
-      }
-    }, 30000);
+    // Configurar actualizaciones automáticas si no está en modo edición.
+    if (!editMode) {
+      intervalId = setInterval(fetchAjustes, 30000);
+    }
 
-    return () => clearInterval(intervalId); // Limpieza del intervalo al desmontar.
-    // **FIN DEL NUEVO BLOQUE**
+    // Limpieza del intervalo al desmontar.
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
   }, [editMode]); // Dependencia en editMode para pausar mientras se edita.
 
   // Manejar cambios en los campos del formulario.
