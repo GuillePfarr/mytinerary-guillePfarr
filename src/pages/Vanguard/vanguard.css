@@ -19,7 +19,7 @@
 
 /* Estilo para las tarjetas de datos */
 .data-card, .ajustes-card {
-  flex: 1;
+  flex: 1 1 calc(50% - 20px); /* Permite que las tarjetas ocupen el 50% del ancho disponible */
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
