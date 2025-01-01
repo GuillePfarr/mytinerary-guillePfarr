@@ -1,35 +1,83 @@
-/* .sensors-container{
-display: flex;
-align-items: center;
-} */
+/* Contenedor principal para los datos de Vanguard */
+.vanguard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+}
 
+/* Contenedor para las tarjetas */
 .vanguard-content {
   display: flex;
   justify-content: space-between;
   gap: 20px;
+  flex-wrap: wrap; /* Permite que las tarjetas se ajusten en pantallas pequeñas */
+  width: 100%;
+  max-width: 1200px; /* Limita el tamaño máximo del contenedor */
 }
 
-.data-card, .parameters-card {
+/* Estilo para las tarjetas de datos */
+.data-card, .ajustes-card {
   flex: 1;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   background-color: #fff;
+  min-width: 280px; /* Asegura que las tarjetas no se hagan demasiado pequeñas */
 }
 
+/* Ajustes en el diseño de las tarjetas */
 .card-body {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.edit-form label {
-  display: flex;
-  flex-direction: column;
+/* Estilo para los títulos dentro de las tarjetas */
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
   margin-bottom: 10px;
 }
 
-.access-key {
-  margin-top: 20px;
+/* Estilo de los botones */
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo para las tarjetas en pantallas más pequeñas */
+@media (max-width: 768px) {
+  .vanguard-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .data-card, .ajustes-card {
+    width: 100%;
+    max-width: 500px; /* Limita el tamaño máximo de las tarjetas en pantallas pequeñas */
+    margin-bottom: 20px;
+  }
+}
+
+/* Estilo para pantallas muy pequeñas (por ejemplo, móviles) */
+@media (max-width: 480px) {
+  .card-title {
+    font-size: 1rem;
+  }
+
+  .btn {
+    width: 100%; /* El botón ocupará el ancho completo en pantallas pequeñas */
+  }
 }
