@@ -16,7 +16,7 @@
   align-items: flex-start; /* Alinea las tarjetas en la parte superior */
   flex-wrap: nowrap; /* Evita que las tarjetas bajen de línea */
   gap: 20px;
-  width: 100%;
+  /* width: 100%; */
   max-width: 1200px; /* Limita el tamaño máximo del contenedor */
 }
 
