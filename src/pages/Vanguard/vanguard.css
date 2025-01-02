@@ -11,21 +11,22 @@
 .vanguard-content {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start; /* Alinea las tarjetas en la parte superior */
+  flex-wrap: nowrap; /* Evita que las tarjetas bajen de línea */
   gap: 20px;
-  flex-wrap: wrap; /* Permite que las tarjetas se ajusten en pantallas pequeñas */
   width: 100%;
   max-width: 1200px; /* Limita el tamaño máximo del contenedor */
 }
 
-/* Estilo para las tarjetas de datos */
+/* Estilo para las tarjetas */
 .data-card, .ajustes-card {
-  flex: 1 1 calc(50% - 20px); /* Permite que las tarjetas ocupen el 50% del ancho disponible */
+  flex: 1; /* Las tarjetas comparten el espacio disponible por igual */
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   background-color: #fff;
-  min-width: 280px; /* Asegura que las tarjetas no se hagan demasiado pequeñas */
+  min-width: 300px; /* Asegura que las tarjetas no se hagan demasiado pequeñas */
 }
 
 /* Ajustes en el diseño de las tarjetas */
@@ -57,27 +58,38 @@
   background-color: #0056b3;
 }
 
-/* Estilo para las tarjetas en pantallas más pequeñas */
+/* Diseño responsivo para pantallas medianas */
+@media (max-width: 992px) {
+  .vanguard-content {
+    flex-wrap: wrap; /* Permite que las tarjetas se apilen */
+  }
+
+  .data-card, .ajustes-card {
+    flex: 1 1 calc(50% - 20px); /* Ocupan el 50% del ancho disponible */
+  }
+}
+
+/* Diseño responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
   .vanguard-content {
-    flex-direction: column;
+    flex-direction: column; /* Las tarjetas se apilan verticalmente */
     align-items: center;
   }
 
   .data-card, .ajustes-card {
-    width: 100%;
-    max-width: 500px; /* Limita el tamaño máximo de las tarjetas en pantallas pequeñas */
+    width: 100%; /* Ocupan todo el ancho */
+    max-width: 500px; /* Limita el tamaño máximo de las tarjetas */
     margin-bottom: 20px;
   }
 }
 
-/* Estilo para pantallas muy pequeñas (por ejemplo, móviles) */
+/* Estilo para pantallas muy pequeñas (móviles) */
 @media (max-width: 480px) {
   .card-title {
     font-size: 1rem;
   }
 
   .btn {
-    width: 100%; /* El botón ocupará el ancho completo en pantallas pequeñas */
+    width: 100%; /* El botón ocupa el ancho completo */
   }
 }
