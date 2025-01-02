@@ -9,13 +9,7 @@
   background-color: #87F;
 }
 
-.cardsfield {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  max-width: 100%;
-}
+
 
 
 /* Contenedor para las tarjetas */

@@ -23,6 +23,7 @@ function Cities() {
   useEffect(() => {
     axios
       .get(import.meta.env.VITE_API_URL + '/api/cities')
+      // .get(`${import.meta.env.VITE_API_URL}/api/cities`)
       .then((res) => {
         setCities(res.data.response);
         setFilteredCities(res.data.response);

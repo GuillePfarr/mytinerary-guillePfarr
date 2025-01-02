@@ -1,12 +1,122 @@
 .HeaderMain {
-    min-height: 15vh;
-    background-color: rgb(28, 77, 133);
-    position: relative;
+  min-height: 10vh;
+  background-color: rgb(28, 77, 133); /* Cambié a un color más cercano al ejemplo */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.Navbar-main a {
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
-    color: rgb(98, 98, 218);
+.NavbarContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 20px;
+}
+
+.LogoAndTitle {
+  display: flex;
+  align-items: center;
+}
+
+.MyTNabvar {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: white;
+}
+
+.ToggleButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: white;
+  display: none; /* Solo visible en móviles */
+}
+
+.CloseButton {
+  display: block;
+}
+
+.NavbarLinks {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+
+.NavbarLinks ul {
+  display: flex;
+  position: relative;
+  right: 1rem;
+  list-style: none;
+}
+
+.NavbarLinks li {
+  margin-right: 1rem;
+}
+
+.NavbarLinks a {
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgb(98, 98, 218);
+  padding: 5px;
+}
+
+.NavbarLinks a:hover {
+  color: rgb(190, 57, 124);
+}
+
+.ShowMenu {
+  display: none;
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 100%;
+  background-color: rgb(28, 77, 133);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.ShowMenu ul {
+  flex-direction: column;
+  padding: 0;
+}
+
+.ShowMenu li {
+  margin-right: 0;
+}
+
+@media (max-width: 768px) {
+  .ToggleButton {
+    display: block;
+  }
+
+  .NavbarLinks {
+    display: none; /* El menú de navegación será oculto por defecto en dispositivos móviles */
+  }
+
+  .ShowMenu {
+    display: block;
+  }
+
+  .NavbarLinks.ShowMenu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .NavbarLinks li {
+    margin: 0.5rem 0;
+  }
+}
+
+.LogoMyTinerary {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0.2em #87F;
 }

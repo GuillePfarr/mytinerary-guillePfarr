@@ -26,6 +26,7 @@ function Vanguard() {
       try {
         // Fetch vanguard data
         const vanguardResponse = await axios.get(import.meta.env.VITE_API_URL + '/api/vanguard');
+        
         const vanguards = vanguardResponse.data.response;
         const currentTemperatureObj = vanguards.find((vanguard) => vanguard._id === '6609c0e76cfbe770c4735e09');
         setVanguardData(currentTemperatureObj);

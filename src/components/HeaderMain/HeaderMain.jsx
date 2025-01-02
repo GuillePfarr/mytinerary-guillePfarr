@@ -2,29 +2,27 @@ import React, { useState } from 'react';
 import NavbarMain from '../NavbarMain/NavbarMain';
 import './headermain.css';
 
-const links = [
-  { value: '/', content: 'Home', id: '1', active: true },
-  { value: '/cities', content: 'Cities', id: '2', active: false },
-  { value: '/signup', content: 'SignUp', id: '3', active: false },
-  { value: '/signin', content: 'SignIn', id: '4', active: false },
-  { value: '/logout', content: 'LogOut', id: '5', active: false },
-  { value: '/vanguard', content: 'Vanguard', id: '6', active: false }
-];
-
 const HeaderMain = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
     <header className="HeaderMain">
-      <button className="toggle-button" onClick={() => setShowMenu(showMenu)}>
-        Menu
-      </button>
-      {showMenu && <NavbarMain links={links} />}
+      <div className="NavbarContainer">
+        <div className="LogoAndTitle">
+          <img className="LogoMyTinerary" src="/MyTinerary.png" alt="MyTinerary Logo" />
+          <h1 className="MyTNabvar">MyTinerary</h1>
+        </div>
+        <button
+          className={`ToggleButton ${showMenu ? 'CloseButton' : ''}`}
+          onClick={() => setShowMenu(!showMenu)}
+          aria-label={showMenu ? 'Close Menu' : 'Open Menu'}
+        >
+          {showMenu ? 'X' : '☰'}
+        </button>
+      </div>
+      {showMenu && <NavbarMain />}
     </header>
   );
 };
 
 export default HeaderMain;
-
-
-
