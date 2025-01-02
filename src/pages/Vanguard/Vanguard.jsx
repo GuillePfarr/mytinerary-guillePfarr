@@ -160,7 +160,7 @@ function Vanguard() {
             {/* Tarjeta de ajustes */}
             <div className="card ajustes-card">
               <div className="card-body">
-                <h5 className="card-title">Ajustes</h5>
+                <h5 className="card-title">Parámetros</h5>
                 <p>Min Temperature: {ajustesData.tempMin} °C</p>
                 <p>Max Temperature: {ajustesData.tempMax} °C</p>
                 <p>Min Humidity: {ajustesData.humyMin} %</p>
