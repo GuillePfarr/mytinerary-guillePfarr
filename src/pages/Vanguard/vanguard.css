@@ -1,10 +1,12 @@
 /* Contenedor principal para los datos de Vanguard */
 .vanguard-container {
+  width: 100%;
+  min-height: 70vh;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  width: 100%;
+  background-color: #87F;
 }
 
 /* Contenedor para las tarjetas */
