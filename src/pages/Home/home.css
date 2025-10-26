@@ -6,11 +6,11 @@
   place-content: center;
   background-color: rgb(16, 16, 19);
   width: 100%;
-  max-width: 1440px;
+  
 
 
   background-position: 20%;
-  background-size: 100%;
+  /* background-size: 100%; */
 
   background-repeat: no-repeat;
 }
@@ -25,7 +25,7 @@
   background-position: 100%;
   border-radius: 10px;
   animation: shineText 4s linear infinite;
-width: 98vw;
+width: 100%;
 }
 
 @keyframes shineText {
@@ -73,7 +73,7 @@ text-align: center;
 .home-carousel {
 background-color: #87F;
   flex-direction: column;
-  max-width: 1440px;
+  max-width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -85,6 +85,7 @@ z-index: 100;
 
 .carousel-title{
 text-align: center;
+width: 100%;
 }
 
 
@@ -103,6 +104,12 @@ background-color: #87F;
   -webkit-background-clip: text;
   color: transparent;
   animation: shine 10s linear infinite; 
+}
+
+.homeMain{
+ display: flex;
+ flex-wrap: wrap;
+ width: 100%;
 }
 
 @keyframes shine {

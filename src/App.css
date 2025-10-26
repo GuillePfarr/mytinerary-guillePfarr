@@ -1,10 +1,8 @@
 .app-layout{
 min-height: 100vh;
-
 flex-direction: column;
-
 display: flex;
-
+flex-wrap: wrap;
 }
 
 .app-header, .app-footer{

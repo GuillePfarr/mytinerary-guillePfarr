@@ -50,7 +50,7 @@ const SignIn = () => {
            }
 
     return (
-        <div>
+        
             <div className="signin-container">
                 <form className="signin-form" onSubmit={handleSubmit}>
                     <label className="signin-label">
@@ -82,7 +82,7 @@ const SignIn = () => {
 
                 </div>
 
-            </div>
+           
         </div>
     );
 };

@@ -1,6 +1,7 @@
 .HeaderMain {
   min-height: 10vh;
   background-color: antiquewhite;
+  width: 100vw;
 }
 
 .buttonLogout {
@@ -22,9 +23,11 @@
 
 .NavbarContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: left;
   justify-content: space-between;
-  padding: 10px 20px;
+  width: 70vw;
+  /* padding: 10px 20px; */
 }
 
 .LogoAndTitle {

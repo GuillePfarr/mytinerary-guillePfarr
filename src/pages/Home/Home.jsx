@@ -8,7 +8,7 @@ const Home = () => {
   const location = useLocation();
 
   return (
-    <main>
+    <main className='homeMain'>
       <section className="homeHero">
         <div className="homeHeroTitle">
           "Find your perfect trip. Designed by insiders who know and love their cities"
@@ -21,11 +21,11 @@ const Home = () => {
         </div>
 
       </section>
-<div className='carousel-title'><h3 className='h3-carousel-title'>Popular MyTineraries</h3></div>
+      <div className='carousel-title'><h3 className='h3-carousel-title'>Popular MyTineraries</h3></div>
       <section className="home-carousel">
 
-  
-  <Carousel />
+
+        <Carousel />
       </section>
     </main>
   );

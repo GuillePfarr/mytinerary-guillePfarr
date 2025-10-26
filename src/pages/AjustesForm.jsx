@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './ajustesForm.css';
 
 function AjustesForm() {
   const [ajustesData, setAjustesData] = useState({
@@ -86,9 +87,9 @@ function AjustesForm() {
   }
 
   return (
-    <div>
+    <div className='ajustes-form'>
       <h1>Ajustes</h1>
-      <form>
+      <form className='form-ajustes'>
         <label>
           Min Temperature:
           <input

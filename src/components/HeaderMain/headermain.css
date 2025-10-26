@@ -3,12 +3,15 @@
   background-color: rgb(28, 77, 133); /* Cambié a un color más cercano al ejemplo */
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+width: 100%;
 }
 
 .NavbarContainer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
   padding: 10px 20px;
