@@ -107,7 +107,6 @@ background-color: #87F;
 }
 
 .homeMain{
- display: flex;
  flex-wrap: wrap;
  width: 100%;
 }
