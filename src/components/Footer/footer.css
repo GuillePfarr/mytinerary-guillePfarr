@@ -1,82 +1,85 @@
-.footer-container{
-display: flex;
-flex-wrap: wrap;
-background-color: #3b3737;
-padding: 85px 0;
-margin-top: 2rem;
-width: 100%;
-margin-top: 0;
+.footer {
+  background: #0b0c10;
+  color: #ffffff;
+  padding: 40px 20px;
+  font-family: "Roboto", sans-serif;
 }
 
-.single-content{
-padding: 115px 0;
-text-align: center;
+.footer-grid {
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  max-width: 1200px;
+  margin: auto;
 }
 
-
-.single-box p{
-color: #fff;
-line-height: 1.9;
-
-}
-.single-box h3{
-font-size: 16px;
-font-weight: 700;
-color: #fff;
+.footer-section {
+  display: flex;
+  flex-direction: column;
 }
 
-.single-box .card-area i{
-color: #fff;
-font-size: 20px;
-margin-right: 10px;
-
+.footer-title {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
 }
 
-.single-box ul{
-list-style: none;
-padding: 0;
+.footer-subtitle,
+.footer-heading {
+  font-size: 1.2rem;
+  margin: 16px 0 8px;
+  color: #66fcf1;
 }
 
-.single-box ul li a{
-text-decoration: none;
-color: #fff;
-line-height: 2.5;
-font-weight: 100;
+.payment-icons img {
+  margin-right: 10px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
 }
 
-
-.single-box h2{
-color: #fff;
-font-size: 20px;
-font-weight: 700;
+.payment-icons img:hover {
+  transform: scale(1.15);
 }
 
-#basic-addon2{
-background: #fe1e4f;
-color:#fff;
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.socials i {
-font-size: 18px;
-margin-right: 15px;
+.footer-links a {
+  color: #c5c6c7;
+  text-decoration: none;
+  display: block;
+  padding: 4px 0;
+  transition: color 0.2s ease;
 }
 
-.fa fa-credit-card{
-height: 30px;
-width: 30px;
+.footer-links a:hover {
+  color: #66fcf1;
 }
 
-.aNetz{
-margin-left: 1rem;
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #1f2833;
+  margin-top: 30px;
+  padding-top: 20px;
+  font-size: 0.9rem;
+  color: #c5c6c7;
 }
 
-.credit-card-icon{
-margin-left: 1rem;
+.social-icons {
+  margin-top: 8px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
 }
 
-#h1{
-font-size: 1rem;
+.social-icons a {
+  color: inherit; 
+  transition: 0.3s ease;
 }
 
-
-
+.social-icons a:hover {
+  opacity: 0.75;
+  transform: scale(1.08);
+}
