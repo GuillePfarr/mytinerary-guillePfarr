@@ -1,88 +1,154 @@
-import './App.css';
-import LayoutMain from './pages/Layout/LayoutMain';
-import Home from './pages/Home/Home';
-import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom';
-import Componente404 from './pages/Componente404';
-import Cities from './pages/Cities/Cities';
-import CityDetails from './components/Details/CityDetails';
-import SignUp from './pages/SignUp.jsx';
-import SignIn from './pages/SignIn.jsx';
-import LogOut from './pages/LogOut';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { signInWithToken } from './redux/actions/userActions';
-import Vanguard from './pages/Vanguard/Vanguard.jsx';
-import AjustesForm from './pages/AjustesForm.jsx';
+// import './App.css';
+// import LayoutMain from './pages/Layout/LayoutMain';
+// import Home from './pages/Home/Home';
+// import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom';
+// import Componente404 from './pages/Componente404';
+// import Cities from './pages/Cities/Cities';
+// import CityDetails from './components/Details/CityDetails';
+// import SignUp from './pages/SignUp.jsx';
+// import SignIn from './pages/SignIn.jsx';
+// import LogOut from './pages/LogOut';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { useEffect } from 'react';
+// import { signInWithToken } from './redux/actions/userActions';
+// import Vanguard from './pages/Vanguard/Vanguard.jsx';
+// import AjustesForm from './pages/AjustesForm.jsx';
+// import Devices from './pages/Devices/devices.jsx';
+
+
+
+
+// const router = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <LayoutMain />,
+//     children: [
+//       {
+//         path: '/',
+//         element: <Home />
+//       },
+//       {
+//         path: '/cities',
+//         element: <Cities />
+//       },
+
+//       {
+//         path: '/citydetails/:id',
+//         element: <CityDetails />
+//       },
+
+//       {
+//         path: '*',
+//         element: <Componente404 />
+//       },
+//       {
+//         path: '/signup',
+//         element: <SignUp />
+//       },
+//       {
+//         path: '/signin',
+//         element: <SignIn />
+//       },
+//       {
+//         path: '/logout',
+//         element: <LogOut />
+//       },
+//       {
+//         path: '/vanguard',
+//         element: <Vanguard />
+//       },
+//        {
+//         path: '/ajustes',
+//         element: <AjustesForm />
+//       },
+//         {
+//         path: '/devices',
+//         element: <Devices />
+//       },
+   
+//     ]
+//   },
+
+// ])
+
+// function App() {
+
+//   const dispatch = useDispatch()
+//   useEffect(() => {
+//     const token = localStorage.getItem("token")
+
+//     if (token) {
+//       dispatch(signInWithToken(token))
+
+//     }
+//   }, [])
+
+//   return (
+
+//     <RouterProvider router={router} />
+
+//   )
+// }
+
+// export default App
+
+import "./App.css";
+import LayoutMain from "./pages/Layout/LayoutMain";
+import Home from "./pages/Home/Home";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Componente404 from "./pages/Componente404";
+import Cities from "./pages/Cities/Cities";
+import CityDetails from "./components/Details/CityDetails";
+import SignUp from "./pages/SignUp.jsx";
+import SignIn from "./pages/SignIn.jsx";
+import LogOut from "./pages/LogOut";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { signInWithToken } from "./redux/actions/userActions";
+import Vanguard from "./pages/Vanguard/Vanguard.jsx";
+import AjustesForm from "./pages/AjustesForm.jsx";
+import Devices from "./pages/Devices/Devices.jsx"; // ✅ ESTE era el problema
+import RequireAuth from "./components/auth/RequireAuth.jsx";
 
 
 
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <LayoutMain />,
     children: [
+      { path: "/", element: <Home /> },
+      { path: "/cities", element: <Cities /> },
+      { path: "/citydetails/:id", element: <CityDetails /> },
+      { path: "/signup", element: <SignUp /> },
+      { path: "/signin", element: <SignIn /> },
+      { path: "/logout", element: <LogOut /> },
+      { path: "/vanguard", element: <Vanguard /> },
+      { path: "/ajustes", element: <AjustesForm /> },
+      //{ path: "/devices", element: <Devices /> },
       {
-        path: '/',
-        element: <Home />
-      },
-      {
-        path: '/cities',
-        element: <Cities />
-      },
-
-      {
-        path: '/citydetails/:id',
-        element: <CityDetails />
-      },
-
-      {
-        path: '*',
-        element: <Componente404 />
-      },
-      {
-        path: '/signup',
-        element: <SignUp />
-      },
-      {
-        path: '/signin',
-        element: <SignIn />
-      },
-      {
-        path: '/logout',
-        element: <LogOut />
-      },
-      {
-        path: '/vanguard',
-        element: <Vanguard />
-      },
-       {
-        path: '/ajustes',
-        element: <AjustesForm />
-      },
-      
-   
-    ]
+  path: '/devices',
+  element: (
+    <RequireAuth>
+      <Devices />
+    </RequireAuth>
+  )
+},
+      { path: "*", element: <Componente404 /> },
+    ],
   },
-
-])
+]);
 
 function App() {
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
   useEffect(() => {
-    const token = localStorage.getItem("token")
-    if (token) {
-      dispatch(signInWithToken(token))
+    const token = localStorage.getItem("token");
+    if (token) dispatch(signInWithToken(token));
+  }, [dispatch]);
 
-    }
-  }, [])
-
-  return (
-
-    <RouterProvider router={router} />
-
-  )
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;
