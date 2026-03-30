@@ -1,17 +1,18 @@
-// import { useEffect, useMemo, useState } from "react";
+// import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
 // import { devicesService } from "../../services/devicesService";
 
 // export default function Devices() {
+//   const navigate = useNavigate();
+
 //   const [devices, setDevices] = useState([]);
 //   const [loading, setLoading] = useState(true);
-//   const [busyId, setBusyId] = useState(null);
+//   const [busyKey, setBusyKey] = useState(null); // ej: "esp32_01:ON" | "CLAIM"
 //   const [error, setError] = useState("");
 
 //   // claim form
 //   const [claimDeviceId, setClaimDeviceId] = useState("");
 //   const [claimName, setClaimName] = useState("");
-
-//   const isAuthed = useMemo(() => !!localStorage.getItem("token"), []);
 
 //   async function loadDevices() {
 //     setError("");
@@ -27,35 +28,42 @@
 //   }
 
 //   useEffect(() => {
-//     if (isAuthed) loadDevices();
-//     else {
-//       setLoading(false);
-//       setError("No hay token. Iniciá sesión primero.");
+//     // Si no hay token, no es "error": es que hay que loguearse
+//     const token = localStorage.getItem("token");
+//     if (!token) {
+//       navigate("/signin", { replace: true, state: { from: "/devices" } });
+//       return;
 //     }
+
+//     loadDevices();
+
+//     // Si apiClient dispara logout global (401), volvemos a login
+//     const onLogout = () => navigate("/signin", { replace: true, state: { from: "/devices" } });
+//     window.addEventListener("auth:logout", onLogout);
+//     return () => window.removeEventListener("auth:logout", onLogout);
 //     // eslint-disable-next-line react-hooks/exhaustive-deps
 //   }, []);
 
 //   async function handleRelay(deviceId, state) {
 //     setError("");
-//     setBusyId(deviceId);
+//     const key = `${deviceId}:${state}`;
+//     setBusyKey(key);
 //     try {
 //       await devicesService.setRelay25(deviceId, state);
-//       // si tu backend no devuelve estado, igual refrescamos lista por si guardás lastState más adelante
-//       // por ahora solo mostramos que fue ok:
 //       setDevices((prev) =>
 //         prev.map((d) => (d.deviceId === deviceId ? { ...d, relay25: state } : d))
 //       );
 //     } catch (e) {
 //       setError(e.message);
 //     } finally {
-//       setBusyId(null);
+//       setBusyKey(null);
 //     }
 //   }
 
 //   async function handleClaim(e) {
 //     e.preventDefault();
 //     setError("");
-//     setBusyId("CLAIM");
+//     setBusyKey("CLAIM");
 //     try {
 //       await devicesService.claimDevice(claimDeviceId.trim(), claimName.trim());
 //       setClaimDeviceId("");
@@ -64,7 +72,7 @@
 //     } catch (e2) {
 //       setError(e2.message);
 //     } finally {
-//       setBusyId(null);
+//       setBusyKey(null);
 //     }
 //   }
 
@@ -112,16 +120,16 @@
 //           />
 //           <button
 //             type="submit"
-//             disabled={busyId === "CLAIM" || !claimDeviceId.trim()}
+//             disabled={busyKey === "CLAIM" || !claimDeviceId.trim()}
 //             style={{ padding: "10px 14px", cursor: "pointer" }}
 //           >
-//             {busyId === "CLAIM" ? "Claim..." : "Claim"}
+//             {busyKey === "CLAIM" ? "Claim..." : "Claim"}
 //           </button>
 
 //           <button
 //             type="button"
 //             onClick={loadDevices}
-//             disabled={busyId === "CLAIM"}
+//             disabled={busyKey === "CLAIM"}
 //             style={{ padding: "10px 14px", cursor: "pointer" }}
 //           >
 //             Refrescar
@@ -152,30 +160,23 @@
 //                   {d.name || "(sin nombre)"}{" "}
 //                   <span style={{ fontWeight: 400, opacity: 0.7 }}>— {d.deviceId}</span>
 //                 </div>
-//                 <div style={{ fontSize: 13, opacity: 0.75 }}>
-//                   owner: {typeof d.owner === "string" ? d.owner : d.owner?._id || "(?)"}
-//                 </div>
-//                 {"relay25" in d && (
-//                   <div style={{ marginTop: 6, fontSize: 13 }}>
-//                     Relay25 UI-state: <b>{d.relay25}</b>
-//                   </div>
-//                 )}
 //               </div>
 
 //               <div style={{ display: "flex", gap: 10 }}>
 //                 <button
 //                   onClick={() => handleRelay(d.deviceId, "ON")}
-//                   disabled={busyId === d.deviceId}
+//                   disabled={busyKey === `${d.deviceId}:ON` || busyKey === `${d.deviceId}:OFF`}
 //                   style={{ padding: "10px 16px", cursor: "pointer" }}
 //                 >
-//                   {busyId === d.deviceId ? "Enviando..." : "Relay25 ON"}
+//                   {busyKey === `${d.deviceId}:ON` ? "Enviando..." : "Relay25 ON"}
 //                 </button>
+
 //                 <button
 //                   onClick={() => handleRelay(d.deviceId, "OFF")}
-//                   disabled={busyId === d.deviceId}
+//                   disabled={busyKey === `${d.deviceId}:ON` || busyKey === `${d.deviceId}:OFF`}
 //                   style={{ padding: "10px 16px", cursor: "pointer" }}
 //                 >
-//                   {busyId === d.deviceId ? "Enviando..." : "Relay25 OFF"}
+//                   {busyKey === `${d.deviceId}:OFF` ? "Enviando..." : "Relay25 OFF"}
 //                 </button>
 //               </div>
 //             </div>
@@ -186,7 +187,6 @@
 //   );
 // }
 
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { devicesService } from "../../services/devicesService";
@@ -196,11 +196,11 @@ export default function Devices() {
 
   const [devices, setDevices] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [busyKey, setBusyKey] = useState(null); // ej: "esp32_01:ON" | "CLAIM"
+  const [busyKey, setBusyKey] = useState(null);
   const [error, setError] = useState("");
 
-  // claim form
   const [claimDeviceId, setClaimDeviceId] = useState("");
+  const [claimCode, setClaimCode] = useState("");
   const [claimName, setClaimName] = useState("");
 
   async function loadDevices() {
@@ -217,7 +217,6 @@ export default function Devices() {
   }
 
   useEffect(() => {
-    // Si no hay token, no es "error": es que hay que loguearse
     const token = localStorage.getItem("token");
     if (!token) {
       navigate("/signin", { replace: true, state: { from: "/devices" } });
@@ -226,8 +225,9 @@ export default function Devices() {
 
     loadDevices();
 
-    // Si apiClient dispara logout global (401), volvemos a login
-    const onLogout = () => navigate("/signin", { replace: true, state: { from: "/devices" } });
+    const onLogout = () =>
+      navigate("/signin", { replace: true, state: { from: "/devices" } });
+
     window.addEventListener("auth:logout", onLogout);
     return () => window.removeEventListener("auth:logout", onLogout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -237,10 +237,23 @@ export default function Devices() {
     setError("");
     const key = `${deviceId}:${state}`;
     setBusyKey(key);
+
     try {
       await devicesService.setRelay25(deviceId, state);
+
+      // actualización visual inmediata
       setDevices((prev) =>
-        prev.map((d) => (d.deviceId === deviceId ? { ...d, relay25: state } : d))
+        prev.map((d) =>
+          d.deviceId === deviceId
+            ? {
+                ...d,
+                relayStates: {
+                  ...(d.relayStates || {}),
+                  "25": state,
+                },
+              }
+            : d
+        )
       );
     } catch (e) {
       setError(e.message);
@@ -253,13 +266,20 @@ export default function Devices() {
     e.preventDefault();
     setError("");
     setBusyKey("CLAIM");
+
     try {
-      await devicesService.claimDevice(claimDeviceId.trim(), claimName.trim());
+      await devicesService.claimDevice(
+        claimDeviceId.trim(),
+        claimCode.trim(),
+        claimName.trim()
+      );
+
       setClaimDeviceId("");
+      setClaimCode("");
       setClaimName("");
       await loadDevices();
-    } catch (e2) {
-      setError(e2.message);
+    } catch (e) {
+      setError(e.message);
     } finally {
       setBusyKey(null);
     }
@@ -294,6 +314,7 @@ export default function Devices() {
         }}
       >
         <h3 style={{ marginTop: 0 }}>Claim device</h3>
+
         <form onSubmit={handleClaim} style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
           <input
             value={claimDeviceId}
@@ -301,15 +322,28 @@ export default function Devices() {
             placeholder="deviceId (ej: esp32_01)"
             style={{ padding: 10, minWidth: 220 }}
           />
+
+          <input
+            value={claimCode}
+            onChange={(e) => setClaimCode(e.target.value)}
+            placeholder="claimCode"
+            style={{ padding: 10, minWidth: 220 }}
+          />
+
           <input
             value={claimName}
             onChange={(e) => setClaimName(e.target.value)}
             placeholder="name (opcional)"
             style={{ padding: 10, minWidth: 220 }}
           />
+
           <button
             type="submit"
-            disabled={busyKey === "CLAIM" || !claimDeviceId.trim()}
+            disabled={
+              busyKey === "CLAIM" ||
+              !claimDeviceId.trim() ||
+              !claimCode.trim()
+            }
             style={{ padding: "10px 14px", cursor: "pointer" }}
           >
             {busyKey === "CLAIM" ? "Claim..." : "Claim"}
@@ -330,46 +364,56 @@ export default function Devices() {
         <div>No hay devices asociados a tu usuario todavía.</div>
       ) : (
         <div style={{ display: "grid", gap: 12 }}>
-          {devices.map((d) => (
-            <div
-              key={d._id || d.deviceId}
-              style={{
-                padding: 14,
-                border: "1px solid #ddd",
-                borderRadius: 10,
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: 12,
-                flexWrap: "wrap",
-              }}
-            >
-              <div>
-                <div style={{ fontWeight: 700 }}>
-                  {d.name || "(sin nombre)"}{" "}
-                  <span style={{ fontWeight: 400, opacity: 0.7 }}>— {d.deviceId}</span>
+          {devices.map((d) => {
+            const relay25State = d.relayStates?.["25"] || "DESCONOCIDO";
+
+            return (
+              <div
+                key={d._id || d.deviceId}
+                style={{
+                  padding: 14,
+                  border: "1px solid #ddd",
+                  borderRadius: 10,
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  gap: 12,
+                  flexWrap: "wrap",
+                }}
+              >
+                <div>
+                  <div style={{ fontWeight: 700 }}>
+                    {d.name || "(sin nombre)"}{" "}
+                    <span style={{ fontWeight: 400, opacity: 0.7 }}>
+                      — {d.deviceId}
+                    </span>
+                  </div>
+
+                  <div style={{ marginTop: 6, fontSize: 14 }}>
+                    Relay25 estado real: <b>{relay25State}</b>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", gap: 10 }}>
+                  <button
+                    onClick={() => handleRelay(d.deviceId, "ON")}
+                    disabled={busyKey === `${d.deviceId}:ON` || busyKey === `${d.deviceId}:OFF`}
+                    style={{ padding: "10px 16px", cursor: "pointer" }}
+                  >
+                    {busyKey === `${d.deviceId}:ON` ? "Enviando..." : "Relay25 ON"}
+                  </button>
+
+                  <button
+                    onClick={() => handleRelay(d.deviceId, "OFF")}
+                    disabled={busyKey === `${d.deviceId}:ON` || busyKey === `${d.deviceId}:OFF`}
+                    style={{ padding: "10px 16px", cursor: "pointer" }}
+                  >
+                    {busyKey === `${d.deviceId}:OFF` ? "Enviando..." : "Relay25 OFF"}
+                  </button>
                 </div>
               </div>
-
-              <div style={{ display: "flex", gap: 10 }}>
-                <button
-                  onClick={() => handleRelay(d.deviceId, "ON")}
-                  disabled={busyKey === `${d.deviceId}:ON` || busyKey === `${d.deviceId}:OFF`}
-                  style={{ padding: "10px 16px", cursor: "pointer" }}
-                >
-                  {busyKey === `${d.deviceId}:ON` ? "Enviando..." : "Relay25 ON"}
-                </button>
-
-                <button
-                  onClick={() => handleRelay(d.deviceId, "OFF")}
-                  disabled={busyKey === `${d.deviceId}:ON` || busyKey === `${d.deviceId}:OFF`}
-                  style={{ padding: "10px 16px", cursor: "pointer" }}
-                >
-                  {busyKey === `${d.deviceId}:OFF` ? "Enviando..." : "Relay25 OFF"}
-                </button>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </div>

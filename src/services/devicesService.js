@@ -7,10 +7,19 @@ export const devicesService = {
     return Array.isArray(data) ? data : data.devices ?? [];
   },
 
-  async claimDevice(deviceId, name) {
-    const { data } = await apiClient.post("/api/devices/claim", { deviceId, name });
-    return data;
-  },
+  // async claimDevice(deviceId, name) {
+  //   const { data } = await apiClient.post("/api/devices/claim", { deviceId, name });
+  //   return data;
+  // },
+
+   async claimDevice(deviceId, claimCode, name) {
+  const { data } = await apiClient.post("/api/devices/claim", {
+    deviceId,
+    claimCode,
+    name,
+  });
+  return data;
+},
 
   async setRelay25(deviceId, state) {
     // state: "ON" | "OFF"
