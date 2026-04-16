@@ -2,8 +2,6 @@
 // import { useNavigate } from "react-router-dom";
 // import { devicesService } from "../../services/devicesService";
 
-// console.log("Devices NUEVO renderizado");
-
 // function sleep(ms) {
 //   return new Promise((resolve) => setTimeout(resolve, ms));
 // }
@@ -50,63 +48,60 @@
 //     return () => window.removeEventListener("auth:logout", onLogout);
 //     // eslint-disable-next-line react-hooks/exhaustive-deps
 //   }, []);
-   
-//    async function waitForRelayState(deviceId, expectedState, attempts = 10, interval = 500) {
-//   for (let i = 0; i < attempts; i++) {
-//     const list = await devicesService.getDevices();
-//     setDevices(list);
 
-//     const device = list.find((d) => d.deviceId === deviceId);
-//     const realState = device?.relayStates?.["25"];
+//   async function waitForRelayState(deviceId, expectedState, attempts = 10, interval = 500) {
+//     for (let i = 0; i < attempts; i++) {
+//       const list = await devicesService.getDevices();
+//       setDevices(list);
 
-//     if (realState === expectedState) {
-//       return { synced: true, realState };
+//       const device = list.find((d) => d.deviceId === deviceId);
+//       const realState = device?.relayStates?.["25"];
+
+//       if (realState === expectedState) {
+//         return { synced: true, realState };
+//       }
+
+//       await sleep(interval);
 //     }
 
-//     await sleep(interval);
-//   }
+//     const finalList = await devicesService.getDevices();
+//     setDevices(finalList);
 
-//   // Último intento extra antes de rendirse
-//   const finalList = await devicesService.getDevices();
-//   setDevices(finalList);
+//     const finalDevice = finalList.find((d) => d.deviceId === deviceId);
+//     const finalState = finalDevice?.relayStates?.["25"];
 
-//   const finalDevice = finalList.find((d) => d.deviceId === deviceId);
-//   const finalState = finalDevice?.relayStates?.["25"];
-
-//   if (finalState === expectedState) {
-//     return { synced: true, realState: finalState };
-//   }
-
-//   return { synced: false, realState: finalState };
-// }  
-
-
-//  async function handleRelay(deviceId, state) {
-//   setError("");
-//   const key = `${deviceId}:${state}`;
-//   setBusyKey(key);
-
-//   try {
-//     await devicesService.setRelay25(deviceId, state);
-
-//     const result = await waitForRelayState(deviceId, state, 10, 500);
-
-//     if (!result.synced) {
-//       setError(
-//         `El comando se envió, pero la UI todavía no confirmó el nuevo estado. Estado actual: ${
-//           result.realState || "DESCONOCIDO"
-//         }`
-//       );
-//     } else {
-//       setError("");
+//     if (finalState === expectedState) {
+//       return { synced: true, realState: finalState };
 //     }
-//   } catch (e) {
-//     setError(e.message || "Error al enviar comando al relay");
-//   } finally {
-//     setBusyKey(null);
-//   }
-// }
 
+//     return { synced: false, realState: finalState };
+//   }
+
+//   async function handleRelay(deviceId, state) {
+//     setError("");
+//     const key = `${deviceId}:${state}`;
+//     setBusyKey(key);
+
+//     try {
+//       await devicesService.setRelay25(deviceId, state);
+
+//       const result = await waitForRelayState(deviceId, state, 10, 500);
+
+//       if (!result.synced) {
+//         setError(
+//           `El comando se envió, pero la UI todavía no confirmó el nuevo estado. Estado actual: ${
+//             result.realState || "DESCONOCIDO"
+//           }`
+//         );
+//       } else {
+//         setError("");
+//       }
+//     } catch (e) {
+//       setError(e.message || "Error al enviar comando al relay");
+//     } finally {
+//       setBusyKey(null);
+//     }
+//   }
 
 //   async function handleClaim(e) {
 //     e.preventDefault();
@@ -136,9 +131,7 @@
 
 //   return (
 //     <div style={{ padding: 16, maxWidth: 900, margin: "0 auto" }}>
-//       <h2 style={{ marginBottom: 8 }}>
-//   Devices - {import.meta.env.VITE_API_URL}
-// </h2>
+//       <h2 style={{ marginBottom: 8 }}>Devices</h2>
 
 //       {error && (
 //         <div
@@ -297,6 +290,22 @@ export default function Devices() {
   const [claimCode, setClaimCode] = useState("");
   const [claimName, setClaimName] = useState("");
 
+  const [relayFeedback, setRelayFeedback] = useState({});
+
+  function setDeviceFeedback(deviceId, status, message) {
+    setRelayFeedback((prev) => ({
+      ...prev,
+      [deviceId]: { status, message },
+    }));
+  }
+
+  function clearDeviceFeedback(deviceId) {
+    setRelayFeedback((prev) => ({
+      ...prev,
+      [deviceId]: { status: "idle", message: "" },
+    }));
+  }
+
   async function loadDevices(showLoader = true) {
     if (showLoader) setLoading(true);
     setError("");
@@ -361,12 +370,19 @@ export default function Devices() {
     const key = `${deviceId}:${state}`;
     setBusyKey(key);
 
+    setDeviceFeedback(deviceId, "sending", "⏳ Enviando comando...");
+
     try {
       await devicesService.setRelay25(deviceId, state);
 
       const result = await waitForRelayState(deviceId, state, 10, 500);
 
       if (!result.synced) {
+        const message = `⚠️ Pendiente de confirmación${
+          result.realState ? ` (actual: ${result.realState})` : ""
+        }`;
+
+        setDeviceFeedback(deviceId, "timeout", message);
         setError(
           `El comando se envió, pero la UI todavía no confirmó el nuevo estado. Estado actual: ${
             result.realState || "DESCONOCIDO"
@@ -374,9 +390,15 @@ export default function Devices() {
         );
       } else {
         setError("");
+        setDeviceFeedback(deviceId, "confirmed", "✅ Confirmado");
+
+        setTimeout(() => {
+          clearDeviceFeedback(deviceId);
+        }, 2000);
       }
     } catch (e) {
       setError(e.message || "Error al enviar comando al relay");
+      setDeviceFeedback(deviceId, "error", "⚠️ Error al enviar comando");
     } finally {
       setBusyKey(null);
     }
@@ -490,6 +512,8 @@ export default function Devices() {
             const relayBusy =
               busyKey === `${d.deviceId}:ON` || busyKey === `${d.deviceId}:OFF`;
 
+            const feedback = relayFeedback[d.deviceId];
+
             return (
               <div
                 key={d._id || d.deviceId}
@@ -515,6 +539,18 @@ export default function Devices() {
                   <div style={{ marginTop: 6, fontSize: 14 }}>
                     Relay25 estado real: <b>{relay25State}</b>
                   </div>
+
+                  {feedback?.message && (
+                    <div
+                      style={{
+                        marginTop: 6,
+                        fontSize: 13,
+                        opacity: 0.95,
+                      }}
+                    >
+                      {feedback.message}
+                    </div>
+                  )}
 
                   {d.lastSeenAt && (
                     <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
