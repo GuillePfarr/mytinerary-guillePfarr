@@ -1,10 +1,11 @@
 // import axios from "axios";
 
+// console.log("VITE_API_URL =", import.meta.env.VITE_API_URL);
+
 // const apiClient = axios.create({
 //   baseURL: import.meta.env.VITE_API_URL,
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
+//   headers: { "Content-Type": "application/json" },
+//   withCredentials: false,
 // });
 
 // // Inyecta Authorization automáticamente desde localStorage
@@ -17,21 +18,30 @@
 //   (error) => Promise.reject(error)
 // );
 
-// // Normaliza errores para mostrarlos fácil en UI
+// // Normaliza errores + maneja 401 global
 // apiClient.interceptors.response.use(
 //   (res) => res,
 //   (err) => {
+//     const status = err?.response?.status;
+
+//     // Si expira token o no es válido
+//     if (status === 401) {
+//       localStorage.removeItem("token");
+//       window.dispatchEvent(new Event("auth:logout"));
+//     }
+
 //     const message =
-//       err?.response?.data?.message ||
 //       err?.response?.data?.error ||
+//       err?.response?.data?.message ||
+//       (status === 401 ? "Sesión expirada. Iniciá sesión nuevamente." : null) ||
 //       err?.message ||
 //       "Error desconocido";
+
 //     return Promise.reject(new Error(message));
 //   }
 // );
 
 // export default apiClient;
-
 
 import axios from "axios";
 
@@ -57,7 +67,6 @@ apiClient.interceptors.response.use(
   (err) => {
     const status = err?.response?.status;
 
-    // Si expira token o no es válido
     if (status === 401) {
       localStorage.removeItem("token");
       window.dispatchEvent(new Event("auth:logout"));
