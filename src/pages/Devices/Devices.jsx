@@ -220,19 +220,72 @@ export default function Devices() {
               }}
             >
               <div>
-                <div style={{ fontWeight: 700 }}>
-                  {d.name || "(sin nombre)"}{" "}
-                  <span style={{ fontWeight: 400, opacity: 0.7 }}>
-                    — {d.deviceId}
-                  </span>
-                </div>
+  <div style={{ fontWeight: 700 }}>
+    {d.name || "(sin nombre)"}{" "}
+    <span style={{ fontWeight: 400, opacity: 0.7 }}>
+      — {d.deviceId}
+    </span>
+  </div>
 
-                {d.lastSeenAt && (
-                  <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
-                    Último reporte: {new Date(d.lastSeenAt).toLocaleString()}
-                  </div>
-                )}
-              </div>
+  <div style={{ marginTop: 4, fontSize: 13 }}>
+    Estado:{" "}
+    <b style={{ color: d.online ? "green" : "crimson" }}>
+      {d.online ? "ONLINE" : "OFFLINE"}
+    </b>
+  </div>
+
+  {d.lastSeen && (
+    <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
+      Último reporte: {new Date(d.lastSeen).toLocaleString()}
+    </div>
+  )}
+
+  <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
+    Modelo: {d.model || "-"} | FW: {d.firmwareVersion || "-"} | HW:{" "}
+    {d.hardwareVersion || "-"}
+  </div>
+</div>
+
+
+
+{d.lastSnapshot && (
+  <div
+    style={{
+      padding: 12,
+      border: "1px solid #e5e5e5",
+      borderRadius: 8,
+      background: "#fafafa",
+      display: "grid",
+      gap: 6,
+    }}
+  >
+    <div style={{ fontWeight: 700 }}>Estado reportado</div>
+
+    <div>
+      Temp local: <b>{d.lastSnapshot.tempLocal ?? "-"}</b> °C | Hum local:{" "}
+      <b>{d.lastSnapshot.humLocal ?? "-"}</b> %
+    </div>
+
+    <div>
+      Temp remota: <b>{d.lastSnapshot.tempRemote ?? "-"}</b> °C | Hum remota:{" "}
+      <b>{d.lastSnapshot.humRemote ?? "-"}</b> %
+    </div>
+
+    <div>
+      Límites: tmax <b>{d.lastSnapshot.tmax ?? "-"}</b> / tmin{" "}
+      <b>{d.lastSnapshot.tmin ?? "-"}</b>
+    </div>
+
+    <div>
+      Fuente hora: <b>{d.lastSnapshot.timeSource ?? "-"}</b> | Error:{" "}
+      <b>{d.lastSnapshot.errorCode ?? "-"}</b>
+    </div>
+
+    <div style={{ fontSize: 12, opacity: 0.75 }}>
+      Snapshot: {d.lastSnapshot.timestamp || "-"}
+    </div>
+  </div>
+)}
 
               {RELAY_IDS.map((relayId) => {
                 const relayState = d.relayStates?.[relayId] || "DESCONOCIDO";
