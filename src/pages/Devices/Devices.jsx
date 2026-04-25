@@ -6,6 +6,27 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function timeAgo(dateValue) {
+  if (!dateValue) return "-";
+
+  const date = new Date(dateValue);
+  const diffMs = Date.now() - date.getTime();
+
+  if (Number.isNaN(diffMs)) return "-";
+
+  const diffSec = Math.floor(diffMs / 1000);
+  if (diffSec < 60) return `hace ${diffSec}s`;
+
+  const diffMin = Math.floor(diffSec / 60);
+  if (diffMin < 60) return `hace ${diffMin} min`;
+
+  const diffHours = Math.floor(diffMin / 60);
+  if (diffHours < 24) return `hace ${diffHours} h`;
+
+  const diffDays = Math.floor(diffHours / 24);
+  return `hace ${diffDays} días`;
+}
+
 const RELAY_IDS = ["1", "2", "3", "4"];
 
 export default function Devices() {
@@ -117,6 +138,10 @@ export default function Devices() {
     <div style={{ padding: 16, maxWidth: 900, margin: "0 auto" }}>
       <h2 style={{ marginBottom: 8 }}>Devices</h2>
 
+      <div style={{ marginBottom: 12, fontSize: 12, opacity: 0.7 }}>
+        Actualización automática cada 15 segundos
+      </div>
+
       {error && (
         <div
           style={{
@@ -218,7 +243,7 @@ export default function Devices() {
 
   {d.lastSeen && (
     <div style={{ marginTop: 4, fontSize: 12, opacity: 0.7 }}>
-      Último reporte: {new Date(d.lastSeen).toLocaleString()}
+      Último reporte: {timeAgo(d.lastSeen)}
     </div>
   )}
 
