@@ -35,49 +35,31 @@ export default function Devices() {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/signin", { replace: true, state: { from: "/devices" } });
-      return;
-    }
+  const token = localStorage.getItem("token");
 
-    loadDevices();
-
-    const onLogout = () =>
-      navigate("/signin", { replace: true, state: { from: "/devices" } });
-
-    window.addEventListener("auth:logout", onLogout);
-    return () => window.removeEventListener("auth:logout", onLogout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  async function waitForRelayState(deviceId, relayId, expectedState, attempts = 10, interval = 500) {
-    for (let i = 0; i < attempts; i++) {
-      const list = await devicesService.getDevices();
-      setDevices(list);
-
-      const device = list.find((d) => d.deviceId === deviceId);
-      const realState = device?.relayStates?.[relayId];
-
-      if (realState === expectedState) {
-        return { synced: true, realState };
-      }
-
-      await sleep(interval);
-    }
-
-    const finalList = await devicesService.getDevices();
-    setDevices(finalList);
-
-    const finalDevice = finalList.find((d) => d.deviceId === deviceId);
-    const finalState = finalDevice?.relayStates?.[relayId];
-
-    if (finalState === expectedState) {
-      return { synced: true, realState: finalState };
-    }
-
-    return { synced: false, realState: finalState };
+  if (!token) {
+    navigate("/signin", { replace: true, state: { from: "/devices" } });
+    return;
   }
+
+  const onLogout = () => {
+    navigate("/signin", { replace: true, state: { from: "/devices" } });
+  };
+
+  loadDevices();
+
+  const intervalId = setInterval(() => {
+    loadDevices(false);
+  }, 15000);
+
+  window.addEventListener("auth:logout", onLogout);
+
+  return () => {
+    clearInterval(intervalId);
+    window.removeEventListener("auth:logout", onLogout);
+  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   async function handleRelay(deviceId, relayId, state) {
     setError("");
