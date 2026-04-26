@@ -1,165 +1,72 @@
-// import React, { useRef } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { signIn } from '../redux/actions/userActions';
-// import { Link, useLocation } from 'react-router-dom';
-// import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-// import { useNavigate } from 'react-router-dom';
-// import './SignIn.css';
-// import jwtDecode from 'jwt-decode';
-
-// const location = useLocation
-// const SignIn = () => {
-//     const email = useRef(null);
-//     const password = useRef(null);
-
-//     const dispatch = useDispatch();
-//     const navigate = useNavigate();
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         const aux = [email, password];
-//         if (aux.some((campo) => !campo.current.value)) {
-//             alert("All fields are required");
-//         } else {
-//             const body = {
-//                 email: email.current.value,
-//                 password: password.current.value,
-//             };
-           
-//             // dispatch(signIn(body)).then((response) => {
-//             //     if (response.payload.success) {
-//             //         alert("Welcome" + response.payload.user.name);
-//             //     }
-//             //     navigate("/");
-//             // });
-
-//           dispatch(signIn(body)).then((response) => {
-//                 if (response.payload.success) {
-//                     alert("Welcome" + response.payload.user.name);
-//                 }
-//                 navigate("/");
-//             });
-//         }
-//     };
-
-//      const handleSubmitGoogle = async (data) => {
-//          const body = {
-//                 email: data.email,
-//                 password: data.sub + import.meta.env.VITE_GG_KEY,
-//             };
-           
-//             // dispatch(signIn(body)).then((response) => {
-//             //     if (response.payload.success) {
-//             //         alert("Welcome" + response.payload.user.name);
-//             //     }
-//             //     navigate("/");
-//             // });
-//              dispatch(signIn(body)).then((response) => {
-//                 if (response.payload.success) {
-//                     alert("Welcome" + response.payload.user.name);
-//                 }
-//                 navigate("/");
-//             });
-
-//            }
-
-//     return (
-        
-//             <div className="signin-container">
-//                 <form className="signin-form" onSubmit={handleSubmit}>
-//                     <label className="signin-label">
-//                         Email
-//                         <input type="email" name="email" className="signin-input" ref={email} />
-//                     </label>
-//                     <label className="signin-label">
-//                         Password
-//                         <input type="password" name="password" className="signin-input" ref={password} />
-//                     </label>
-
-//                     <button className='bt btn-secondary' type="submit">Login</button>
-//                     <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
-//                         <GoogleLogin
-//                             onSuccess={credentialResponse => {
-                                
-//                              const infoUser = jwtDecode(credentialResponse.credential)
-//                             handleSubmitGoogle(infoUser)
-//                             }}
-//                             onError={() => {
-//                                 console.log('Login Failed');
-//                             }}
-//                         />;
-//                     </GoogleOAuthProvider>
-//                 </form>
-//                 <div className="button-wrapper">
-//                     <Link className="button cta-signup-button" to="/signup"></Link>
-//                     <p className='cta-text'>Become a user</p>
-
-//                 </div>
-
-           
-//         </div>
-//     );
-// };
-
-// export default SignIn;
-
-
-import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { signIn } from '../redux/actions/userActions';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { signIn } from "../redux/actions/userActions";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
-import './SignIn.css';
-import jwtDecode from 'jwt-decode';
+import "./SignIn.css";
+import jwtDecode from "jwt-decode";
+
+const initialForm = {
+  email: "",
+  password: "",
+};
 
 const SignIn = () => {
-  const email = useRef(null);
-  const password = useRef(null);
+  const [form, setForm] = useState(initialForm);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation(); // (si no lo usás, podés borrarlo)
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/devices";
+
+  const updateField = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const getErrorMessage = (payload) => {
+    return payload?.error || payload?.message || "No se pudo iniciar sesión";
+  };
 
   const doLogin = async (body) => {
-    const response = await dispatch(signIn(body));
+    setError("");
+    setLoading(true);
 
-    // Si el thunk falló, action puede venir rejected
-    const payload = response?.payload;
+    try {
+      const result = await dispatch(signIn(body));
 
-    if (payload?.success) {
-      // Guardado "a prueba de todo" (aunque el thunk ya lo haga)
-      if (payload?.token) localStorage.setItem('token', payload.token);
+      if (signIn.rejected.match(result)) {
+        setError(getErrorMessage(result.payload));
+        return;
+      }
 
-      alert("Welcome " + payload.user.name);
+      const payload = result.payload;
 
-      // Si venías de una ruta protegida, podrías volver ahí:
-      // const from = location.state?.from?.pathname || "/";
-      // navigate(from);
+      if (payload?.token) {
+        localStorage.setItem("token", payload.token);
+      }
 
-      //navigate("/devices"); es reemplazada por las dos que siguen
-      const from = location.state?.from?.pathname || "/devices";
       navigate(from, { replace: true });
-
-    } else {
-      alert(payload?.error || "No se pudo iniciar sesión");
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const aux = [email, password];
-    if (aux.some((campo) => !campo.current.value)) {
-      alert("All fields are required");
+    if (!form.email.trim() || !form.password) {
+      setError("Completá email y contraseña.");
       return;
     }
 
-    const body = {
-      email: email.current.value,
-      password: password.current.value,
-    };
-
-    doLogin(body);
+    doLogin({
+      email: form.email.trim(),
+      password: form.password,
+    });
   };
 
   const handleSubmitGoogle = (data) => {
@@ -174,17 +81,39 @@ const SignIn = () => {
   return (
     <div className="signin-container">
       <form className="signin-form" onSubmit={handleSubmit}>
+        {error && (
+          <div style={{ color: "crimson", marginBottom: 12, fontWeight: 600 }}>
+            {error}
+          </div>
+        )}
+
         <label className="signin-label">
           Email
-          <input type="email" name="email" className="signin-input" ref={email} />
+          <input
+            type="email"
+            name="email"
+            className="signin-input"
+            value={form.email}
+            onChange={updateField}
+            autoComplete="email"
+          />
         </label>
 
         <label className="signin-label">
           Password
-          <input type="password" name="password" className="signin-input" ref={password} />
+          <input
+            type="password"
+            name="password"
+            className="signin-input"
+            value={form.password}
+            onChange={updateField}
+            autoComplete="current-password"
+          />
         </label>
 
-        <button className='bt btn-secondary' type="submit">Login</button>
+        <button className="bt btn-secondary" type="submit" disabled={loading}>
+          {loading ? "Ingresando..." : "Login"}
+        </button>
 
         <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
           <GoogleLogin
@@ -193,22 +122,20 @@ const SignIn = () => {
               handleSubmitGoogle(infoUser);
             }}
             onError={() => {
-              console.log('Login Failed');
-              alert("Google login failed");
+              setError("Google login failed");
             }}
           />
         </GoogleOAuthProvider>
       </form>
 
       <div className="button-wrapper">
-        <Link className="button cta-signup-button" to="/signup"></Link>
-        <p className='cta-text'>Become a user</p>
+        <p className="cta-text">Become a user</p>
+        <Link className="button cta-signup-button" to="/signup">
+          Sign up
+        </Link>
       </div>
     </div>
   );
 };
 
 export default SignIn;
-
-
-
