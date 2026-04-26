@@ -1,9 +1,50 @@
-# React + Vite
+# Mytinerary Frontend Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Frontend React + Vite para plataforma IoT con autenticación de usuarios y panel de control de dispositivos ESP32.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-<!-- sat 9set2023-ambos main operativos-en back tambien sprint2 operativo-en front solo main -->
+### Usuarios
+
+- Registro
+- Login
+- Persistencia de sesión con token
+- Rutas protegidas
+
+### Dashboard Devices
+
+- Lista de dispositivos asociados
+- Estado ONLINE / OFFLINE
+- Último reporte recibido
+- Snapshot de sensores
+- Temperatura y humedad
+- Límites operativos
+- Control remoto de 4 relés
+- Actualización automática periódica
+
+### UX
+
+- Navegación SPA
+- Feedback visual de acciones
+- Refresh automático
+- Responsive base
+
+## Stack
+
+- React 18
+- Vite
+- Redux Toolkit
+- React Router
+- Axios
+- Bootstrap
+
+## Backend conectado
+
+API Node.js + MongoDB + MQTT
+
+## Release estable
+
+`v1.0-ui-dashboard`
+
+## Estado
+
