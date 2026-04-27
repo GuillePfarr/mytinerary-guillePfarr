@@ -1,4 +1,3 @@
-
 import "./App.css";
 import LayoutMain from "./pages/Layout/LayoutMain";
 import Home from "./pages/Home/Home";
@@ -17,7 +16,7 @@ import AjustesForm from "./pages/AjustesForm.jsx";
 import Devices from "./pages/Devices/Devices.jsx"; // ✅ ESTE era el problema
 import RequireAuth from "./components/auth/RequireAuth.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
-
+import ForgotPassword from "./pages/ForgotPassword.jsx";
 
 
 const router = createBrowserRouter([
@@ -31,6 +30,7 @@ const router = createBrowserRouter([
       { path: "/signup", element: <SignUp /> },
       { path: "/signin", element: <SignIn /> },
       { path: "/verify-email", element: <VerifyEmail /> },
+      { path: "/forgot-password", element: <ForgotPassword /> },
       { path: "/logout", element: <LogOut /> },
       { path: "/vanguard", element: <Vanguard /> },
       { path: "/ajustes", element: <AjustesForm /> },

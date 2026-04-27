@@ -70,6 +70,44 @@ export const resendVerification = createAsyncThunk(
   }
 );
 
+export const requestPasswordReset = createAsyncThunk(
+  "request_password_reset",
+  async (body, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `${API}/api/auth/request-password-reset`,
+        body
+      );
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || {
+          success: false,
+          error: "Error al solicitar recuperación de contraseña",
+        }
+      );
+    }
+  }
+);
+
+export const resetPassword = createAsyncThunk(
+  "reset_password",
+  async (body, thunkAPI) => {
+    try {
+      const response = await axios.post(`${API}/api/auth/reset-password`, body);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || {
+          success: false,
+          error: "Error al cambiar contraseña",
+        }
+      );
+    }
+  }
+);
+
 export const signIn = createAsyncThunk("logear", async (body, thunkAPI) => {
   try {
     const response = await axios.post(`${API}/api/auth/signIn`, body);

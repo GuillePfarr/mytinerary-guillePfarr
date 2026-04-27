@@ -137,6 +137,13 @@ const SignIn = () => {
           {loading ? "Ingresando..." : "Login"}
         </button>
 
+        <div style={{ marginTop: 10, marginBottom: 10 }}>
+
+        <Link to="/forgot-password">
+               ¿Olvidaste tu contraseña?
+        </Link>
+</div>
+
         <GoogleOAuthProvider clientId="445761792247-dbcpi8hmi2o5mv47rjaam9l30eqq4uku.apps.googleusercontent.com">
           <GoogleLogin
             onSuccess={(credentialResponse) => {
