@@ -83,12 +83,25 @@ const SignUp = () => {
         return;
       }
 
-      setSuccess("Usuario creado correctamente. Redirigiendo...");
-      setForm(initialForm);
+      if (result.payload?.requiresEmailVerification) {
+  setSuccess("Usuario creado. Revisá tu email para verificar la cuenta.");
 
-      setTimeout(() => {
-        navigate("/devices");
-      }, 800);
+  setTimeout(() => {
+    navigate("/verify-email", {
+      replace: true,
+      state: { email: result.payload.email || form.email.trim() },
+    });
+  }, 800);
+
+  return;
+}
+
+setSuccess("Usuario creado correctamente. Redirigiendo...");
+setForm(initialForm);
+
+setTimeout(() => {
+  navigate("/devices");
+}, 800);
     } finally {
       setLoading(false);
     }

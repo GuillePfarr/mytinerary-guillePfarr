@@ -31,6 +31,8 @@ const SignIn = () => {
     return payload?.error || payload?.message || "No se pudo iniciar sesión";
   };
 
+  const [pendingVerificationEmail, setPendingVerificationEmail] = useState("");
+  
   const doLogin = async (body) => {
     setError("");
     setLoading(true);
@@ -39,9 +41,15 @@ const SignIn = () => {
       const result = await dispatch(signIn(body));
 
       if (signIn.rejected.match(result)) {
-        setError(getErrorMessage(result.payload));
-        return;
-      }
+  const payload = result.payload;
+
+  if (payload?.requiresEmailVerification && payload?.email) {
+    setPendingVerificationEmail(payload.email);
+  }
+
+  setError(getErrorMessage(payload));
+  return;
+}
 
       const payload = result.payload;
 
@@ -84,6 +92,20 @@ const SignIn = () => {
         {error && (
           <div style={{ color: "crimson", marginBottom: 12, fontWeight: 600 }}>
             {error}
+            {pendingVerificationEmail && (
+  <button
+    type="button"
+    className="bt btn-secondary"
+    style={{ marginBottom: 12 }}
+    onClick={() =>
+      navigate("/verify-email", {
+        state: { email: pendingVerificationEmail },
+      })
+    }
+  >
+    Verificar email
+  </button>
+)}
           </div>
         )}
 

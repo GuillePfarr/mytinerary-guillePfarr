@@ -49,6 +49,27 @@ export const verifyEmail = createAsyncThunk(
   }
 );
 
+export const resendVerification = createAsyncThunk(
+  "resend_verification",
+  async (body, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `${API}/api/auth/resend-verification`,
+        body
+      );
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || {
+          success: false,
+          error: "Error al reenviar código",
+        }
+      );
+    }
+  }
+);
+
 export const signIn = createAsyncThunk("logear", async (body, thunkAPI) => {
   try {
     const response = await axios.post(`${API}/api/auth/signIn`, body);

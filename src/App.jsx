@@ -16,7 +16,7 @@ import Vanguard from "./pages/Vanguard/Vanguard.jsx";
 import AjustesForm from "./pages/AjustesForm.jsx";
 import Devices from "./pages/Devices/Devices.jsx"; // ✅ ESTE era el problema
 import RequireAuth from "./components/auth/RequireAuth.jsx";
-
+import VerifyEmail from "./pages/VerifyEmail.jsx";
 
 
 
@@ -30,6 +30,7 @@ const router = createBrowserRouter([
       { path: "/citydetails/:id", element: <CityDetails /> },
       { path: "/signup", element: <SignUp /> },
       { path: "/signin", element: <SignIn /> },
+      { path: "/verify-email", element: <VerifyEmail /> },
       { path: "/logout", element: <LogOut /> },
       { path: "/vanguard", element: <Vanguard /> },
       { path: "/ajustes", element: <AjustesForm /> },
