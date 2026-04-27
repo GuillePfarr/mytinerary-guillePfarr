@@ -21,6 +21,7 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -60,7 +61,13 @@ const SignUp = () => {
     setError("");
     setSuccess("");
 
-    if (!form.name || !form.email || !form.password || !form.image || !form.country) {
+    if (
+      !form.name ||
+      !form.email ||
+      !form.password ||
+      !form.image ||
+      !form.country
+    ) {
       setError("Completá todos los campos.");
       return;
     }
@@ -75,7 +82,7 @@ const SignUp = () => {
           password: form.password,
           image: form.image.trim(),
           country: form.country,
-        })
+        }),
       );
 
       if (signUp.rejected.match(result)) {
@@ -84,24 +91,24 @@ const SignUp = () => {
       }
 
       if (result.payload?.requiresEmailVerification) {
-  setSuccess("Usuario creado. Revisá tu email para verificar la cuenta.");
+        setSuccess("Usuario creado. Revisá tu email para verificar la cuenta.");
 
-  setTimeout(() => {
-    navigate("/verify-email", {
-      replace: true,
-      state: { email: result.payload.email || form.email.trim() },
-    });
-  }, 800);
+        setTimeout(() => {
+          navigate("/verify-email", {
+            replace: true,
+            state: { email: result.payload.email || form.email.trim() },
+          });
+        }, 800);
 
-  return;
-}
+        return;
+      }
 
-setSuccess("Usuario creado correctamente. Redirigiendo...");
-setForm(initialForm);
+      setSuccess("Usuario creado correctamente. Redirigiendo...");
+      setForm(initialForm);
 
-setTimeout(() => {
-  navigate("/devices");
-}, 800);
+      setTimeout(() => {
+        navigate("/devices");
+      }, 800);
     } finally {
       setLoading(false);
     }
@@ -125,6 +132,19 @@ setTimeout(() => {
 
       if (signUp.rejected.match(result)) {
         setError(getErrorMessage(result.payload));
+        return;
+      }
+
+      if (result.payload?.requiresEmailVerification) {
+        setSuccess("Usuario creado. Revisá tu email para verificar la cuenta.");
+
+        setTimeout(() => {
+          navigate("/verify-email", {
+            replace: true,
+            state: { email: result.payload.email || body.email },
+          });
+        }, 800);
+
         return;
       }
 
@@ -177,13 +197,27 @@ setTimeout(() => {
 
         <label className="signup-label">
           Password
-          <input
-            type="password"
-            name="password"
-            className="signup-input"
-            value={form.password}
-            onChange={updateField}
-          />
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              className="signup-input"
+              value={form.password}
+              onChange={updateField}
+              style={{ flex: 1 }}
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              style={{ padding: "8px 10px", cursor: "pointer" }}
+              aria-label={
+                showPassword ? "Ocultar contraseña" : "Mostrar contraseña"
+              }
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
         </label>
 
         <label className="signup-label">
