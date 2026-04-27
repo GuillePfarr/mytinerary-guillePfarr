@@ -1,4 +1,3 @@
-
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -15,7 +14,11 @@ export const cargarUsuario = createAction("cargar_usuario", (user) => {
 export const signUp = createAsyncThunk("create_user", async (body, thunkAPI) => {
   try {
     const response = await axios.post(`${API}/api/auth/signUp`, body);
-    saveToken(response.data.token);
+
+    if (response.data.token) {
+      saveToken(response.data.token);
+    }
+
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(
@@ -23,6 +26,28 @@ export const signUp = createAsyncThunk("create_user", async (body, thunkAPI) => 
     );
   }
 });
+
+export const verifyEmail = createAsyncThunk(
+  "verify_email",
+  async (body, thunkAPI) => {
+    try {
+      const response = await axios.post(`${API}/api/auth/verify-email`, body);
+
+      if (response.data.token) {
+        saveToken(response.data.token);
+      }
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data || {
+          success: false,
+          error: "Error al verificar email",
+        }
+      );
+    }
+  }
+);
 
 export const signIn = createAsyncThunk("logear", async (body, thunkAPI) => {
   try {
@@ -36,22 +61,25 @@ export const signIn = createAsyncThunk("logear", async (body, thunkAPI) => {
   }
 });
 
-export const signInWithToken = createAsyncThunk("signInWithToken", async (token, thunkAPI) => {
-  try {
-    const response = await axios.post(
-      `${API}/api/auth/signin/token`,
-      {},
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
+export const signInWithToken = createAsyncThunk(
+  "signInWithToken",
+  async (token, thunkAPI) => {
+    try {
+      const response = await axios.post(
+        `${API}/api/auth/signin/token`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-    return { user: response.data.user, token };
-  } catch (error) {
-    localStorage.removeItem("token");
-    return thunkAPI.rejectWithValue(
-      error.response?.data || { success: false, error: "Token inválido" }
-    );
+      return { user: response.data.user, token };
+    } catch (error) {
+      localStorage.removeItem("token");
+      return thunkAPI.rejectWithValue(
+        error.response?.data || { success: false, error: "Token inválido" }
+      );
+    }
   }
-});
+);
 
 export const logout = createAction("reset", () => {
   localStorage.removeItem("token");
