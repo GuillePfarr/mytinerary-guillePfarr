@@ -18,7 +18,7 @@ export default function ForgotPassword() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
   const askCode = async (e) => {
     e.preventDefault();
 
@@ -36,7 +36,7 @@ export default function ForgotPassword() {
       const result = await dispatch(
         requestPasswordReset({
           email: email.trim(),
-        })
+        }),
       );
 
       if (requestPasswordReset.rejected.match(result)) {
@@ -70,7 +70,7 @@ export default function ForgotPassword() {
           email: email.trim(),
           code: code.trim(),
           password,
-        })
+        }),
       );
 
       if (resetPassword.rejected.match(result)) {
@@ -115,34 +115,46 @@ export default function ForgotPassword() {
 
       {step === 2 && (
         <form onSubmit={changePassword} style={{ display: "grid", gap: 12 }}>
-          
-          
-           <input
-  type="email"
-  name="reset-email"
-  value={email}
-  readOnly
-  autoComplete="off"
-/>
-
           <input
-  type="text"
-  name="verification-code"
-  inputMode="numeric"
-  pattern="[0-9]*"
-  placeholder="Código recibido"
-  value={code}
-  onChange={(e) => setCode(e.target.value)}
-  autoComplete="one-time-code"
-/>
-
-          <input
-            type="password"
-            placeholder="Nueva contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            type="email"
+            name="reset-email"
+            value={email}
+            readOnly
+            autoComplete="off"
           />
 
+          <input
+            type="text"
+            name="verification-code"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            placeholder="Código recibido"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+            autoComplete="one-time-code"
+          />
+
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Nueva contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              autoComplete="new-password"
+              style={{ flex: 1 }}
+            />
+
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              style={{ padding: "8px 10px", cursor: "pointer" }}
+              aria-label={
+                showPassword ? "Ocultar contraseña" : "Mostrar contraseña"
+              }
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </button>
+          </div>
 
           <button type="submit" disabled={loading}>
             {loading ? "Actualizando..." : "Cambiar contraseña"}

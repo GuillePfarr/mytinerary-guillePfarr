@@ -15,6 +15,7 @@ const SignIn = () => {
   const [form, setForm] = useState(initialForm);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -123,15 +124,26 @@ const SignIn = () => {
 
         <label className="signin-label">
           Password
-          <input
-            type="password"
-            name="password"
-            className="signin-input"
-            value={form.password}
-            onChange={updateField}
-            autoComplete="current-password"
-          />
-        </label>
+          <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+  <input
+    type={showPassword ? "text" : "password"}
+    name="password"
+    className="signin-input"
+    value={form.password}
+    onChange={updateField}
+    autoComplete="current-password"
+    style={{ flex: 1 }}
+  />
+
+  <button
+    type="button"
+    onClick={() => setShowPassword((prev) => !prev)}
+    style={{ padding: "8px 10px", cursor: "pointer" }}
+    aria-label={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"}
+  >
+    {showPassword ? "🙈" : "👁️"}
+  </button>
+</div>        </label>
 
         <button className="bt btn-secondary" type="submit" disabled={loading}>
           {loading ? "Ingresando..." : "Login"}
