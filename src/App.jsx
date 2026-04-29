@@ -13,11 +13,10 @@ import { useEffect } from "react";
 import { signInWithToken } from "./redux/actions/userActions";
 import Vanguard from "./pages/Vanguard/Vanguard.jsx";
 import AjustesForm from "./pages/AjustesForm.jsx";
-import Devices from "./pages/Devices/Devices.jsx"; // ✅ ESTE era el problema
+import Devices from "./pages/Devices/Devices.jsx";
 import RequireAuth from "./components/auth/RequireAuth.jsx";
 import VerifyEmail from "./pages/VerifyEmail.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
-
 
 const router = createBrowserRouter([
   {
@@ -34,15 +33,14 @@ const router = createBrowserRouter([
       { path: "/logout", element: <LogOut /> },
       { path: "/vanguard", element: <Vanguard /> },
       { path: "/ajustes", element: <AjustesForm /> },
-      //{ path: "/devices", element: <Devices /> },
       {
-  path: '/devices',
-  element: (
-    <RequireAuth>
-      <Devices />
-    </RequireAuth>
-  )
-},
+        path: "/devices",
+        element: (
+          <RequireAuth>
+            <Devices />
+          </RequireAuth>
+        ),
+      },
       { path: "*", element: <Componente404 /> },
     ],
   },
@@ -55,6 +53,18 @@ function App() {
     const token = localStorage.getItem("token");
     if (token) dispatch(signInWithToken(token));
   }, [dispatch]);
+
+  useEffect(() => {
+    const handleLogout = () => {
+      window.location.href = "/signin";
+    };
+
+    window.addEventListener("auth:logout", handleLogout);
+
+    return () => {
+      window.removeEventListener("auth:logout", handleLogout);
+    };
+  }, []);
 
   return <RouterProvider router={router} />;
 }
